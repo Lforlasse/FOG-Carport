@@ -9,9 +9,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
-    <title>Hello, world!</title>
+    <title>FOG Carport</title>
 </head>
 
 <body>
@@ -23,10 +23,16 @@
                 <img src="../img/fog_logo_2015.jpg" class="img-fluid rounded" alt="Responsive image">
             </button>
         </form>
-        <form class="form-inline">
-            <button class="btn btn-outline-secondary active" type="button">Konfigurator</button>
-            <button class="btn btn-outline-secondary ml-2" type="button">Prefab</button>
-        </form>
+        <div class="d-inline-flex">
+            <form class="form-inline" role="form" name="configurator" action="FrontController" method="POST">
+                <input type="hidden" name="target" value="configurator">
+                <button type="submit" class="btn btn-outline-secondary mr-2 active" value="submit">Konfigurator</button>
+            </form>
+            <form class="form-inline" role="form" name="login" action="FrontController" method="POST">
+                <input type="hidden" name="target" value="prefab">
+                <button type="submit" class="btn btn-outline-secondary" value="submit">Prefab</button>
+            </form>
+        </div>
     </nav>
 </div>
 
@@ -48,20 +54,94 @@
             </div>
             <div class="card-body">
                 <form>
-                    <label for="lengthSelect">Længde i centimeter</label>
-                    <select class="form-control mb-3" id="lengthSelect">
-                        <option>Default select</option>
-                    </select>
-                    <label for="lengthSelect">Bredde i centimeter</label>
-                    <select class="form-control mb-3" id="widthSelect">
-                        <option>Default select</option>
-                    </select>
-                    <label for="heightSelect">Højde i centimeter</label>
-                    <select class="form-control mb-3" id="heightSelect">
-                        <option>Default select</option>
-                    </select>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </form>
+                    <div class="form-row mb-3">
+                        <div class="col px-0">
+                            <label for="lengthRange">Længde</label>
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="lengthInput" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                        </div>
+                        <div class="col-8 border border-secondary rounded">
+                            <input type="range" class="custom-range h-100" id="lengthRange" value="0"
+                                   min="0" max="600" oninput="lengthInput.value=lengthRange.value">
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col px-0">
+                            <label for="widthRange">Bredde</label>
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="widthInput" min="0" max="600" oninput="widthRange.value=widthInput.value">
+                        </div>
+                        <div class="col-8 border border-secondary rounded">
+                            <input type="range" class="custom-range h-100" id="widthRange" value="0"
+                                   min="0" max="600" oninput="widthInput.value=widthRange.value">
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col px-0">
+                            <label for="heightRange">Højde</label>
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="heightInput" min="0" max="600" oninput="heightRange.value=heightInput.value">
+                        </div>
+                        <div class="col-8 border border-secondary rounded" >
+                            <input type="range" class="custom-range h-100" id="heightRange" value="0"
+                                   min="0" max="600" oninput="heightInput.value=heightRange.value">
+                        </div>
+                    </div>
+                    <div class="form-row mb-5">
+                        <div class="col px-0">
+                            Materiale
+                        </div>
+                        <select class="custom-select col-10 border-secondary">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <br>
+
+                    <div class="form-row mb-3">
+                        <div class="col px-0 form-inline">
+                            Tagrejsning
+                            <div class="custom-control custom-checkbox ml-auto">
+                                <input type="checkbox" class="custom-control-input" id="roofCheck" name="roofCheck"
+                                       onclick="toggleElement('roofInput', 'roofCheck','enable');
+                                                toggleElement('roofRange', 'roofCheck','enable');
+                                                toggleElement('roofMaterial', 'roofCheck','enable');">
+                                <label class="custom-control-label" for="roofCheck"></label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="roofInput" min="0" max="600" oninput="roofRange.value=roofInput.value" disabled>
+                        </div>
+                        <div class="col-8 border border-secondary rounded">
+                            <input type="range" class="custom-range h-100" id="roofRange" value="0"
+                                   min="0" max="600" oninput="roofInput.value=roofRange.value" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col px-0">
+                            Materiale
+                        </div>
+                        <select class="custom-select col-10 border-secondary" id="roofMaterial" disabled>
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <a href="#" class="btn btn-secondary float-right">Bekræft</a>
             </div>
         </div>
     </div>
@@ -69,6 +149,7 @@
 
 
 <!-- Optional JavaScript -->
+<script src="../js/toggleelement.js"></script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

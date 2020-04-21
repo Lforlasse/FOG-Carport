@@ -1,18 +1,52 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Employee home page</title>
-    </head>
-    <body>
-        
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@include file="../includes/header.html" %>
 
-        <h1>Hello ${sessionScope.email} </h1>
+<!-- NAVBAR -->
+<div class="container">
+    <nav class="navbar navbar-light bg-light shadow-sm border-left border-right">
+        <form  class="form-inline" role="form" name="index" action="FrontController" method="POST">
+            <input type="hidden" name="target" value="index">
+            <button class="px-0 mx-0 border-0" style="width: 40px;">
+                <img src="img/fog_logo_2015.jpg" class="img-fluid rounded" alt="Responsive image">
+            </button>
+        </form>
+        <div class="d-inline-flex">
+            <form class="form-inline" role="form" name="configurator" action="FrontController" method="POST">
+                <input type="hidden" name="target" value="configurator">
+                <button type="submit" class="btn btn-outline-secondary mr-2" value="submit">Konfigurator</button>
+            </form>
+            <form class="form-inline" role="form" name="prefab" action="FrontController" method="POST">
+                <input type="hidden" name="target" value="prefab">
+                <button type="submit" class="btn btn-outline-secondary" value="submit">Prefab</button>
+            </form>
+        </div>
+    </nav>
+</div>
 
+<!-- BODY -->
+<div class="container">
+    <div class="container border border-top-0 px-4 pt-4 shadow-sm">
 
+        <!-- ALERTS -->
+        <%@include file="../includes/error.html" %>
 
-        You are now logged in as a EMPLOYEE of our wonderful site.
-    </body>
-</html>
+        <!-- CONTENT -->
+        <div class="card mb-4">
+            <div class="card-header">
+                Sortiment
+            </div>
+            <div class="card-body">
+                <br>
+                <br>
+                <br>
+                <h1 class="text-center">PLACEHOLDER</h1>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%@include file="../includes/footer.html"%>

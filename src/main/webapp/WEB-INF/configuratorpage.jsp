@@ -1,100 +1,134 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<!doctype html>
-<html lang="en">
+<%@include file="../includes/header.html" %>
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-
-    <title>Hello, world!</title>
-</head>
-
-<body>
 <!-- NAVBAR -->
 <div class="container">
     <nav class="navbar navbar-light bg-light shadow-sm border-left border-right">
-        <form class="form-inline">
-            <button class="btn btn-outline-secondary active" type="button">Konfigurator</button>
-            <button class="btn btn-outline-secondary ml-2" type="button">Prefab</button>
+        <form  class="form-inline" role="form" name="index" action="FrontController" method="POST">
+            <input type="hidden" name="target" value="index">
+            <button class="px-0 mx-0 border-0" style="width: 40px;">
+                <img src="img/fog_logo_2015.jpg" class="img-fluid rounded" alt="Responsive image">
+            </button>
         </form>
+        <div class="d-inline-flex">
+            <form class="form-inline" role="form" name="configurator" action="FrontController" method="POST">
+                <input type="hidden" name="target" value="configurator">
+                <button type="submit" class="btn btn-outline-secondary mr-2" value="submit">Konfigurator</button>
+            </form>
+            <form class="form-inline" role="form" name="prefab" action="FrontController" method="POST">
+                <input type="hidden" name="target" value="prefab">
+                <button type="submit" class="btn btn-outline-secondary" value="submit">Prefab</button>
+            </form>
+        </div>
     </nav>
 </div>
 
 <!-- BODY -->
 <div class="container">
-    <div class="container border border-top-0 pt-4 pb-4">
+    <div class="container border border-top-0 px-4 pt-4 shadow-sm">
 
         <!-- ALERTS -->
-        <c:if test="${requestScope.error!= null}">-
-            <div class="alert alert-danger" role="alert">
-                Error: ${requestScope.error}
-            </div>
-        </c:if>-
+        <%@include file="../includes/error.html" %>
 
         <!-- CONTENT -->
-        <div class="container-fluid">
-            <div class="card mb-4">
-                <div class="card-header">
-                    Carport mål
-                </div>
-                <div class="card-body">
-                    <form>
-                        <label for="lengthSelect">Længde i centimeter</label>
-                        <select class="form-control mb-3" id="lengthSelect">
-                            <option>Default select</option>
-                        </select>
-                        <label for="lengthSelect">Længde i centimeter</label>
-                        <select class="form-control mb-3" id="widthSelect">
-                            <option>Default select</option>
-                        </select>
-                        <label for="heightSelect">Længde i centimeter</label>
-                        <select class="form-control mb-3" id="heightSelect">
-                            <option>Default select</option>
-                        </select>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </form>
-                </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                Carport mål
             </div>
-            <div class="card">
-                <div class="card-header">
-                    Carport mål
-                </div>
-                <div class="card-body">
-                    <form>
-                        <label for="lengthRange">Længde i centimeter</label>
-                        <input type="range" class="custom-range mb-3" min="0" max="5" step="0.5" id="lengthRange">
-                        <label for="widthRange">Bredde i centimeter</label>
-                        <input type="range" class="custom-range mb-3" min="0" max="5" step="0.5" id="widthRange">
-                        <label for="heightRange">Højde i centimeter</label>
-                        <input type="range" class="custom-range mb-3" min="0" max="5" step="0.5" id="heightRange">
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </form>
-                </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-row mb-3">
+                        <div class="col px-0">
+                            <label for="lengthRange">Længde</label>
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="lengthInput" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                        </div>
+                        <div class="col-8 border border-secondary rounded">
+                            <input type="range" class="custom-range h-100" id="lengthRange" value="0"
+                                   min="0" max="600" oninput="lengthInput.value=lengthRange.value">
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col px-0">
+                            <label for="widthRange">Bredde</label>
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="widthInput" min="0" max="600" oninput="widthRange.value=widthInput.value">
+                        </div>
+                        <div class="col-8 border border-secondary rounded">
+                            <input type="range" class="custom-range h-100" id="widthRange" value="0"
+                                   min="0" max="600" oninput="widthInput.value=widthRange.value">
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col px-0">
+                            <label for="heightRange">Højde</label>
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="heightInput" min="0" max="600" oninput="heightRange.value=heightInput.value">
+                        </div>
+                        <div class="col-8 border border-secondary rounded">
+                            <input type="range" class="custom-range h-100" id="heightRange" value="0"
+                                   min="0" max="600" oninput="heightInput.value=heightRange.value">
+                        </div>
+                    </div>
+                    <div class="form-row mb-5">
+                        <div class="col px-0">
+                            Materiale
+                        </div>
+                        <select class="custom-select col-10 border-secondary">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <br>
 
+                    <div class="form-row mb-3">
+                        <div class="col px-0 form-inline">
+                            Tagrejsning
+                            <div class="custom-control custom-checkbox ml-auto">
+                                <input type="checkbox" class="custom-control-input" id="roofCheck" name="roofCheck"
+                                       onclick="toggleElement('roofInput', 'roofCheck','enable');
+                                                toggleElement('roofRange', 'roofCheck','enable');
+                                                toggleElement('roofMaterial', 'roofCheck','enable');">
+                                <label class="custom-control-label" for="roofCheck"></label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="roofInput" min="0" max="600" oninput="roofRange.value=roofInput.value" disabled>
+                        </div>
+                        <div class="col-8 border border-secondary rounded">
+                            <input type="range" class="custom-range h-100" id="roofRange" value="0"
+                                   min="0" max="600" oninput="roofInput.value=roofRange.value" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col px-0">
+                            Materiale
+                        </div>
+                        <select class="custom-select col-10 border-secondary" id="roofMaterial" disabled>
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <a href="#" class="btn btn-secondary float-right">Bekræft</a>
             </div>
         </div>
     </div>
 </div>
 
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+<%@include file="../includes/footer.html" %>

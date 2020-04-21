@@ -9,7 +9,7 @@ public class UnknownCommand extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
-        String msg = "Unknown command.";
+        String msg = "Unknown command";
         throw new LoginSampleException(msg);
     }
 }

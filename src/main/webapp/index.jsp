@@ -1,36 +1,26 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@include file="includes/header.html" %>
 
-
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-
-    <title>Hello, world!</title>
-</head>
-
-<body>
 <!-- NAVBAR -->
 <div class="container">
     <nav class="navbar navbar-light bg-light shadow-sm border-left border-right">
-        <form>
+        <form  class="form-inline" role="form" name="index" action="FrontController" method="POST">
+            <input type="hidden" name="target" value="index">
             <button class="px-0 mx-0 border-0" style="width: 40px;">
                 <img src="img/fog_logo_2015.jpg" class="img-fluid rounded" alt="Responsive image">
             </button>
         </form>
-        <form class="form-inline">
-            <button class="btn btn-outline-secondary" type="button">Konfigurator</button>
-            <button class="btn btn-outline-secondary ml-2" type="button">Prefab</button>
-        </form>
+        <div class="d-inline-flex">
+            <form class="form-inline" role="form" name="configurator" action="FrontController" method="POST">
+                <input type="hidden" name="target" value="configurator">
+                <button type="submit" class="btn btn-outline-secondary mr-2" value="submit">Konfigurator</button>
+            </form>
+            <form class="form-inline" role="form" name="prefab" action="FrontController" method="POST">
+                <input type="hidden" name="target" value="prefab">
+                <button type="submit" class="btn btn-outline-secondary" value="submit">Prefab</button>
+            </form>
+        </div>
     </nav>
 </div>
 
@@ -39,14 +29,10 @@
     <div class="container border border-top-0 px-4 pt-4 shadow-sm">
 
         <!-- ALERTS -->
-        <!--<c:if test = "${requestScope.error!= null}" >-->
-        <div class="alert alert-danger" role="alert">
-            Error: ${requestScope.error}
-        </div>
-        <!--</c:if>-->
+        <%@include file="includes/error.html" %>
 
         <!-- CONTENT -->
-        <div class="jumbotron jumbotron-fluid p-4 border rounded">
+        <div class="jumbotron jumbotron-fluid p-4 border rounded mb-4">
             <div class="container">
                 <h1 class="display-4 text-center">Carport konfigurator</h1><br>
                 <p class="lead text-center">Forneden kan du vælge imellem at konfigurere din egen personlige
@@ -55,41 +41,39 @@
         </div>
         <div class="row row-cols-1 row-cols-md-2">
             <div class="col mb-4">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural
-                            lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
+                <div class="card" style="background-color: #174b87">
+                    <form class="form-inline" role="form" name="configurator" action="FrontController" method="POST">
+                        <button class="btn bg-transparent border-0 bg-white p-0 m-0 w-100" type="submit" value="submit"
+                                id="configuratorBtn">
+                            <br>
+                            <br>
+                            <span class="text-center text-white h1">KONFIGURATOR</span>
+                            <input type="hidden" name="target" value="configurator">
+                            <br>
+                            <br>
+                            <br>
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="col mb-4">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural
-                            lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
+                <div class="card" style="background-color: #174b87">
+                    <form class="form-inline" role="form" name="prefab" action="FrontController" method="POST">
+                        <button class="btn bg-transparent border-0 bg-white p-0 m-0 w-100" type="submit" value="submit"
+                                id="prefabBtn">
+                            <br>
+                            <br>
+                            <span class="text-center text-white h1">PREFAB</span>
+                            <input type="hidden" name="target" value="prefab">
+                            <br>
+                            <br>
+                            <br>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+<%@include file="includes/footer.html" %>
