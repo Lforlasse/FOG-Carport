@@ -41,43 +41,50 @@
                     <div class="form-row mb-3">
                         <div class="col px-0">
                             <label for="lengthRange">Længde</label>
+                            <c:set var="lengthLimitMin" value="${requestScope.lengthLimits[0]}"/>
+                            <c:set var="lengthLimitMax" value="${requestScope.lengthLimits[1]}"/>
                         </div>
                         <div class="col">
+
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
                                    placeholder="cm"
-                                   id="lengthInput" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                                   id="lengthInput" min="${lengthLimitMin}" max="${lengthLimitMax}" oninput="lengthRange.value=lengthInput.value">
                         </div>
                         <div class="col-8 border border-secondary rounded">
                             <input type="range" class="custom-range h-100" id="lengthRange" value="0"
-                                   min="0" max="600" oninput="lengthInput.value=lengthRange.value">
+                                   min="${lengthLimitMin}" max="${lengthLimitMax}" oninput="lengthInput.value=lengthRange.value">
                         </div>
                     </div>
                     <div class="form-row mb-3">
                         <div class="col px-0">
                             <label for="widthRange">Bredde</label>
+                            <c:set var="widthLimitMin" value="${requestScope.widthLimits[0]}"/>
+                            <c:set var="widthLimitMax" value="${requestScope.widthLimits[1]}"/>
                         </div>
                         <div class="col">
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
                                    placeholder="cm"
-                                   id="widthInput" min="0" max="600" oninput="widthRange.value=widthInput.value">
+                                   id="widthInput" min="${widthLimitMin}" max="${widthLimitMax}" oninput="widthRange.value=widthInput.value">
                         </div>
                         <div class="col-8 border border-secondary rounded">
                             <input type="range" class="custom-range h-100" id="widthRange" value="0"
-                                   min="0" max="600" oninput="widthInput.value=widthRange.value">
+                                   min="${widthLimitMin}" max="${widthLimitMax}" oninput="widthInput.value=widthRange.value">
                         </div>
                     </div>
                     <div class="form-row mb-3">
                         <div class="col px-0">
                             <label for="heightRange">Højde</label>
+                            <c:set var="heightLimitMin" value="${requestScope.heightLimits[0]}"/>
+                            <c:set var="heightLimitMax" value="${requestScope.heightLimits[1]}"/>
                         </div>
                         <div class="col">
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
                                    placeholder="cm"
-                                   id="heightInput" min="0" max="600" oninput="heightRange.value=heightInput.value">
+                                   id="heightInput" min="${heightLimitMin}" max="${heightLimitMax}" oninput="heightRange.value=heightInput.value">
                         </div>
                         <div class="col-8 border border-secondary rounded">
                             <input type="range" class="custom-range h-100" id="heightRange" value="0"
-                                   min="0" max="600" oninput="heightInput.value=heightRange.value">
+                                   min="${heightLimitMin}" max="${heightLimitMax}" oninput="heightInput.value=heightRange.value">
                         </div>
                     </div>
                     <div class="form-row mb-5">
@@ -85,10 +92,9 @@
                             Materiale
                         </div>
                         <select class="custom-select col-10 border-secondary">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <c:forEach items="${requestScope.materials}" var="material" >
+                                <option value="${material}">${material}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <br>
@@ -102,16 +108,18 @@
                                                 toggleElement('roofRange', 'roofCheck','enable');
                                                 toggleElement('roofMaterial', 'roofCheck','enable');">
                                 <label class="custom-control-label" for="roofCheck"></label>
+                                <c:set var="roofAngleMin" value="${requestScope.roofAngleLimits[0]}"/>
+                                <c:set var="roofAngleMax" value="${requestScope.roofAngleLimits[1]}"/>
                             </div>
                         </div>
                         <div class="col">
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
-                                   placeholder="cm"
-                                   id="roofInput" min="0" max="600" oninput="roofRange.value=roofInput.value" disabled>
+                                   placeholder="grader &deg"
+                                   id="roofInput" min="${roofAngleMin}" max="${roofAngleMax}" oninput="roofRange.value=roofInput.value" disabled>
                         </div>
                         <div class="col-8 border border-secondary rounded">
                             <input type="range" class="custom-range h-100" id="roofRange" value="0"
-                                   min="0" max="600" oninput="roofInput.value=roofRange.value" disabled>
+                                   min="${roofAngleMin}" max="${roofAngleMax}" oninput="roofInput.value=roofRange.value" disabled>
                         </div>
                     </div>
                     <div class="form-row mb-4">
@@ -119,10 +127,9 @@
                             Materiale
                         </div>
                         <select class="custom-select col-10 border-secondary" id="roofMaterial" disabled>
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <c:forEach items="${requestScope.roofMaterials}" var="material" >
+                                <option value="${material}">${material}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <a href="#" class="btn btn-secondary float-right">Bekræft</a>
