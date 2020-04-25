@@ -7,7 +7,7 @@ public class Component {
     private int vendorPrice;
     private int SalesPrice;
 
-    public Component(carport Carport){
+    public Component(Carport carport){
 
 
     }

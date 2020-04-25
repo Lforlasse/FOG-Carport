@@ -1,17 +1,26 @@
 package FunctionLayer;
 
 public class Carport {
-    private int heightCM;
-    private int lengthCM;
-    private int widthCM;
-    private String material;
+    private int confId;
+    private String custName;
+    private int custPhone;
+    private int custPostal;
+    private int confLength;
+    private int confWidth;
+    private int confHeight;
+    private String confMat;
     private boolean carSpace;
 
-    public Carport(int hCM, int lCM, int wCM, String mat){
-        this.heightCM = hCM;
-        this.lengthCM = lCM;
-        this.widthCM = wCM;
-        this.material = mat;
+    public Carport(int confId, String custName, int custPhone, int custPostal,
+                   int confLength, int confWidth, int confHeight, String confMat){
+        this.confId = confId;
+        this.custName = custName;
+        this.custPhone = custPhone;
+        this.custPostal = custPostal;
+        this.confLength = confLength;
+        this.confWidth = confWidth;
+        this.confHeight = confHeight;
+        this.confMat = confMat;
 
         this.carSpace = checkCarSpace();
 
@@ -20,60 +29,18 @@ public class Carport {
     private boolean checkCarSpace(){
         boolean result = true;
 
-        if (this.heightCM < 1 /*Hent tal fra DB*/){
+        if (this.confLength < 1 /*Hent tal fra DB*/){
             result = false;
         }
-        if (this.lengthCM < 1 /*Hent tal fra DB*/){
+        if (this.confWidth < 1 /*Hent tal fra DB*/){
             result = false;
         }
-        if (this.widthCM < 1 /*Hent tal fra DB*/){
+        if (this.confHeight < 1 /*Hent tal fra DB*/){
             result = false;
         }
 
 
         return result;
     }//checkCarSpace
-
-    public int getHeightCM() {
-        return heightCM;
-    }
-
-    public void setHeightCM(int heightCM) {
-        this.heightCM = heightCM;
-    }
-
-    public int getLengthCM() {
-        return lengthCM;
-    }
-
-    public void setLengthCM(int lengthCM) {
-        this.lengthCM = lengthCM;
-    }
-
-    public int getWidthCM() {
-        return widthCM;
-    }
-
-    public void setWidthCM(int widthCM) {
-        this.widthCM = widthCM;
-    }
-
-    public String getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(String material) {
-        this.material = material;
-    }
-
-    public boolean isCarspace() {
-        return carspace;
-    }
-
-    public void setCarspace(boolean carspace) {
-        this.carspace = carspace;
-    }
-
-
 
 }//class

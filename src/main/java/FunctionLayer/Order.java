@@ -9,7 +9,6 @@ public class Order {
     private int vendorPrice;
     private int salesPrice;
     private int profit;
-    private carport Carport;
 
     private static void generateCompList(){
 
