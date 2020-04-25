@@ -50,8 +50,8 @@ public class LogicFacade {
     public static Object lengthLimits() {
         //TODO Test data, replace with DBAccess method
         List<Integer> list = new ArrayList<>();
-        list.add(400);
-        list.add(800);
+        list.add(300);
+        list.add(600);
         // Test data end
         return list;
     }
@@ -60,7 +60,7 @@ public class LogicFacade {
         //TODO Test data, replace with DBAccess method
         List<Integer> list = new ArrayList<>();
         list.add(200);
-        list.add(350);
+        list.add(300);
         // Test data end
         return list;
     }

@@ -5,7 +5,7 @@
 <!-- NAVBAR -->
 <div class="container">
     <nav class="navbar navbar-light bg-light shadow-sm border-left border-right">
-        <form  class="form-inline" role="form" name="index" action="FrontController" method="POST">
+        <form class="form-inline" role="form" name="index" action="FrontController" method="POST">
             <input type="hidden" name="target" value="index">
             <button class="px-0 mx-0 border-0" style="width: 40px;">
                 <img src="img/fog_logo_2015.jpg" class="img-fluid rounded" alt="Responsive image">
@@ -48,11 +48,13 @@
 
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
                                    placeholder="cm"
-                                   id="lengthInput" min="${lengthLimitMin}" max="${lengthLimitMax}" oninput="lengthRange.value=lengthInput.value">
+                                   id="lengthInput" min="${lengthLimitMin}" max="${lengthLimitMax}"
+                                   oninput="lengthRange.value=lengthInput.value">
                         </div>
                         <div class="col-8 border border-secondary rounded">
                             <input type="range" class="custom-range h-100" id="lengthRange" value="0"
-                                   min="${lengthLimitMin}" max="${lengthLimitMax}" oninput="lengthInput.value=lengthRange.value">
+                                   min="${lengthLimitMin}" max="${lengthLimitMax}"
+                                   oninput="lengthInput.value=lengthRange.value">
                         </div>
                     </div>
                     <div class="form-row mb-3">
@@ -64,11 +66,13 @@
                         <div class="col">
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
                                    placeholder="cm"
-                                   id="widthInput" min="${widthLimitMin}" max="${widthLimitMax}" oninput="widthRange.value=widthInput.value">
+                                   id="widthInput" min="${widthLimitMin}" max="${widthLimitMax}"
+                                   oninput="widthRange.value=widthInput.value">
                         </div>
                         <div class="col-8 border border-secondary rounded">
                             <input type="range" class="custom-range h-100" id="widthRange" value="0"
-                                   min="${widthLimitMin}" max="${widthLimitMax}" oninput="widthInput.value=widthRange.value">
+                                   min="${widthLimitMin}" max="${widthLimitMax}"
+                                   oninput="widthInput.value=widthRange.value">
                         </div>
                     </div>
                     <div class="form-row mb-3">
@@ -80,11 +84,13 @@
                         <div class="col">
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
                                    placeholder="cm"
-                                   id="heightInput" min="${heightLimitMin}" max="${heightLimitMax}" oninput="heightRange.value=heightInput.value">
+                                   id="heightInput" min="${heightLimitMin}" max="${heightLimitMax}"
+                                   oninput="heightRange.value=heightInput.value">
                         </div>
                         <div class="col-8 border border-secondary rounded">
                             <input type="range" class="custom-range h-100" id="heightRange" value="0"
-                                   min="${heightLimitMin}" max="${heightLimitMax}" oninput="heightInput.value=heightRange.value">
+                                   min="${heightLimitMin}" max="${heightLimitMax}"
+                                   oninput="heightInput.value=heightRange.value">
                         </div>
                     </div>
                     <div class="form-row mb-5">
@@ -92,7 +98,7 @@
                             Materiale
                         </div>
                         <select class="custom-select col-10 border-secondary">
-                            <c:forEach items="${requestScope.materials}" var="material" >
+                            <c:forEach items="${requestScope.materials}" var="material">
                                 <option value="${material}">${material}</option>
                             </c:forEach>
                         </select>
@@ -115,11 +121,13 @@
                         <div class="col">
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
                                    placeholder="grader &deg"
-                                   id="roofInput" min="${roofAngleMin}" max="${roofAngleMax}" oninput="roofRange.value=roofInput.value" disabled>
+                                   id="roofInput" min="${roofAngleMin}" max="${roofAngleMax}"
+                                   oninput="roofRange.value=roofInput.value" disabled>
                         </div>
                         <div class="col-8 border border-secondary rounded">
                             <input type="range" class="custom-range h-100" id="roofRange" value="0"
-                                   min="${roofAngleMin}" max="${roofAngleMax}" oninput="roofInput.value=roofRange.value" disabled>
+                                   min="${roofAngleMin}" max="${roofAngleMax}" oninput="roofInput.value=roofRange.value"
+                                   disabled>
                         </div>
                     </div>
                     <div class="form-row mb-4">
@@ -127,12 +135,13 @@
                             Materiale
                         </div>
                         <select class="custom-select col-10 border-secondary" id="roofMaterial" disabled>
-                            <c:forEach items="${requestScope.roofMaterials}" var="material" >
+                            <c:forEach items="${requestScope.roofMaterials}" var="material">
                                 <option value="${material}">${material}</option>
                             </c:forEach>
                         </select>
                     </div>
-                    <a href="#" class="btn btn-secondary float-right">Bekræft</a>
+                    <a href="#" class="btn btn-secondary float-right">Få et tilbud</a>
+                </form>
             </div>
         </div>
     </div>

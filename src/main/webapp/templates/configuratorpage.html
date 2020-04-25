@@ -48,12 +48,13 @@
         <!--</c:if>-->
 
         <!-- CONTENT -->
-        <div class="card mb-4">
-            <div class="card-header">
-                Carport mål
-            </div>
-            <div class="card-body">
-                <form>
+        <form>
+            <div class="card mb-4">
+                <div class="card-header">
+                    Carport konfiguration
+                </div>
+                <div class="card-body">
+
                     <div class="form-row mb-3">
                         <div class="col px-0">
                             <label for="lengthRange">Længde</label>
@@ -91,7 +92,7 @@
                                    placeholder="cm"
                                    id="heightInput" min="0" max="600" oninput="heightRange.value=heightInput.value">
                         </div>
-                        <div class="col-8 border border-secondary rounded" >
+                        <div class="col-8 border border-secondary rounded">
                             <input type="range" class="custom-range h-100" id="heightRange" value="0"
                                    min="0" max="600" oninput="heightInput.value=heightRange.value">
                         </div>
@@ -130,7 +131,7 @@
                                    min="0" max="600" oninput="roofInput.value=roofRange.value" disabled>
                         </div>
                     </div>
-                    <div class="form-row mb-4">
+                    <div class="form-row">
                         <div class="col px-0">
                             Materiale
                         </div>
@@ -141,9 +142,61 @@
                             <option value="3">Three</option>
                         </select>
                     </div>
-                    <a href="#" class="btn btn-secondary float-right">Bekræft</a>
+                </div>
             </div>
-        </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    Kontakt information
+                </div>
+                <div class="card-body">
+                    <div class="form-row mb-3">
+
+                        <div class="col px-0">
+                            <label for="foreNameInput">Navn</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="text" class="form-control text-right h-100 border-secondary"
+                                   placeholder="fornavn"
+                                   id="foreNameInput" min="0" max="600" oninput="" required>
+                        </div>
+                        <div class="col-5">
+                            <input type="text" class="form-control text-right h-100 border-secondary"
+                                   placeholder="efternavn"
+                                   id="surNameInput" min="0" max="600" oninput="" required>
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
+
+                        <div class="col px-0">
+                            <label for="emailInput">Kontakt</label>
+                        </div>
+                        <div class="col-7">
+                            <input type="text" class="form-control text-right h-100 border-secondary"
+                                   placeholder="email"
+                                   id="emailInput" min="0" max="600" oninput="" required>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" class="form-control text-right h-100 border-secondary"
+                                   placeholder="telefon"
+                                   id="phoneInput" min="0" max="600" oninput="" required>
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
+
+                        <div class="col px-0">
+                            <label for="lengthRange">Adresse</label>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" class="form-control text-right h-100 border-secondary"
+                                   placeholder="postnummer"
+                                   id="postcodeInput" min="0" max="600" oninput="" required>
+                        </div>
+                    </div>
+                    <input type="hidden" name="target" value="prefab">
+                    <button type="submit" class="btn btn-secondary float-right" value="submit">Send ønske</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
