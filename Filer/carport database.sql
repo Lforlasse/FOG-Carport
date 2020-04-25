@@ -30,8 +30,8 @@ CREATE TABLE components (
 ALTER TABLE components auto_increment=2000;
 
 INSERT INTO components (compDescription,material,compHeigth,compWidth,currentStock,vendorPrice,salesPrice)
-VALUES  ("Stople", "Trykimprægneret", 10, 10, 74, 250, 475),
-		("Stople", "Egetræ", 9, 9, 56, 400, 750),
+VALUES  ("Stolpe", "Trykimprægneret", 10, 10, 74, 250, 475),
+		("Stolpe", "Egetræ", 9, 9, 56, 400, 750),
 
 		("Rem", "Trykimprægneret", 5, 20, 45, 135, 205),
 		("Rem", "Egetræ", 4, 22, 42, 145, 215),
@@ -91,9 +91,7 @@ VALUES  ("Skruer 4,5 x 120mm 200stk", "Pakke", 120, 15, 45),
 		("Vinkelbeslag", "Styk", 325, 5, 9),
         ("Skruer 5,0 x 100mm 100stk", "Pakke", 67, 10, 25),
         ("Bræddebolt 10 x 120mm", "Styk", 128, 10, 19),
-        ("Firkantskive 40 x 40 x 11mm", "Styk", 392, 3, 5);
-        
-        
+        ("Firkantskive 40 x 40 x 11mm", "Styk", 392, 3, 5);     
 
 CREATE TABLE validations (
 	valueDescription VARCHAR(40) NOT NULL,
@@ -107,4 +105,44 @@ VALUES  ("Carspace height", 185),
 		("Carspace length", 300),
         ("Carspace width", 250);
         
+CREATE TABLE configurationStatus (
+	configStatus VARCHAR(20) NOT NULL,
+    
+    PRIMARY KEY (configStatus)
+);
+
+INSERT INTO configurationStatus (configStatus)
+VALUES  ("Ny"),
+		("Behandles"),
+		("Afsluttet");
+
+CREATE TABLE configurations (
+	configId INT NOT NULL AUTO_INCREMENT,
+    configStatus VARCHAR (20),
+    custName VARCHAR (35) NOT NULL,
+    custPhone INT NOT NULL,
+    custPostal INT NOT NULL,
+    length INT NOT NULL,
+    width INT NOT NULL,
+    height INT NOT NULL,
+    material VARCHAR (30),
+    
+    PRIMARY KEY (configId),
+    FOREIGN KEY (configStatus) REFERENCES configurationStatus (configStatus)
+    );
+ALTER TABLE configurations auto_increment=224466;
+    
+INSERT INTO configurations (configStatus,custName,custPhone,custPostal,length,width,height,material)
+VALUES  ("Afsluttet", "Abbott", 44884488, 5020, 300, 620, 225, "Egetræ"),
+		("Behandles", "Costello", 22662266, 2550, 300, 450, 225, "Trykimprægneret");
+        
+        
+
+
+
+
+
+
+
+
 use carport;
