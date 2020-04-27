@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="FOG-Carport:war exploded" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="f14d9382-1b3e-4c5e-a5d4-5ae08483933f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/PresentationLayer/ConfigRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DBAccess/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DBAccess/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FunctionLayer/Carport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FunctionLayer/Carport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FunctionLayer/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FunctionLayer/Component.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/FunctionLayer/LogicFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FunctionLayer/LogicFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FunctionLayer/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FunctionLayer/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PresentationLayer/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PresentationLayer/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/configuratorpage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/configuratorpage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/img/WhatsApp_Video_2020-04-14_at_3.49.24_PM.mp4" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/configuratorpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/configuratorpage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,48 +33,203 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
   </component>
+  <component name="ProjectId" id="1b1iYSygmkFf0k75dXt0QTv9u7R" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="PresentationLayer" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Tomcat 8.5.51" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.51" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/FOG_Carport_war/" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="FOG-Carport:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/FOG_Carport_war" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_FOG-Carport" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="58048" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="FOG-Carport:war" />
+        </option>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="FOG-Carport:war exploded" />
+        </option>
+      </method>
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b8c4137a-dc32-4bb9-8111-f61c6a91b46e" name="Default Changelist" comment="" />
+      <changelist id="f14d9382-1b3e-4c5e-a5d4-5ae08483933f" name="Default Changelist" comment="" />
       <created>1587568473413</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1587568473413</updated>
       <workItem from="1587568476204" duration="642000" />
+      <workItem from="1587806050943" duration="150000" />
+      <workItem from="1587806209967" duration="742000" />
+      <workItem from="1587938109373" duration="8744000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1499" y="508" key="#BuildArtifactsBeforeRunChooser" timestamp="1587938827123">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1499" y="508" key="#BuildArtifactsBeforeRunChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1587938827123" />
+    <state x="1173" y="358" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587938874488">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1173" y="358" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1587938874488" />
+    <state x="1524" y="410" key="#com.intellij.ide.util.MemberChooser" timestamp="1587940186091">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1524" y="410" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1587940186091" />
+    <state x="1642" y="436" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1587805935498">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1642" y="436" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1587805935498" />
+    <state width="1123" height="400" key="GridCell.Tab.0.bottom" timestamp="1587947428060">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1123" height="400" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1587947428060" />
+    <state width="1123" height="400" key="GridCell.Tab.0.center" timestamp="1587947428060">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1123" height="400" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1587947428060" />
+    <state width="1123" height="400" key="GridCell.Tab.0.left" timestamp="1587947428059">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1123" height="400" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1587947428059" />
+    <state width="1123" height="400" key="GridCell.Tab.0.right" timestamp="1587947428060">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1123" height="400" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1587947428060" />
+    <state width="1123" height="400" key="GridCell.Tab.1.bottom" timestamp="1587947428000">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1123" height="400" key="GridCell.Tab.1.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1587947428000" />
+    <state width="1123" height="400" key="GridCell.Tab.1.center" timestamp="1587947428000">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1123" height="400" key="GridCell.Tab.1.center/0.0.2560.1400@0.0.2560.1400" timestamp="1587947428000" />
+    <state width="1123" height="400" key="GridCell.Tab.1.left" timestamp="1587947428000">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1123" height="400" key="GridCell.Tab.1.left/0.0.2560.1400@0.0.2560.1400" timestamp="1587947428000" />
+    <state width="1123" height="400" key="GridCell.Tab.1.right" timestamp="1587947428000">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1123" height="400" key="GridCell.Tab.1.right/0.0.2560.1400@0.0.2560.1400" timestamp="1587947428000" />
+    <state width="1123" height="400" key="GridCell.Tab.2.bottom" timestamp="1587947428001">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1123" height="400" key="GridCell.Tab.2.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1587947428001" />
+    <state width="1123" height="400" key="GridCell.Tab.2.center" timestamp="1587947428001">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1123" height="400" key="GridCell.Tab.2.center/0.0.2560.1400@0.0.2560.1400" timestamp="1587947428001" />
+    <state width="1123" height="400" key="GridCell.Tab.2.left" timestamp="1587947428000">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1123" height="400" key="GridCell.Tab.2.left/0.0.2560.1400@0.0.2560.1400" timestamp="1587947428000" />
+    <state width="1123" height="400" key="GridCell.Tab.2.right" timestamp="1587947428001">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1123" height="400" key="GridCell.Tab.2.right/0.0.2560.1400@0.0.2560.1400" timestamp="1587947428001" />
+    <state x="1375" y="334" key="run.anything.popup" timestamp="1587941075521">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1375" y="334" key="run.anything.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1587941075521" />
+    <state x="1382" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1587944641968">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1382" y="320" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1587944641968" />
   </component>
 </project>

@@ -67,11 +67,11 @@ public class Carport {
     }
 
     public boolean isCarspace() {
-        return carspace;
+        return carSpace;
     }
 
     public void setCarspace(boolean carspace) {
-        this.carspace = carspace;
+        this.carSpace = carspace;
     }
 
 

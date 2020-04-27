@@ -1,8 +1,10 @@
 package FunctionLayer;
 
 import DBAccess.UserMapper;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LogicFacade {
 
@@ -47,7 +49,7 @@ public class LogicFacade {
         return list;
     }
 
-    public static Object lengthLimits() {
+    public static List<Integer> lengthLimits() {
         //TODO Test data, replace with DBAccess method
         List<Integer> list = new ArrayList<>();
         list.add(300);
@@ -56,7 +58,7 @@ public class LogicFacade {
         return list;
     }
 
-    public static Object heightLimits() {
+    public static List<Integer> heightLimits() {
         //TODO Test data, replace with DBAccess method
         List<Integer> list = new ArrayList<>();
         list.add(200);
@@ -65,12 +67,32 @@ public class LogicFacade {
         return list;
     }
 
-    public static Object roofAngleLimits() {
+    public static List<Integer> roofAngleLimits() {
         //TODO Test data, replace with DBAccess method
         List<Integer> list = new ArrayList<>();
         list.add(10);
         list.add(20);
         // Test data end
         return list;
+    }
+
+    public static int submitConfigRequest(int length, int width, int height, String configMaterial,
+                                                    int roofAngle, String roofMaterial,
+                                                    String name, String email, String phone, String postcode) {
+        //TODO Test data, replace with DBAccess method
+        int configRequestId = 6969;
+        System.out.println();
+        System.out.println("configRequestId: " + configRequestId);
+        System.out.println("length: " + length);
+        System.out.println("width: " + width);
+        System.out.println("height: " + height);
+        System.out.println("configMaterial: " + configMaterial);
+        System.out.println("roofAngle: " + roofAngle);
+        System.out.println("roofMaterial: " + roofMaterial);
+        System.out.println("name: " + name);
+        System.out.println("email: " + email);
+        System.out.println("phone: " + phone);
+        System.out.println("postcode: " + postcode);
+        return configRequestId;
     }
 }

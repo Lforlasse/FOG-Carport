@@ -46,6 +46,14 @@
             Error: ${requestScope.error}
         </div>
         <!--</c:if>-->
+        <div class="alert alert-info" role="alert">
+            Tak for din forespørgsel!
+            <br>
+            Inden for 5 hverdage vil du blive tilsendt et tilbud pr. email.
+            <br>
+            <br>
+            Anmodnings ID: ${requestScope.info}
+        </div>
 
         <!-- CONTENT -->
         <form>
@@ -193,7 +201,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="target" value="prefab">
-                    <button type="submit" class="btn btn-secondary float-right" value="submit">Send ønske</button>
+                    <button type="submit" class="btn btn-secondary float-right" value="submit">Anmod tilbud</button>
                 </div>
             </div>
         </form>
