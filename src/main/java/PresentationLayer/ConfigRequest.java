@@ -71,11 +71,11 @@ public class ConfigRequest extends Command {
         String postcode = request.getParameter("postcodeInput");
 
         try {
-        request.setAttribute("configRequestID", LogicFacade.submitConfigRequest(
-                lengthInput, widthInput, heightInput, configMaterial,
-                roofInput, roofMaterial,
-                name, email, phone, postcode));
-        request.setAttribute("actionSuccess", true);
+            request.setAttribute("configRequestID", LogicFacade.submitConfigRequest(
+                    lengthInput, widthInput, heightInput, configMaterial,
+                    roofInput, roofMaterial,
+                    name, email, phone, postcode));
+            request.setAttribute("actionSuccess", true);
         } catch (Exception e) {
             request.setAttribute("error", "Something went wrong!");
         }

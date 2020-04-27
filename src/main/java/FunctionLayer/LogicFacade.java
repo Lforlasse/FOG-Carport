@@ -77,8 +77,8 @@ public class LogicFacade {
     }
 
     public static int submitConfigRequest(int length, int width, int height, String configMaterial,
-                                                    int roofAngle, String roofMaterial,
-                                                    String name, String email, String phone, String postcode) {
+                                          int roofAngle, String roofMaterial,
+                                          String name, String email, String phone, String postcode) {
         //TODO Test data, replace with DBAccess method
         int configRequestId = 6969;
         System.out.println();
