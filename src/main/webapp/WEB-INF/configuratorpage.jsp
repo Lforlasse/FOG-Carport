@@ -42,7 +42,7 @@
         </c:if>
 
         <!-- CONTENT -->
-        <form>
+        <form role="form" name="configFormula" action="FrontController" method="POST">
             <div class="card mb-4">
                 <div class="card-header">
                     Carport konfiguration
