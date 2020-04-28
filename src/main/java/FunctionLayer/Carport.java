@@ -17,6 +17,11 @@ public class Carport {
 
     }//Carport
 
+//    public Carport(int heightCM, int lengthCM, int widthCM) {
+//
+//        return null;
+//    }
+
     private boolean checkCarSpace(){
         boolean result = true;
 
