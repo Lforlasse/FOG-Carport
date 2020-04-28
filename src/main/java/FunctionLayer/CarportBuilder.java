@@ -15,7 +15,7 @@ public class CarportBuilder {
 
     public CarportBuilder() {
     }
-
+    
     //Metoder
     public static void buildCarport(ArrayList<Roof> myRoofList, ArrayList<Stolpe> myStolpeList){
         for(int i = 0; i < myRoofList.size(); i++){

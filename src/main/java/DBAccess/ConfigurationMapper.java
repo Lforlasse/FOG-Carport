@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class ConfigurationMapper {
 
-    public Carport makeConfigObject(int configId){
+    public static Carport makeConfigObject(int configId){
         ArrayList<Carport> configs = new ArrayList<>();
         int confId = 0;
         String custName = "Ingen konfiguration fundet";
@@ -44,7 +44,7 @@ public class ConfigurationMapper {
         } catch (ClassNotFoundException | SQLException ex) {
 
         }//catch
-        Carport carport = new Carport(confId,custName,custPhone,custPostal,confLength,confWidth,confHeight,confMat);
+        Carport carport = new Carport(confId,custName,custPhone,custPostal,confWidth,confLength,confHeight,confMat);
         return carport;
     }//makeConfigObject
 
