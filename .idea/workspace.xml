@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8c4137a-dc32-4bb9-8111-f61c6a91b46e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DBAccess/Configurations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FunctionLayer/Carport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FunctionLayer/Carport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FunctionLayer/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FunctionLayer/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/FunctionLayer/Carport" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,5 +74,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1587792298277" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/DBAccess/UserMapper.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
