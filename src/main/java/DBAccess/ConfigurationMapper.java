@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Configurations {
+public class ConfigurationMapper {
 
     public Carport makeConfigObject(int configId){
         ArrayList<Carport> configs = new ArrayList<>();
@@ -25,8 +25,9 @@ public class Configurations {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT configId, custName, custPhone, custPostal, width, length, height, material FROM configurations WHERE configId = " + configId +" ;";
+            String SQL = "SELECT configId, custName, custPhone, custPostal, width, length, height, material FROM configurations WHERE configId =?;";
             PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1,configId);
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -52,8 +53,9 @@ public class Configurations {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT configId, custName, custPhone, custPostal, width, length, height, material FROM configurations WHERE configId = " + configId +" ;";
+            String SQL = "SELECT configId, custName, custPhone, custPostal, width, length, height, material FROM configurations WHERE configId =?;";
             PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1,configId);
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
