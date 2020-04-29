@@ -37,7 +37,7 @@
                 Inden for 5 hverdage vil du blive tilsendt et tilbud pr. email.
                 <br>
                 <br>
-                Anmodnings ID: ${requestScope.configRequestID}
+                Anmodnings ID: ${requestScope.offerRequestID}
             </div>
         </c:if>
 
@@ -204,7 +204,7 @@
                                    min="0" max="600" oninput="" required>
                         </div>
                     </div>
-                    <input type="hidden" name="target" value="configRequest">
+                    <input type="hidden" name="target" value="offerRequest">
                     <button type="submit" class="btn btn-secondary float-right" value="submit">Anmod tilbud</button>
                 </div>
             </div>

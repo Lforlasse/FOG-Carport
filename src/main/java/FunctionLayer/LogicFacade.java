@@ -4,7 +4,6 @@ import DBAccess.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class LogicFacade {
 
@@ -76,16 +75,16 @@ public class LogicFacade {
         return list;
     }
 
-    public static int submitConfigRequest(int length, int width, int height, String configMaterial,
+    public static int submitOfferRequest(int length, int width, int height, String configMaterial,
                                           int roofAngle, String roofMaterial,
                                           String name, String email, String phone, String postcode)
             throws LoginSampleException {
         //TODO Test data, replace with DBAccess method
-        int configRequestId = ConfigMapper.configRequestToDB(length, width, height, configMaterial,
+        int offerRequestId = ConfigurationMapper.newOfferRequest(length, width, height, configMaterial,
                 roofAngle, roofMaterial, name, email, phone, postcode);
 
         System.out.println();
-        System.out.println("NEW config request: " + configRequestId);
+        System.out.println("NEW offer request: " + offerRequestId);
         /*
         System.out.println("length: " + length);
         System.out.println("width: " + width);
@@ -98,6 +97,6 @@ public class LogicFacade {
         System.out.println("phone: " + phone);
         System.out.println("postcode: " + postcode);
         */
-        return configRequestId;
+        return offerRequestId;
     }
 }

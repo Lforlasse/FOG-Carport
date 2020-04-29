@@ -3,15 +3,12 @@ package DBAccess;
 import FunctionLayer.Carport;
 import FunctionLayer.LoginSampleException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ConfigurationMapper {
 
-    public static Carport makeConfigObject(int configId){
+    public static Carport makeConfigObject(int configId) {
         ArrayList<Carport> configs = new ArrayList<>();
         int confId = 0;
         String custName = "Ingen konfiguration fundet";
@@ -27,18 +24,18 @@ public class ConfigurationMapper {
             Connection con = Connector.connection();
             String SQL = "SELECT configId, custName, custPhone, custPostal, width, length, height, material,  FROM configurations WHERE configId =?;";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setInt(1,configId);
+            ps.setInt(1, configId);
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                    confId=rs.getInt(1);
-                    custName=rs.getString(2);
-                    custPhone=rs.getInt(3);
-                    custPostal=rs.getInt(4);
-                    confWidth=rs.getInt(5);
-                    confLength=rs.getInt(6);
-                    confHeight=rs.getInt(7);
-                    confMat=rs.getString(8);
+                confId = rs.getInt(1);
+                custName = rs.getString(2);
+                custPhone = rs.getInt(3);
+                custPostal = rs.getInt(4);
+                confWidth = rs.getInt(5);
+                confLength = rs.getInt(6);
+                confHeight = rs.getInt(7);
+                confMat = rs.getString(8);
 
             }//if
         } catch (ClassNotFoundException | SQLException ex) {
@@ -53,24 +50,53 @@ public class ConfigurationMapper {
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                confRoof=rs.getString(1);
+                confRoof = rs.getString(1);
 
             }//if
         } catch (ClassNotFoundException | SQLException ex) {
 
         }//catch
-        Carport carport = new Carport(confId, custName,custPhone,custPostal,confWidth,confLength,confHeight,confMat, confRoof);
+        Carport carport = new Carport(confId, custName, custPhone, custPostal, confWidth, confLength, confHeight, confMat, confRoof);
         return carport;
     }//makeConfigObject
 
-    public ArrayList<Carport> getOneConfig(int configId){
+    public static int newOfferRequest(int length, int width, int height, String configMaterial,
+                                        int roofAngle, String roofMaterial,
+                                        String name, String email, String phone, String postcode) throws LoginSampleException {
+        int offerRequestId;
+        try {
+            //TODO Implement remaining data/variables
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO configurations (configStatus, custName, custPhone, custPostal, length, width, height, material) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, "Ny");
+            ps.setString(2, name);
+            ps.setString(3, phone);
+            ps.setString(4, postcode);
+            ps.setInt(5, length);
+            ps.setInt(6, width);
+            ps.setInt(7, height);
+            ps.setString(8, configMaterial);
+            ps.executeUpdate();
+
+            ResultSet ids = ps.getGeneratedKeys();
+            ids.next();
+            offerRequestId = ids.getInt(1);
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new LoginSampleException(e.getMessage());
+        }
+        return offerRequestId;
+    }
+
+    public ArrayList<Carport> getOneConfig(int configId) {
         ArrayList<Carport> configs = new ArrayList<>();
 
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT configId, custName, custPhone, custPostal, width, length, height, material FROM configurations WHERE configId =?;";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setInt(1,configId);
+            ps.setInt(1, configId);
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -89,15 +115,15 @@ public class ConfigurationMapper {
 
     }//getOneConfig
 
-    public ArrayList<Carport> getAllConfigs(){
+    public ArrayList<Carport> getAllConfigs() {
         ArrayList<Carport> configs = new ArrayList<>();
 
         try {
-        Connection con = Connector.connection();
-        String SQL = "SELECT configId, custName, custPhone, custPostal, width, length, height, material FROM configurations;";
-        PreparedStatement ps = con.prepareStatement(SQL);
+            Connection con = Connector.connection();
+            String SQL = "SELECT configId, custName, custPhone, custPostal, width, length, height, material FROM configurations;";
+            PreparedStatement ps = con.prepareStatement(SQL);
 
-        ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 while (rs.next()) {
@@ -113,7 +139,7 @@ public class ConfigurationMapper {
         return configs;
     }//getAllConfigs
 
-    public ArrayList<Carport> getNewConfigs(){
+    public ArrayList<Carport> getNewConfigs() {
         ArrayList<Carport> configs = new ArrayList<>();
 
         try {
@@ -136,7 +162,7 @@ public class ConfigurationMapper {
         return configs;
     }//getNewConfigs
 
-    public ArrayList<Carport> getInProgressConfigs(){
+    public ArrayList<Carport> getInProgressConfigs() {
         ArrayList<Carport> configs = new ArrayList<>();
 
         try {
@@ -159,7 +185,7 @@ public class ConfigurationMapper {
         return configs;
     }//getInProgressConfigs
 
-    public ArrayList<Carport> getFinishedConfigs(){
+    public ArrayList<Carport> getFinishedConfigs() {
         ArrayList<Carport> configs = new ArrayList<>();
 
         try {
