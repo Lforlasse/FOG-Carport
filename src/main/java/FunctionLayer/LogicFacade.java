@@ -18,25 +18,27 @@ public class LogicFacade {
     }
 
     public static List<String> carportMaterials() {
-        //TODO Test data, replace with DBAccess method
+        /*
         List<String> list = new ArrayList<>();
         list.add("Materiale 1");
         list.add("Materiale 2");
         list.add("Materiale 3");
         list.add("Materiale 4");
+        */
         // Test data end
-        return list;
+        return MaterialMapper.getConfigMaterials();
     }
 
     public static List<String> roofMaterials() {
-        //TODO Test data, replace with DBAccess method
+        /*
         List<String> list = new ArrayList<>();
         list.add("Tag materiale 1");
         list.add("Tag materiale 2");
         list.add("Tag materiale 3");
         list.add("Tag materiale 4");
+         */
         // Test data end
-        return list;
+        return RoofMapper.getRoofMaterials();
     }
 
     public static List<Integer> widthLimits() {

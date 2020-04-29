@@ -17,6 +17,7 @@ abstract class Command {
         commands.put("prefab", new Prefab());
         commands.put("redirect", new Redirect());
         commands.put("offerRequest", new OfferRequest());
+        commands.put("viewOfferRequests", new ViewOfferRequests());
     }
 
     static Command from(HttpServletRequest request) {

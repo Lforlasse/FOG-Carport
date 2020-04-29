@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <title>FOG Carport</title>
+</head>
+
+<body>
+<!-- NAVBAR -->
+<div class="container">
+    <nav class="navbar navbar-light bg-light shadow-sm border-left border-right">
+        <form>
+            <button class="px-0 mx-0 border-0" style="width: 40px;">
+                <img src="../img/fog_logo_2015.jpg" class="img-fluid rounded" alt="Responsive image">
+            </button>
+        </form>
+        <div class="d-inline-flex">
+            <form class="form-inline" role="form" name="configurator" action="FrontController" method="POST">
+                <input type="hidden" name="target" value="configurator">
+                <button type="submit" class="btn btn-outline-secondary mr-2" value="submit">Konfigurator</button>
+            </form>
+            <form class="form-inline" role="form" name="login" action="FrontController" method="POST">
+                <input type="hidden" name="target" value="prefab">
+                <button type="submit" class="btn btn-outline-secondary active" value="submit">Prefab</button>
+            </form>
+        </div>
+    </nav>
+</div>
+
+<!-- BODY -->
+<div class="container">
+    <div class="container border border-top-0 px-4 pt-4 shadow-sm">
+
+        <!-- ALERTS -->
+        <!--<c:if test = "${requestScope.error!= null}" >-->
+        <div class="alert alert-danger" role="alert">
+            Error: ${requestScope.error}
+        </div>
+        <!--</c:if>-->
+
+        <!-- CONTENT -->
+        <div class="card mb-4">
+
+            <div class="card-header">
+                Konfiguration
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-row mb-3">
+                        <div class="col-1 px-0">
+                            <label for="length">Længde</label>
+                        </div>
+                        <div class="col mr-3">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="length" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                        </div>
+                        <div class="col-1 px-0">
+                            <label for="width">Bredde</label>
+                        </div>
+                        <div class="col mr-3">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="width" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                        </div>
+                        <div class="col-1 px-0">
+                            <label for="height">Højde</label>
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="height" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col-1 px-0">
+                            <label for="length">Materiale</label>
+                        </div>
+                        <div class="col mr-3">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="length" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                        </div>
+                        <div class="col-1 px-0">
+                            <label for="width">Bredde</label>
+                        </div>
+                        <div class="col mr-3">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="width" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                        </div>
+                        <div class="col-1 px-0">
+                            <label for="height">Højde</label>
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="height" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                        </div>
+                    </div>
+                    <input type="hidden" name="target" value="prefab">
+                    <button type="submit" class="btn btn-secondary float-right" value="submit">Gem</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                Prisudregner
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-row mb-3">
+                        <div class="col-1 px-0">
+                            <label for="length">Indkøb</label>
+                        </div>
+                        <div class="col mr-3">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="length" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                        </div>
+                        <div class="col-1 px-0">
+                            <label for="width">Salg</label>
+                        </div>
+                        <div class="col mr-3">
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm"
+                                   id="width" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                        </div>
+                    </div>
+                    <input type="hidden" name="target" value="prefab">
+                    <button type="submit" class="btn btn-secondary float-right" value="submit">Udregn</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                Stykliste
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-sm table-hover table-">
+                    <thead>
+                    <tr>
+                        <th scope="col">Request ID</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Kunde</th>
+                        <th scope="col">Telefon</th>
+                        <th scope="col">Postnr.</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row"># 0004384</th>
+                        <td>Ny anmodning</td>
+                        <td>Sørensen, Otto</td>
+                        <td>82524364</td>
+                        <td>2000</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
