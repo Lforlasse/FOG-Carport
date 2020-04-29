@@ -71,58 +71,9 @@ public class OfferRequest {
             countUnit += 1;
         }
 
-        if (countUnit == 1) {
-
             Component rem = ComponentMapper.getComponent("Rem", carport.getConfMat());
             rem.setCompLength(carport.getConfLength() / countUnit);
-            rem.setCompDesc(rem.getCompDesc() + ", dobbeltbeskåret 45°");
             compList.put(rem, countUnit * 2);
-
-        } else if (countUnit == 2) {
-
-            Component rem = ComponentMapper.getComponent("Rem", carport.getConfMat());
-            rem.setCompLength(carport.getConfLength() / countUnit);
-            rem.setCompDesc(rem.getCompDesc() + ", enkeltbeskåret 45°");
-            compList.put(rem, countUnit * 2);
-
-        } else {
-
-            Component rem = ComponentMapper.getComponent("Rem", carport.getConfMat());
-            rem.setCompLength(carport.getConfLength());
-            countUnit *= 2;
-            compList.put(rem, countUnit - 4);
-            rem.setCompDesc(rem.getCompDesc() + ", enkeltbeskåret 45°");
-            compList.put(rem, 4);
-        }//Length
-
-        countUnit = 1;
-        for (int i = 400; i < carport.getConfWidth(); i += max) {
-            countUnit += 1;
-        }
-
-        if (countUnit == 1) {
-
-            Component rem = ComponentMapper.getComponent("Rem", carport.getConfMat());
-            rem.setCompLength(carport.getConfWidth() / countUnit);
-            rem.setCompDesc(rem.getCompDesc() + ", dobbeltbeskåret 45°");
-            compList.put(rem, countUnit * 2);
-
-        } else if (countUnit == 2) {
-
-            Component rem = ComponentMapper.getComponent("Rem", carport.getConfMat());
-            rem.setCompLength(carport.getConfWidth() / countUnit);
-            rem.setCompDesc(rem.getCompDesc() + ", enkeltbeskåret 45°");
-            compList.put(rem, countUnit * 2);
-
-        } else {
-
-            Component rem = ComponentMapper.getComponent("Rem", carport.getConfMat());
-            rem.setCompLength(carport.getConfWidth());
-            countUnit *= 2;
-            compList.put(rem, countUnit - 4);
-            rem.setCompDesc(rem.getCompDesc() + ", enkeltbeskåret 45°");
-            compList.put(rem, 4);
-        }//Width
 
     }//addRemme
 
