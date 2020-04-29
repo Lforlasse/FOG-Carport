@@ -5,6 +5,7 @@ import FunctionLayer.LoginSampleException;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ConfigurationMapper {
 
@@ -61,8 +62,8 @@ public class ConfigurationMapper {
     }//makeConfigObject
 
     public static int newOfferRequest(int length, int width, int height, String configMaterial,
-                                        int roofAngle, String roofMaterial,
-                                        String name, String email, String phone, String postcode) throws LoginSampleException {
+                                      int roofAngle, String roofMaterial,
+                                      String name, String email, String phone, String postcode) throws LoginSampleException {
         int offerRequestId;
         try {
             //TODO Implement remaining data/variables
@@ -207,6 +208,5 @@ public class ConfigurationMapper {
 
         return configs;
     }//getFinishedConfigs
-
 
 }//class
