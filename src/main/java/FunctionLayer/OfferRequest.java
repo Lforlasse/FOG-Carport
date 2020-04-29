@@ -71,9 +71,9 @@ public class OfferRequest {
             countUnit += 1;
         }
 
-            Component rem = ComponentMapper.getComponent("Rem", carport.getConfMat());
-            rem.setCompLength(carport.getConfLength() / countUnit);
-            compList.put(rem, countUnit * 2);
+        Component rem = ComponentMapper.getComponent("Rem", carport.getConfMat());
+        rem.setCompLength(carport.getConfLength() / countUnit);
+        compList.put(rem, countUnit * 2);
 
     }//addRemme
 
@@ -113,10 +113,16 @@ public class OfferRequest {
         addUnit *= countUnit;
         addUnit *= 2;
 
-        Component sternLength = ComponentMapper.getComponent("Stern", carport.getConfMat());
-        sternLength.setCompLength(carport.getConfLength() / addUnit);
-        compList.put(sternLength, addUnit);
+        Component sternLengthOver = ComponentMapper.getComponent("Stern, over", carport.getConfMat());
+        Component sternLengthUnder = ComponentMapper.getComponent("Stern, under", carport.getConfMat());
 
+        sternLengthOver.setCompLength(carport.getConfLength() / addUnit);
+        sternLengthUnder.setCompLength(carport.getConfLength() / addUnit);
+
+        compList.put(sternLengthOver, addUnit);
+        compList.put(sternLengthUnder, addUnit);
+
+        //reset count
         countUnit = 1;
         addUnit = 1;
 
@@ -128,13 +134,17 @@ public class OfferRequest {
         addUnit *= countUnit;
         addUnit *= 2;
 
-        Component sternWidth = ComponentMapper.getComponent("Stern", carport.getConfMat());
-        sternWidth.setCompLength(carport.getConfWidth() / addUnit);
-        compList.put(sternWidth, addUnit);
+        Component sternWidthOver = ComponentMapper.getComponent("Stern, over", carport.getConfMat());
+        Component sternWidthUnder = ComponentMapper.getComponent("Stern, under", carport.getConfMat());
 
-    }//addStern //OBS på navngivning til Component.
+        sternWidthOver.setCompLength(carport.getConfWidth() / addUnit);
+        sternWidthUnder.setCompLength(carport.getConfWidth() / addUnit);
+
+        compList.put(sternWidthOver, addUnit);
+        compList.put(sternWidthUnder, addUnit);
+
+    }//addStern
     //COMPONENTS SLUT
-
 
 
     //PARTS
@@ -151,13 +161,14 @@ public class OfferRequest {
         //1 stolpe = 1 bræddebolt, 1 firkantskive
         int countUnit = 0;
 
-        for(Map.Entry<Component, Integer> entry : compList.entrySet()) {
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
 
-            if(entry.getKey().getCompDesc().equalsIgnoreCase("Stolpe")){
-               countUnit += entry.getValue();
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Stolpe")) {
+                countUnit += entry.getValue();
             }//if
         }//for
 
+        //Parts
         Part partBolt = PartMapper.getPart("Bræddebolt 10 x 120mm");
         Part partSkive = PartMapper.getPart("Firkantskive 40 x 40 x 11mm");
 
@@ -167,12 +178,89 @@ public class OfferRequest {
     }//addPartsRemme
 
     private void addPartsSper() {
-    }
+        //1 spær = 1 højre, 1 venstre uni.
+        //1 spær = 18 skruer - spild 2?.
+        int countUnit = 0;
+        int countScrew = 18;
+        int countBox = 1;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Spær")) {
+                countUnit += entry.getValue();
+            }//if
+        }//for
+
+        //Parts
+        Part partBeslagH = PartMapper.getPart("Universalbeslag 190mm højre");
+        Part partBeslagV = PartMapper.getPart("Universalbeslag 190mm venstre");
+
+        Part partSkruer = PartMapper.getPart("Skruer 4,5 x 60mm 200stk");
+        countScrew *= countUnit;
+        countBox += countScrew / 200;
+
+        partList.put(partBeslagH, countUnit);
+        partList.put(partBeslagV, countUnit);
+        partList.put(partSkruer, countBox);
+
+    }//addPartsSper // HUSK RIGTIGE SKRUER
 
     private void addPartsStern() {
+        //1 sternbræt(over el. mellem el. under) = 2 skruer pr spær.
+        // OG 2 pr bræt pr 50cm. på sider langs med spær.
+        int countUnit = 0;
+        int countUnitLength = 0;
+        int countUnitSper = 0;
+        int countScrew = 0;
+        int countBox = 1;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().equals("sternLengthOver")) {
+                countUnit += entry.getValue();
+            }
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, mellem")) {
+                countUnit += entry.getValue();
+            }
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, under")) {
+                countUnit += entry.getValue();
+            }
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Spær")) {
+                countUnitSper += entry.getValue();
+            }//if
+        }//for
+
+        //Parts
+        Part partSkruer = PartMapper.getPart("Skruer 4,5 x 60mm 200stk");
+
+        countUnitSper *= countUnit
+        countScrew *= countUnitSper*8;
+        countBox += countScrew/200;
+
+        }
+
+
+
+
+
+
+
+
+
+
+        Part partBeslagV = PartMapper.getPart("Universalbeslag 190mm venstre");
+
+        Part partSkruer = PartMapper.getPart("Skruer 4,5 x 60mm 200stk");
+        countScrew *= countUnit;
+        countBox += countScrew / 200;
+
+        partList.put(partBeslagH, countUnit);
+        partList.put(partBeslagV, countUnit);
+        partList.put(partSkruer, countBox);
+
+
+
+
+
     }
-
-
 
 
     public Carport getCarport() {
