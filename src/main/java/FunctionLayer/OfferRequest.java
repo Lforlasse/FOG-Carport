@@ -33,7 +33,7 @@ public class OfferRequest {
         addStolper();
         addRemme();
         addSper();
-        addLegter();
+        //addLegter(); se metode.
         addStern();
 
     }//generateCompList
@@ -56,13 +56,6 @@ public class OfferRequest {
         compList.put(Stolpe, countUnit);
 
     }//addStolper
-
-
-//        height -= 250;
-//
-//        for (int i = carport.getheight(); ;i > 0; i -= 200 ){
-//            countPlank += 2;
-//        }
 
     private void addRemme() {
         int max = 400;
@@ -143,19 +136,47 @@ public class OfferRequest {
         sper.setCompLength(carport.getConfWidth() / addUnit);
         compList.put(sper, addUnit * countUnit);
 
-    }//addStolper
+    }//addSper
 
-    private static void addLegter() {
-        //
+//    private static void addLegter() { //TODO fremtidigt sprint, bruges til tag med rejsning.
+//
+//
+//    }//addLegter
 
-    }//addStolper
-
-    private static void addStern() {
+    private void addStern() {
         //en stern er går rundt i omkredsen af carporten
         //L+L+B+B = Stern
+        int max = 400;
+        int countUnit = 1;
+        int addUnit = 1;
+        for (int i = carport.getConfLength(); i > 0; i -= max) {
+            countUnit += 1;
+        }
 
+        addUnit += carport.getConfLength() / max;
+        addUnit *= countUnit;
+        addUnit *= 2;
 
-    }//addStolper
+        Component sternLength = ComponentMapper.getComponent("Stern", carport.getConfMat());
+        sternLength.setCompLength(carport.getConfLength() / addUnit);
+        compList.put(sternLength, addUnit);
+
+        countUnit = 1;
+        addUnit = 1;
+
+        for (int i = carport.getConfWidth(); i > 0; i += max) {
+            countUnit += 1;
+        }
+
+        addUnit += carport.getConfWidth() / max;
+        addUnit *= countUnit;
+        addUnit *= 2;
+
+        Component sternWidth = ComponentMapper.getComponent("Stern", carport.getConfMat());
+        sternWidth.setCompLength(carport.getConfWidth() / addUnit);
+        compList.put(sternWidth, addUnit);
+
+    }//addStern //OBS på navngivning til Component.
 
     public Carport getCarport() {
         return carport;
