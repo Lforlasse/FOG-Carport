@@ -78,6 +78,7 @@ public class ConfigRequest extends Command {
             request.setAttribute("actionSuccess", true);
         } catch (Exception e) {
             request.setAttribute("error", "Something went wrong!");
+            System.out.println(e);
         }
         request.setAttribute("materials", LogicFacade.carportMaterials());
         request.setAttribute("widthLimits", LogicFacade.widthLimits());

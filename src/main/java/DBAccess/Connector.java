@@ -34,9 +34,11 @@ public class Connector {
             PASSWORD = System.getenv("JDBC_PASSWORD");
         } else {
             // Localhost
-            URL = "jdbc:mysql://localhost:3306/useradmin?serverTimezone=CET&useSSL=false";
-            USERNAME = "root";
-            PASSWORD = "root";
+
+            String SCHEME = "carport";
+            URL = "jdbc:mysql://localhost:3306/" + SCHEME + "?serverTimezone=CET&useSSL=false";
+            USERNAME = "admin";
+            PASSWORD = "cupcakeworld";
         }
     }
 }

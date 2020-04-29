@@ -1,6 +1,6 @@
 package FunctionLayer;
 
-import DBAccess.UserMapper;
+import DBAccess.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,11 +78,15 @@ public class LogicFacade {
 
     public static int submitConfigRequest(int length, int width, int height, String configMaterial,
                                           int roofAngle, String roofMaterial,
-                                          String name, String email, String phone, String postcode) {
+                                          String name, String email, String phone, String postcode)
+            throws LoginSampleException {
         //TODO Test data, replace with DBAccess method
-        int configRequestId = 6969;
+        int configRequestId = ConfigMapper.configRequestToDB(length, width, height, configMaterial,
+                roofAngle, roofMaterial, name, email, phone, postcode);
+
         System.out.println();
-        System.out.println("configRequestId: " + configRequestId);
+        System.out.println("NEW config request: " + configRequestId);
+        /*
         System.out.println("length: " + length);
         System.out.println("width: " + width);
         System.out.println("height: " + height);
@@ -93,6 +97,7 @@ public class LogicFacade {
         System.out.println("email: " + email);
         System.out.println("phone: " + phone);
         System.out.println("postcode: " + postcode);
+        */
         return configRequestId;
     }
 }
