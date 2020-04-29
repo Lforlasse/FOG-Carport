@@ -4,13 +4,14 @@ import DBAccess.ComponentMapper;
 import DBAccess.ConfigurationMapper;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class OfferRequest {
 
     private Carport carport;
     private int confId;
     private HashMap<Component, Integer> compList;
-    private HashMap<Part, Integer> partsList;
+    private HashMap<Part, Integer> partList;
     private int vendorPrice;
     private int salesPrice;
     private int profit;
@@ -40,6 +41,8 @@ public class OfferRequest {
 
     }//generateCompList
 
+
+    //COMPONENTS
     private void addStolper() {
 
         carport.setConfLength(-400);
@@ -146,8 +149,7 @@ public class OfferRequest {
 //    }//addLegter
 
     private void addStern() {
-        //en stern er går rundt i omkredsen af carporten
-        //L+L+B+B = Stern
+
         int max = 400;
         int countUnit = 1;
         int addUnit = 1;
@@ -179,6 +181,51 @@ public class OfferRequest {
         compList.put(sternWidth, addUnit);
 
     }//addStern //OBS på navngivning til Component.
+    //COMPONENTS SLUT
+
+
+
+    //PARTS
+    private void partList() {
+        //addStolper();
+        addPartsRemme();
+        addPartsSper();
+        //addLegter(); se metode.
+        addPartsStern();
+
+    }//generateCompList
+
+    private void addPartsRemme() {
+        //1 rem = 2 bræddebolte, 2 firkantskiver
+
+        HashMap<String, HashMap> selects = new HashMap<String, HashMap>();
+
+        for(Map.Entry<Component, Integer> entry : compList.entrySet()) {
+
+            int countUnit = 0;
+
+            if(){
+               countUnit += entry.getValue();
+            }
+
+            String key = entry.getKey();
+            HashMap value = entry.getValue();
+
+
+        }
+
+
+
+    }
+
+    private void addPartsSper() {
+    }
+
+    private void addPartsStern() {
+    }
+
+
+
 
     public Carport getCarport() {
         return carport;
