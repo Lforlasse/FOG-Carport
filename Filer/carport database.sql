@@ -30,20 +30,24 @@ CREATE TABLE components (
 ALTER TABLE components auto_increment=2000;
 
 INSERT INTO components (compDescription,material,compHeigth,compWidth,currentStock,vendorPrice,salesPrice)
-VALUES  ("Stolpe", "Trykimprægneret", 10, 10, 74, 250, 475),
-		("Stolpe", "Egetræ", 9, 9, 56, 400, 750),
+VALUES  ("Stolpe", "Trykimprægneret", 100, 100, 74, 250, 475),
+		("Stolpe", "Egetræ", 90, 90, 56, 400, 750),
 
-		("Rem", "Trykimprægneret", 5, 20, 45, 135, 205),
-		("Rem", "Egetræ", 4, 22, 42, 145, 215),
-
-		("Spær", "Trykimprægneret", 5, 12, 80, 45, 85),
-		("Spær", "Egetræ", 4, 11, 73, 50, 95),
-
-		("Lægte", "Trykimprægneret", 4, 12, 37, 50, 95),
-		("Lægte", "Egetræ", 4, 11, 23, 60, 105),
+		("Rem", "Trykimprægneret", 45, 195, 45, 135, 205),
+		("Rem", "Egetræ", 40, 185, 42, 145, 215),
         
-        ("Stern", "Trykimprægneret", 3, 15, 37, 50, 95),
-		("Stern", "Egetræ", 2, 14, 41, 60, 110);
+		("Spær", "Trykimprægneret", 45, 195, 80, 45, 85),
+		("Spær", "Egetræ", 40, 185, 73, 50, 95),
+
+		("Lægte", "Trykimprægneret", 38, 73, 37, 50, 95),
+		("Lægte", "Egetræ", 35, 70, 7, 60, 105),
+        
+        ("Stern, over", "Trykimprægneret", 25, 125, 37, 50, 95),
+        ("Stern, mellem", "Trykimprægneret", 25, 125, 37, 50, 95),
+        ("Stern, under", "Trykimprægneret", 25, 125, 37, 50, 95),
+		("Stern, over", "Egetræ", 20, 115, 41, 60, 110),
+        ("Stern, mellem", "Egetræ", 20, 115, 41, 60, 110),
+        ("Stern, under", "Egetræ", 20, 115, 41, 60, 110);
 
 CREATE TABLE roof (
 	compId INT AUTO_INCREMENT,
@@ -71,7 +75,8 @@ CREATE TABLE itemTypes (
 INSERT INTO itemTypes
 VALUES  ("Styk"),
 		("Pakke"),
-		("Sæt");
+		("Sæt"),
+        ("Rulle");
     
 CREATE TABLE parts (
 	partsId INT AUTO_INCREMENT,
@@ -91,7 +96,13 @@ VALUES  ("Skruer 4,5 x 120mm 200stk", "Pakke", 120, 15, 45),
 		("Vinkelbeslag", "Styk", 325, 5, 9),
         ("Skruer 5,0 x 100mm 100stk", "Pakke", 67, 10, 25),
         ("Bræddebolt 10 x 120mm", "Styk", 128, 10, 19),
-        ("Firkantskive 40 x 40 x 11mm", "Styk", 392, 3, 5);     
+        ("Firkantskive 40 x 40 x 11mm", "Styk", 392, 3, 5),
+        ("Hulbånd 1x20mm x 10m", "Rulle", 48, 90, 200),
+        ("Skruer 4,0 x 50mm 250stk", "Pakke" ,75, 70, 150),
+        ("Universalbeslag 190mm højre", "Styk", 83, 15, 35),
+        ("Universalbeslag 190mm venstre", "Styk", 85, 15, 35),
+        ("Skruer 4,5 x 60mm 200stk", "Pakke", 102, 15, 40),
+        ("PLASTMO bundskruer 200stk", "Pakke", 30, 20, 45);
 
 CREATE TABLE validations (
 	valueDescription VARCHAR(40) NOT NULL,
@@ -126,20 +137,17 @@ CREATE TABLE configurations (
     width INT NOT NULL,
     height INT NOT NULL,
     material VARCHAR (30),
+    roofmaterial VARCHAR (30),
     
     PRIMARY KEY (configId),
     FOREIGN KEY (configStatus) REFERENCES configurationStatus (configStatus)
+    
     );
 ALTER TABLE configurations auto_increment=224466;
     
-INSERT INTO configurations (configStatus,custName,custPhone,custPostal,length,width,height,material)
-VALUES  ("Afsluttet", "Abbott", 44884488, 5020, 300, 620, 225, "Egetræ"),
-		("Behandles", "Costello", 22662266, 2550, 300, 450, 225, "Trykimprægneret");
-        
-        
-
-
-
+INSERT INTO configurations (configStatus,custName,custPhone,custPostal,length,width,height,material,roofMaterial)
+VALUES  ("Afsluttet", "Abbott", 44884488, 5020, 300, 620, 225, "Egetræ", "PLASTMO"),
+		("Behandles", "Costello", 22662266, 2550, 300, 450, 225, "Trykimprægneret", "Betontagsten, sort");
 
 
 
