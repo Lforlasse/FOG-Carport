@@ -207,21 +207,21 @@ public class OfferRequest {
     private void addPartsStern() {
         //1 sternbræt(over el. mellem el. under) = 2 skruer pr spær.
         // OG 2 pr bræt pr 50cm. på sider langs med spær.
-        int countUnit = 0;
-        int countUnitLength = 0;
+        int countUnitStern = 0;
+        int countWidth = 1;
         int countUnitSper = 0;
         int countScrew = 0;
         int countBox = 1;
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
-            if (entry.getKey().equals("sternLengthOver")) {
-                countUnit += entry.getValue();
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, over")) {
+                countUnitStern ++;
             }
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, mellem")) {
-                countUnit += entry.getValue();
+                countUnitStern ++;
             }
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, under")) {
-                countUnit += entry.getValue();
+                countUnitStern ++;
             }
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Spær")) {
                 countUnitSper += entry.getValue();
@@ -231,37 +231,18 @@ public class OfferRequest {
         //Parts
         Part partSkruer = PartMapper.getPart("Skruer 4,5 x 60mm 200stk");
 
-        countUnitSper *= countUnit
-        countScrew *= countUnitSper*8;
+        countUnitStern *= 2;                            //Hvert sternbrædde skal have 2 skruer per spær
+        countUnitSper *= 2;                             //Sper skal have skruer i begge ender
+        countScrew = countUnitStern*countUnitSper;
+        countWidth += this.carport.getConfWidth() / 50;
+        countWidth *= countUnitStern;
+        countScrew += countWidth;
+
         countBox += countScrew/200;
 
-        }
-
-
-
-
-
-
-
-
-
-
-        Part partBeslagV = PartMapper.getPart("Universalbeslag 190mm venstre");
-
-        Part partSkruer = PartMapper.getPart("Skruer 4,5 x 60mm 200stk");
-        countScrew *= countUnit;
-        countBox += countScrew / 200;
-
-        partList.put(partBeslagH, countUnit);
-        partList.put(partBeslagV, countUnit);
         partList.put(partSkruer, countBox);
 
-
-
-
-
-    }
-
+        }//addPartsStern
 
     public Carport getCarport() {
         return carport;
