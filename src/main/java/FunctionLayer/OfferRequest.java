@@ -202,7 +202,7 @@ public class OfferRequest {
         partList.put(partBeslagV, countUnit);
         partList.put(partSkruer, countBox);
 
-    }//addPartsSper // HUSK RIGTIGE SKRUER
+    }//addPartsSper
 
     private void addPartsStern() {
         //1 sternbræt(over el. mellem el. under) = 2 skruer pr spær.
