@@ -2,6 +2,7 @@ package FunctionLayer;
 
 import DBAccess.ComponentMapper;
 import DBAccess.ConfigurationMapper;
+import DBAccess.PartMapper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -196,27 +197,23 @@ public class OfferRequest {
     }//generateCompList
 
     private void addPartsRemme() {
-        //1 rem = 2 bræddebolte, 2 firkantskiver
-
-        HashMap<String, HashMap> selects = new HashMap<String, HashMap>();
+        //1 stolpe = 1 bræddebolt, 1 firkantskive
+        int countUnit = 0;
 
         for(Map.Entry<Component, Integer> entry : compList.entrySet()) {
 
-            int countUnit = 0;
-
-            if(){
+            if(entry.getKey().getCompDesc().equalsIgnoreCase("Stolpe")){
                countUnit += entry.getValue();
-            }
+            }//if
+        }//for
 
-            String key = entry.getKey();
-            HashMap value = entry.getValue();
+        Part partBolt = PartMapper.getPart("Bræddebolt 10 x 120mm");
+        Part partSkive = PartMapper.getPart("Firkantskive 40 x 40 x 11mm");
 
+        partList.put(partBolt, countUnit);
+        partList.put(partSkive, countUnit);
 
-        }
-
-
-
-    }
+    }//addPartsRemme
 
     private void addPartsSper() {
     }
