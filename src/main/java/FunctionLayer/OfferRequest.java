@@ -19,17 +19,17 @@ public class OfferRequest {
         this.confId = confId;
         this.compList = new HashMap<>();
         this.carport = ConfigurationMapper.makeConfigObject(confId); //TODO husk refactor configId til confId i DB.
-      //  this.vendorPrice = totalVendorPrice(); //TODO metode til total vendor pris.
-      //  this.salesPrice = totalSalesPrice(); //TODO metode til total salgspris.
-      //  this.profit = totalProfit(); //TODO metode til total profit.
-      generateCompList();
+        //  this.vendorPrice = totalVendorPrice(); //TODO metode til total vendor pris.
+        //  this.salesPrice = totalSalesPrice(); //TODO metode til total salgspris.
+        //  this.profit = totalProfit(); //TODO metode til total profit.
+        generateCompList();
     }
 
     public OfferRequest() {
     }
 
     //metoder
-    private void generateCompList(){
+    private void generateCompList() {
         addStolper();
         addRemme();
         addSper();
@@ -38,16 +38,16 @@ public class OfferRequest {
 
     }//generateCompList
 
-    private void addStolper(){
+    private void addStolper() {
 
         carport.setConfLength(-400);
         int countUnit = 4;
-        for (int i = carport.getConfLength() ;i > 0; i -= 200 ){
+        for (int i = carport.getConfLength(); i > 0; i -= 200) {
             countUnit += 2;
         }
 
         carport.setConfWidth(-400);
-        for (int i = carport.getConfWidth() ;i > 0; i -= 200 ){
+        for (int i = carport.getConfWidth(); i > 0; i -= 200) {
             countUnit += 2;
         }
 
@@ -58,39 +58,33 @@ public class OfferRequest {
     }//addStolper
 
 
-
-
-
-
-
-
 //        height -= 250;
 //
 //        for (int i = carport.getheight(); ;i > 0; i -= 200 ){
 //            countPlank += 2;
 //        }
 
-    private void addRemme(){
+    private void addRemme() {
         int max = 400;
 
         int countUnit = 1;
-        for (int i = 400 ;i < carport.getConfLength(); i += max){
+        for (int i = 400; i < carport.getConfLength(); i += max) {
             countUnit += 1;
         }
 
-        if (countUnit == 1){
+        if (countUnit == 1) {
 
             Component rem = ComponentMapper.getComponent("Rem", carport.getConfMat());
-            rem.setCompLength(carport.getConfLength()/countUnit);
+            rem.setCompLength(carport.getConfLength() / countUnit);
             rem.setCompDesc(rem.getCompDesc() + ", dobbeltbeskåret 45°");
-            compList.put(rem, countUnit*2);
+            compList.put(rem, countUnit * 2);
 
-        } else if (countUnit == 2){
+        } else if (countUnit == 2) {
 
             Component rem = ComponentMapper.getComponent("Rem", carport.getConfMat());
-            rem.setCompLength(carport.getConfLength()/countUnit);
+            rem.setCompLength(carport.getConfLength() / countUnit);
             rem.setCompDesc(rem.getCompDesc() + ", enkeltbeskåret 45°");
-            compList.put(rem, countUnit*2);
+            compList.put(rem, countUnit * 2);
 
         } else {
 
@@ -103,23 +97,23 @@ public class OfferRequest {
         }//Length
 
         countUnit = 1;
-        for (int i = 400 ;i < carport.getConfWidth(); i += max){
+        for (int i = 400; i < carport.getConfWidth(); i += max) {
             countUnit += 1;
         }
 
-        if (countUnit == 1){
+        if (countUnit == 1) {
 
             Component rem = ComponentMapper.getComponent("Rem", carport.getConfMat());
-            rem.setCompLength(carport.getConfWidth()/countUnit);
+            rem.setCompLength(carport.getConfWidth() / countUnit);
             rem.setCompDesc(rem.getCompDesc() + ", dobbeltbeskåret 45°");
-            compList.put(rem, countUnit*2);
+            compList.put(rem, countUnit * 2);
 
-        } else if (countUnit == 2){
+        } else if (countUnit == 2) {
 
             Component rem = ComponentMapper.getComponent("Rem", carport.getConfMat());
-            rem.setCompLength(carport.getConfWidth()/countUnit);
+            rem.setCompLength(carport.getConfWidth() / countUnit);
             rem.setCompDesc(rem.getCompDesc() + ", enkeltbeskåret 45°");
-            compList.put(rem, countUnit*2);
+            compList.put(rem, countUnit * 2);
 
         } else {
 
@@ -133,19 +127,30 @@ public class OfferRequest {
 
     }//addRemme
 
-    private static void addSper(){
-        // et spær lægges for hver meter
-        // L/100 = Sper
+    private void addSper() {
 
+        int max = 400;
+        int maxSpread = 50;
+        int countUnit = 1;
+        int addUnit = 1;
+        for (int i = carport.getConfLength(); i > 0; i -= maxSpread) {
+            countUnit += 1;
+        }
+
+        addUnit += carport.getConfWidth() / max;
+
+        Component sper = ComponentMapper.getComponent("Sper", carport.getConfMat());
+        sper.setCompLength(carport.getConfWidth() / addUnit);
+        compList.put(sper, addUnit * countUnit);
 
     }//addStolper
 
-    private static void addLegter(){
+    private static void addLegter() {
         //
 
     }//addStolper
 
-    private static void addStern(){
+    private static void addStern() {
         //en stern er går rundt i omkredsen af carporten
         //L+L+B+B = Stern
 
