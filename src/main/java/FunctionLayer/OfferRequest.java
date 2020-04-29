@@ -3,7 +3,6 @@ package FunctionLayer;
 import DBAccess.ComponentMapper;
 import DBAccess.ConfigurationMapper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OfferRequest {
@@ -11,6 +10,7 @@ public class OfferRequest {
     private Carport carport;
     private int confId;
     private HashMap<Component, Integer> compList;
+    private HashMap<Part, Integer> partsList;
     private int vendorPrice;
     private int salesPrice;
     private int profit;
@@ -18,10 +18,12 @@ public class OfferRequest {
     public OfferRequest(int confId) {
         this.confId = confId;
         this.compList = new HashMap<>();
+        this.partList = new HashMap<>();
         this.carport = ConfigurationMapper.makeConfigObject(confId); //TODO husk refactor configId til confId i DB.
         //  this.vendorPrice = totalVendorPrice(); //TODO metode til total vendor pris.
         //  this.salesPrice = totalSalesPrice(); //TODO metode til total salgspris.
         //  this.profit = totalProfit(); //TODO metode til total profit.
+
         generateCompList();
     }
 

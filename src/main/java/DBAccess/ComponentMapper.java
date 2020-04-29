@@ -44,4 +44,4 @@ public class ComponentMapper {
         return component;
     }//getComponent
 
-}
+}//ComponentMapper
