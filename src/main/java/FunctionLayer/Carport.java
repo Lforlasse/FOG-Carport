@@ -1,79 +1,132 @@
 package FunctionLayer;
 
 public class Carport {
-    private int heightCM;
-    private int lengthCM;
-    private int widthCM;
-    private String material;
+    private int confId;
+    private String custName;
+    private int custPhone;
+    private int custPostal;
+    private int confLength;
+    private int confWidth;
+    private int confHeight;
+    private String confMat;
+    private String confRoof;
     private boolean carSpace;
 
-    public Carport(int hCM, int lCM, int wCM, String mat){
-        this.heightCM = hCM;
-        this.lengthCM = lCM;
-        this.widthCM = wCM;
-        this.material = mat;
+    public Carport(int confId, String custName, int custPhone, int custPostal,
+                   int confLength, int confWidth, int confHeight, String confMat, String confRoof){
+        this.confId = confId;
+        this.custName = custName;
+        this.custPhone = custPhone;
+        this.custPostal = custPostal;
+        this.confLength = confLength;
+        this.confWidth = confWidth;
+        this.confHeight = confHeight;
+        this.confMat = confMat;
+        this.confRoof = confRoof;
 
         this.carSpace = checkCarSpace();
 
     }//Carport
 
+//    public Carport(int heightCM, int lengthCM, int widthCM) {
+//
+//        return null;
+//    }
+
     private boolean checkCarSpace(){
         boolean result = true;
 
-        if (this.heightCM < 1 /*Hent tal fra DB*/){
+        if (this.confLength < 1 ){ //Hent tal fra DB
             result = false;
         }
-        if (this.lengthCM < 1 /*Hent tal fra DB*/){
+        if (this.confWidth < 1 ){ //Hent tal fra DB
             result = false;
         }
-        if (this.widthCM < 1 /*Hent tal fra DB*/){
+        if (this.confHeight < 1 ){ //Hent tal fra DB
             result = false;
         }
-
-
         return result;
     }//checkCarSpace
 
-    public int getHeightCM() {
-        return heightCM;
+
+    //Getter & Setter
+    public int getConfId() {
+        return confId;
     }
 
-    public void setHeightCM(int heightCM) {
-        this.heightCM = heightCM;
+    public void setConfId(int confId) {
+        this.confId = confId;
     }
 
-    public int getLengthCM() {
-        return lengthCM;
+    public String getCustName() {
+        return custName;
     }
 
-    public void setLengthCM(int lengthCM) {
-        this.lengthCM = lengthCM;
+    public void setCustName(String custName) {
+        this.custName = custName;
     }
 
-    public int getWidthCM() {
-        return widthCM;
+    public int getCustPhone() {
+        return custPhone;
     }
 
-    public void setWidthCM(int widthCM) {
-        this.widthCM = widthCM;
+    public void setCustPhone(int custPhone) {
+        this.custPhone = custPhone;
     }
 
-    public String getMaterial() {
-        return material;
+    public int getCustPostal() {
+        return custPostal;
     }
 
-    public void setMaterial(String material) {
-        this.material = material;
+    public void setCustPostal(int custPostal) {
+        this.custPostal = custPostal;
     }
 
-    public boolean isCarspace() {
+    public int getConfLength() {
+        return confLength;
+    }
+
+    public void setConfLength(int confLength) {
+        this.confLength = confLength;
+    }
+
+    public int getConfWidth() {
+        return confWidth;
+    }
+
+    public void setConfWidth(int confWidth) {
+        this.confWidth = confWidth;
+    }
+
+    public int getConfHeight() {
+        return confHeight;
+    }
+
+    public void setConfHeight(int confHeight) {
+        this.confHeight = confHeight;
+    }
+
+    public String getConfMat() {
+        return confMat;
+    }
+
+    public void setConfMat(String confMat) {
+        this.confMat = confMat;
+    }
+
+    public String getConfRoof() {
+        return confRoof;
+    }
+
+    public void setConfRoof(String confRoof) {
+        this.confRoof = confRoof;
+    }
+
+    public boolean isCarSpace() {
         return carSpace;
     }
 
-    public void setCarspace(boolean carspace) {
-        this.carSpace = carspace;
+    public void setCarSpace(boolean carSpace) {
+        this.carSpace = carSpace;
     }
-
-
-
 }//class
