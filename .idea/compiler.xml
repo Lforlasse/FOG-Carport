@@ -6,12 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="FOG-Carport" />
+        <module name="Projektskabelon" />
         <module name="ProjektSkabelon-master" />
+        <module name="FOG-Carport" />
         <module name="prejektSkabelon" />
         <module name="fogcarport" />
         <module name="Projektskabelon-master" />
-        <module name="Projektskabelon" />
       </profile>
     </annotationProcessing>
   </component>

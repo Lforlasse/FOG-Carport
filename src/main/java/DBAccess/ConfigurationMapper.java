@@ -21,11 +21,11 @@ public class ConfigurationMapper {
         int confWidth = 0;
         int confHeight = 0;
         String confMat = "0";
-
+        String confRoof = "0";
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT configId, custName, custPhone, custPostal, width, length, height, material FROM configurations WHERE configId =?;";
+            String SQL = "SELECT configId, custName, custPhone, custPostal, width, length, height, material,  FROM configurations WHERE configId =?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1,configId);
 
@@ -44,7 +44,22 @@ public class ConfigurationMapper {
         } catch (ClassNotFoundException | SQLException ex) {
 
         }//catch
-        Carport carport = new Carport(confId,custName,custPhone,custPostal,confWidth,confLength,confHeight,confMat);
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT compDescription FROM roof WHERE compDescription = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, confRoof);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                confRoof=rs.getString(1);
+
+            }//if
+        } catch (ClassNotFoundException | SQLException ex) {
+
+        }//catch
+        Carport carport = new Carport(confId, custName,custPhone,custPostal,confWidth,confLength,confHeight,confMat, confRoof);
         return carport;
     }//makeConfigObject
 
@@ -61,13 +76,14 @@ public class ConfigurationMapper {
             if (rs.next()) {
                 while (rs.next()) {
                     configs.add(new Carport(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
-                            rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8)));
+                            rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9)));
 
                 }//while
             }//if
         } catch (ClassNotFoundException | SQLException ex) {
 
         }//catch
+
 
         return configs;
 
@@ -86,7 +102,7 @@ public class ConfigurationMapper {
             if (rs.next()) {
                 while (rs.next()) {
                     configs.add(new Carport(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
-                            rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8)));
+                            rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9)));
 
                 }//while
             }//if
@@ -109,7 +125,7 @@ public class ConfigurationMapper {
             if (rs.next()) {
                 while (rs.next()) {
                     configs.add(new Carport(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
-                            rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8)));
+                            rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9)));
 
                 }//while
             }//if
@@ -132,7 +148,7 @@ public class ConfigurationMapper {
             if (rs.next()) {
                 while (rs.next()) {
                     configs.add(new Carport(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
-                            rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8)));
+                            rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9)));
 
                 }//while
             }//if
@@ -155,7 +171,7 @@ public class ConfigurationMapper {
             if (rs.next()) {
                 while (rs.next()) {
                     configs.add(new Carport(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
-                            rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8)));
+                            rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9)));
 
                 }//while
             }//if

@@ -1,27 +1,29 @@
 package FunctionLayer;
 
-import java.util.ArrayList;
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class YES {
     public static void main(String[]args){
+        OfferRequest yes = new OfferRequest(224466);
+        System.out.println(yes.getCarport().getCustName());
 
-        ArrayList<Roof> myRoofList = new ArrayList();
-        ArrayList<Stolpe> myStolpeList = new ArrayList();
+        for (Map.Entry<Component, Integer> entry : yes.getCompList().entrySet()) {
+            //System.out.println(yes.getCompList().);
+            System.out.println(entry.getKey().getCompDesc());
+        }
 
-        Stolpe myStolpe1 = new Stolpe(10, 250, "jaja", "stolper");
-        Stolpe myStolpe2 = new Stolpe(10, 250, "jaja", "stolper");
-        Stolpe myStolpe3 = new Stolpe(10, 250, "jaja", "stolper");
-        Stolpe myStolpe4 = new Stolpe(10, 250, "jaja", "stolper");
-        Roof myRoof = new Roof(59, 200, 200, 20, "rem", "spaer", "stern", "vandbraet", "traeSort");
+        }
 
-        CarportBuilder myCarport = new CarportBuilder();
-
-        myRoofList.add(myRoof);
-        myStolpeList.add(myStolpe1);
-        myStolpeList.add(myStolpe2);
-        myStolpeList.add(myStolpe3);
-        myStolpeList.add(myStolpe4);
-
-        myCarport.buildCarport(myRoofList, myStolpeList);
     }
-}
+
+
+
+
+//    HashMap<String, HashMap> selects = new HashMap<String, HashMap>();
+//
+//  for(Map.Entry<String, HashMap> entry : selects.entrySet()) {
+//        String key = entry.getKey();
+//        HashMap value = entry.getValue();
