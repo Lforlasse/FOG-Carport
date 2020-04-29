@@ -37,7 +37,7 @@
                 Inden for 5 hverdage vil du blive tilsendt et tilbud pr. email.
                 <br>
                 <br>
-                Anmodnings ID: ${requestScope.configRequestID}
+                Anmodnings ID: ${requestScope.offerRequestID}
             </div>
         </c:if>
 
@@ -125,8 +125,7 @@
                                 <input type="checkbox" class="custom-control-input"
                                        name="roofCheck" id="roofCheck"
                                        onclick="toggleElement('roofInput', 'roofCheck','enable');
-                                                toggleElement('roofRange', 'roofCheck','enable');
-                                                toggleElement('roofMaterial', 'roofCheck','enable');">
+                                                toggleElement('roofRange', 'roofCheck','enable');">
                                 <label class="custom-control-label" for="roofCheck"></label>
                                 <c:set var="roofAngleMin" value="${requestScope.roofAngleLimits[0]}"/>
                                 <c:set var="roofAngleMax" value="${requestScope.roofAngleLimits[1]}"/>
@@ -150,8 +149,7 @@
                             Materiale
                         </div>
                         <select class="custom-select col-10 border-secondary"
-                                name="roofMaterial" id="roofMaterial"
-                                disabled>
+                                name="roofMaterial" id="roofMaterial">
                             <c:forEach items="${requestScope.roofMaterials}" var="material">
                                 <option value="${material}">${material}</option>
                             </c:forEach>
@@ -206,7 +204,7 @@
                                    min="0" max="600" oninput="" required>
                         </div>
                     </div>
-                    <input type="hidden" name="target" value="configRequest">
+                    <input type="hidden" name="target" value="offerRequest">
                     <button type="submit" class="btn btn-secondary float-right" value="submit">Anmod tilbud</button>
                 </div>
             </div>

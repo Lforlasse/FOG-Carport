@@ -6,7 +6,7 @@ import FunctionLayer.LoginSampleException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ConfigRequest extends Command {
+public class OfferRequest extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         int lengthInput;
@@ -71,13 +71,14 @@ public class ConfigRequest extends Command {
         String postcode = request.getParameter("postcodeInput");
 
         try {
-            request.setAttribute("configRequestID", LogicFacade.submitConfigRequest(
+            request.setAttribute("offerRequestID", LogicFacade.submitOfferRequest(
                     lengthInput, widthInput, heightInput, configMaterial,
                     roofInput, roofMaterial,
                     name, email, phone, postcode));
             request.setAttribute("actionSuccess", true);
         } catch (Exception e) {
             request.setAttribute("error", "Something went wrong!");
+            System.out.println(e);
         }
         request.setAttribute("materials", LogicFacade.carportMaterials());
         request.setAttribute("widthLimits", LogicFacade.widthLimits());
