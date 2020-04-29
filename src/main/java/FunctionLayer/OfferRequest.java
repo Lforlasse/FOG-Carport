@@ -194,9 +194,9 @@ public class OfferRequest {
         Part partBeslagH = PartMapper.getPart("Universalbeslag 190mm højre");
         Part partBeslagV = PartMapper.getPart("Universalbeslag 190mm venstre");
 
-        Part partSkruer = PartMapper.getPart("Skruer 4,5 x 60mm 200stk");
+        Part partSkruer = PartMapper.getPart("Skruer 4,0 x 50mm 250stk");
         countScrew *= countUnit;
-        countBox += countScrew / 200;
+        countBox += countScrew / 250;
 
         partList.put(partBeslagH, countUnit);
         partList.put(partBeslagV, countUnit);
@@ -233,7 +233,7 @@ public class OfferRequest {
 
         countUnitStern *= 2;                            //Hvert sternbrædde skal have 2 skruer per spær
         countUnitSper *= 2;                             //Sper skal have skruer i begge ender
-        countScrew = countUnitStern*countUnitSper;
+        countScrew += countUnitStern*countUnitSper;
         countWidth += this.carport.getConfWidth() / 50;
         countWidth *= countUnitStern;
         countScrew += countWidth;
@@ -244,6 +244,8 @@ public class OfferRequest {
 
         }//addPartsStern
 
+
+    //Getter & setter
     public Carport getCarport() {
         return carport;
     }
