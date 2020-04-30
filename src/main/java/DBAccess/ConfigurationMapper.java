@@ -90,9 +90,8 @@ public class ConfigurationMapper {
         return offerRequestId;
     }
 
-    public ArrayList<Carport> getOneConfig(int configId) {
-        ArrayList<Carport> configs = new ArrayList<>();
-
+    public static Carport getOneConfig(int configId) {
+        Carport carport = null;
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT configId, custName, custPhone, custPostal, width, length, height, material FROM configurations WHERE configId =?;";
@@ -100,41 +99,29 @@ public class ConfigurationMapper {
             ps.setInt(1, configId);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                while (rs.next()) {
-                    configs.add(new Carport(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
-                            rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9)));
-
-                }//while
-            }//if
+            rs.next();
+            carport = new Carport(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
+                    rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9));
         } catch (ClassNotFoundException | SQLException ex) {
-
         }//catch
-
-
-        return configs;
-
+        return carport;
     }//getOneConfig
 
-    public ArrayList<Carport> getAllConfigs() {
+    public static ArrayList<Carport> getAllConfigs() {
         ArrayList<Carport> configs = new ArrayList<>();
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT configId, custName, custPhone, custPostal, width, length, height, material FROM configurations;";
+            String SQL = "SELECT configId, custName, custPhone, custPostal, width, length, height, material, roofmaterial FROM configurations;";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                while (rs.next()) {
-                    configs.add(new Carport(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
-                            rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9)));
-
-                }//while
-            }//if
+            while (rs.next()) {
+                configs.add(new Carport(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
+                        rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9)));
+            }//while
         } catch (ClassNotFoundException | SQLException ex) {
-
+            System.out.println(ex);
         }//catch
 
         return configs;

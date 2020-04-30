@@ -101,4 +101,12 @@ public class LogicFacade {
         */
         return offerRequestId;
     }
+
+    public static ArrayList<Carport> getAllOfferRequests() {
+        return ConfigurationMapper.getAllConfigs();
+    }
+
+    public static Carport getOfferRequest(int configId) {
+        return ConfigurationMapper.getOneConfig(configId);
+    }
 }

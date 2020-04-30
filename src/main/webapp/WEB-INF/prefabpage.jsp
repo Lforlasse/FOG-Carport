@@ -37,15 +37,10 @@
                 Værktøj
             </div>
             <div class="card-body">
-                <br>
-                <br>
-                <br>
-                <h1 class="text-center">PLACEHOLDER</h1>
-                <input type="hidden" name="target" value="offerRequest">
-                <button type="submit" class="btn btn-secondary float-right" value="submit">Anmod tilbud</button>
-                <br>
-                <br>
-                <br>
+                <form action="FrontController" method="POST">
+                    <input type="hidden" name="target" value="offerRequestsOverview">
+                    <button type="submit" class="btn btn-secondary w-100" value="submit">Anmodningsoversigt</button>
+                </form>
             </div>
         </div>
     </div>
