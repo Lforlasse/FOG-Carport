@@ -133,7 +133,7 @@
             </div>
             <div class="card-body">
                 <div class="overflow-auto mb-3">
-                    <table class="table table-bordered table-sm table-hover mb-0">
+                    <table class="table table-bordered table-sm table-hover text-nowrap mb-0">
                         <thead>
                         <tr>
                             <th scope="col">Vare nr.</th>
@@ -160,7 +160,7 @@
                     </table>
                 </div>
                 <div class="overflow-auto">
-                    <table class="table table-bordered table-sm table-hover mb-0">
+                    <table class="table table-bordered table-sm table-hover text-nowrap mb-0">
                         <thead>
                         <tr>
                             <th scope="col">Vare nr.</th>
