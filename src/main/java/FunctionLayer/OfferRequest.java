@@ -21,7 +21,7 @@ public class OfferRequest {
         this.confId = confId;
         this.compList = new HashMap<>();
         this.partList = new HashMap<>();
-        this.carport = ConfigurationMapper.makeConfigObject(confId); //TODO husk refactor configId til confId i DB.
+        this.carport = ConfigurationMapper.getOneConfig(confId); //TODO husk refactor configId til confId i DB.
         //  this.vendorPrice = totalVendorPrice(); //TODO metode til total vendor pris.
         //  this.salesPrice = totalSalesPrice(); //TODO metode til total salgspris.
         //  this.profit = totalProfit(); //TODO metode til total profit.
@@ -47,14 +47,14 @@ public class OfferRequest {
     //COMPONENTS
     private void addStolpe() {
 
-        carport.setConfLength(-400);
+        int stolpeLength = carport.getConfLength() -400;
         int countUnit = 4;
-        for (int i = carport.getConfLength(); i > 0; i -= 200) {
+        for (int i = stolpeLength; i > 0; i -= 200) {
             countUnit += 2;
         }
 
-        carport.setConfWidth(-400);
-        for (int i = carport.getConfWidth(); i > 0; i -= 200) {
+        int stolpeWidth = carport.getConfWidth() -400;
+        for (int i = stolpeWidth; i > 0; i -= 200) {
             countUnit += 2;
         }
 

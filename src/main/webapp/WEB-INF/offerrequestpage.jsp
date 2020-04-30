@@ -5,7 +5,7 @@
 <!-- NAVBAR -->
 <div class="container">
     <nav class="navbar navbar-light bg-light shadow-sm border-left border-right">
-        <form  class="form-inline" role="form" name="index" action="FrontController" method="POST">
+        <form class="form-inline" role="form" name="index" action="FrontController" method="POST">
             <input type="hidden" name="target" value="index">
             <button class="px-0 mx-0 border-0" style="width: 40px;">
                 <img src="img/fog_logo_2015.jpg" class="img-fluid rounded" alt="Responsive image">
@@ -135,11 +135,36 @@
                 <table class="table table-bordered table-sm table-hover table-">
                     <thead>
                     <tr>
-                        <th scope="col">Request ID</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Kunde</th>
-                        <th scope="col">Telefon</th>
-                        <th scope="col">Postnr.</th>
+                        <th scope="col">Vare nr.</th>
+                        <th scope="col">Beskrivelse</th>
+                        <th scope="col">Materiale</th>
+                        <th scope="col">Længde</th>
+                        <th scope="col">Antal</th>
+                        <th scope="col">Beskrivelse</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:set var="compList" value="${requestScope.offerRequest.compList}"/>
+                    <c:forEach var="compItem" items="${compList}">
+                        <tr>
+                            <th scope="col">${compItem.key.compId}</th>
+                            <td scope="col">${compItem.key.compDesc}</td>
+                            <td scope="col">${compItem.key.material}</td>
+                            <td scope="col">${compItem.key.compLength}</td>
+                            <td scope="col">${compItem.value}</td>
+                            <td scope="col">INCOMING</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+                <table class="table table-bordered table-sm table-hover table-">
+                    <thead>
+                    <tr>
+                        <th scope="col">Vare nr.</th>
+                        <th scope="col">Beskrivelse</th>
+                        <th scope="col">Enhed</th>
+                        <th scope="col">Antal</th>
+                        <th scope="col">Beskrivelse</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -157,4 +182,4 @@
     </div>
 </div>
 
-<%@include file="../includes/footer.html"%>
+<%@include file="../includes/footer.html" %>

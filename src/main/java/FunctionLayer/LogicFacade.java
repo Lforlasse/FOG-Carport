@@ -4,6 +4,7 @@ import DBAccess.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LogicFacade {
 
@@ -96,7 +97,7 @@ public class LogicFacade {
         return ConfigurationMapper.getAllConfigs();
     }
 
-    public static Carport getOfferRequest(int confId) {
-        return ConfigurationMapper.getOneConfig(confId);
+    public static OfferRequest getOfferRequest(int confId) {
+        return new OfferRequest(confId);
     }
 }

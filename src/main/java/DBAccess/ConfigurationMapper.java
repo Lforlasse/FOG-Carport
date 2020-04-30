@@ -9,57 +9,59 @@ import java.util.List;
 
 public class ConfigurationMapper {
 
-    public static Carport makeConfigObject(int configId) {
-        ArrayList<Carport> configs = new ArrayList<>();
-        int confId = 0;
-        String custName = "Ingen konfiguration fundet";
-        int custPhone = 0;
-        String custEmail = "0";
-        int custPostal = 0;
-        int confLength = 0;
-        int confWidth = 0;
-        int confHeight = 0;
-        String confMat = "0";
-        String confRoof = "0";
+    public static Carport makeConfigObject(int getConfId) {
+       Carport carport = null;
+//        int confId = 0;
+//        String custName = "Ingen konfiguration fundet";
+//        int custPhone = 0;
+//        String custEmail = "0";
+//        int custPostal = 0;
+//        int confLength = 0;
+//        int confWidth = 0;
+//        int confHeight = 0;
+//        String confMat = "0";
+//        String confRoof = "0";
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material,  FROM configurations WHERE confId =?;";
+            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material FROM configurations WHERE confId =?;";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setInt(1, confId);
+            ps.setInt(1, getConfId);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                confId = rs.getInt(1);
-                custName = rs.getString(2);
-                custPhone = rs.getInt(3);
-                custEmail = rs.getString(4);
-                custPostal = rs.getInt(5);
-                confWidth = rs.getInt(6);
-                confLength = rs.getInt(7);
-                confHeight = rs.getInt(8);
-                confMat = rs.getString(9);
+            rs.next();
+            carport = new Carport(
+            rs.getInt(1),
+            rs.getString(2),
+            rs.getInt(3),
+            rs.getString(4),
+            rs.getInt(5),
+            rs.getInt(6),
+            rs.getInt(7),
+            rs.getInt(8),
+            rs.getString(9),
+            rs.getString(10)
+            );
 
-            }//if
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex);
         }//catch
 
-        try {
-            Connection con = Connector.connection();
-            String SQL = "SELECT compDesc FROM roof WHERE compDesc = ?";
-            PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setString(1, confRoof);
-
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                confRoof = rs.getString(1);
-
-            }//if
-        } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println(ex);
-        }//catch
-        Carport carport = new Carport(confId, custName, custPhone, custEmail, custPostal, confWidth, confLength, confHeight, confMat, confRoof);
+        //Når ROOF er skabt
+//        try {
+//            Connection con = Connector.connection();
+//            String SQL = "SELECT compDesc FROM roof WHERE compDesc = ?";
+//            PreparedStatement ps = con.prepareStatement(SQL);
+//            ps.setString(1, confRoof);
+//
+//            ResultSet rs = ps.executeQuery();
+//            if (rs.next()) {
+//                confRoof = rs.getString(1);
+//
+//            }//if
+//        } catch (ClassNotFoundException | SQLException ex) {
+//            System.out.println(ex);
+//        }//catch
         return carport;
     }//makeConfigObject
 
@@ -113,7 +115,7 @@ public class ConfigurationMapper {
                     rs.getInt(7),
                     rs.getInt(8),
                     rs.getString(9),
-                    rs.getString(10));
+                    "roof");
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex);
         }//catch
