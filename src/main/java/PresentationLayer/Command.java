@@ -18,6 +18,7 @@ abstract class Command {
         commands.put("offerRequest", new OfferRequest());
         commands.put("offerRequestsOverview", new OfferRequestsOverview());
         commands.put("viewOfferRequest", new ViewOfferRequest());
+        commands.put("calculateNewProfit", new CalculateNewProfit());
     }
 
     static Command from(HttpServletRequest request) {

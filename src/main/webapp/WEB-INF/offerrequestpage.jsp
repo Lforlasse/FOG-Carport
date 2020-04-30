@@ -132,21 +132,30 @@
                     </div>
                     <div class="form-row mb-3">
                         <div class="col-1 px-0">
-                            <label for="width">Foreslå salgspris</label>
+                            <label for="salesPrice">Foreslå salgspris</label>
                         </div>
                         <div class="col mr-3">
                             <input class="form-control text-right px-0 h-100 border-secondary" type="number"
-                                   id="salesPrice" value="">
+                                   name="salesPrice" id="salesPrice" value="">
                         </div>
                         <div class="col-1 px-0">
-                            <label for="width">Profit</label>
+                            <label for="profitNew">Profit</label>
                         </div>
                         <div class="col mr-3">
+                            <c:choose>
+                                <c:when test="${requestScope.newProfit != null}">
+                                    <c:set var="profitNew" value="${requestScope.newProfit}"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="profitNew" value=""/>
+                                </c:otherwise>
+                            </c:choose>
                             <input class="form-control text-right px-0 h-100 border-secondary" type="text"
-                                   id="profitNew" value="">
+                                   id="profitNew" value="${profitNew}" readonly>
                         </div>
                     </div>
-                    <input type="hidden" name="target" value="prefab">
+                    <input type="hidden" name="target" value="calculateNewProfit">
+                    <input type="hidden" name="confId" value="${requestScope.confId}">
                     <button type="submit" class="btn btn-secondary float-right" value="submit">Udregn</button>
                 </form>
             </div>
