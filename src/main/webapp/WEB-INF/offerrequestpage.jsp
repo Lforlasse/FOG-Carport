@@ -44,25 +44,25 @@
                             <label for="length">Længde</label>
                         </div>
                         <div class="col mr-3">
-                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
-                                   placeholder="cm"
-                                   id="length" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
+                                   id="carportLength" value="${requestScope.offerRequest.carport.confLength} cm"
+                                   readonly>
                         </div>
                         <div class="col-1 px-0">
                             <label for="width">Bredde</label>
                         </div>
                         <div class="col mr-3">
-                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
-                                   placeholder="cm"
-                                   id="width" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
+                                   id="carportWidth" value="${requestScope.offerRequest.carport.confWidth} cm"
+                                   readonly>
                         </div>
                         <div class="col-1 px-0">
                             <label for="height">Højde</label>
                         </div>
                         <div class="col">
-                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
-                                   placeholder="cm"
-                                   id="height" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
+                                   id="carportHeight" value="${requestScope.offerRequest.carport.confHeight} cm"
+                                   readonly>
                         </div>
                     </div>
                     <div class="form-row mb-3">
@@ -108,17 +108,42 @@
                             <label for="length">Indkøb</label>
                         </div>
                         <div class="col mr-3">
-                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
-                                   placeholder="cm"
-                                   id="length" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
+                                   id="vendorPrice" value="${requestScope.offerRequest.vendorPrice} kr" readonly>
                         </div>
+                    </div>
+                    <div class="form-row mb-3">
                         <div class="col-1 px-0">
-                            <label for="width">Salg</label>
+                            <label for="width">Estimeret Salg</label>
                         </div>
                         <div class="col mr-3">
-                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
-                                   placeholder="cm"
-                                   id="width" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
+                                   id="salesPriceReadonly" value="${requestScope.offerRequest.salesPrice} kr" readonly>
+                        </div>
+                        <div class="col-1 px-0">
+                            <label for="width">Profit</label>
+                        </div>
+                        <div class="col mr-3">
+                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
+                                   id="profitReadonly"
+                                   value="${requestScope.offerRequest.profit(requestScope.offerRequest.salesPrice)} kr"
+                                   readonly>
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col-1 px-0">
+                            <label for="width">Foreslå salgspris</label>
+                        </div>
+                        <div class="col mr-3">
+                            <input class="form-control text-right px-0 h-100 border-secondary" type="number"
+                                   id="salesPrice" value="">
+                        </div>
+                        <div class="col-1 px-0">
+                            <label for="width">Profit</label>
+                        </div>
+                        <div class="col mr-3">
+                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
+                                   id="profitNew" value="">
                         </div>
                     </div>
                     <input type="hidden" name="target" value="prefab">
@@ -171,13 +196,16 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row"># 0004384</th>
-                            <td>Ny anmodning</td>
-                            <td>Sørensen, Otto</td>
-                            <td>82524364</td>
-                            <td>2000</td>
-                        </tr>
+                        <c:set var="partList" value="${requestScope.offerRequest.partList}"/>
+                        <c:forEach var="partItem" items="${partList}">
+                            <tr>
+                                <th scope="col">${partItem.key.partId}</th>
+                                <td scope="col">${partItem.key.partDesc}</td>
+                                <td scope="col">${partItem.key.itemType}</td>
+                                <td scope="col">${partItem.value}</td>
+                                <td scope="col">INCOMING</td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

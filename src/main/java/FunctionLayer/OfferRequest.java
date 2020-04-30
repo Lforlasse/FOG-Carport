@@ -5,29 +5,28 @@ import DBAccess.ConfigurationMapper;
 import DBAccess.PartMapper;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class OfferRequest {
 
     private Carport carport;
     private int confId;
-    private HashMap<Component, Integer> compList;
-    private HashMap<Part, Integer> partList;
+    private LinkedHashMap<Component, Integer> compList;
+    private LinkedHashMap<Part, Integer> partList;
     private int vendorPrice;
     private int salesPrice;
-    private int profit;
 
     public OfferRequest(int confId) {
         this.confId = confId;
-        this.compList = new HashMap<>();
-        this.partList = new HashMap<>();
-        this.carport = ConfigurationMapper.getOneConfig(confId); //TODO husk refactor configId til confId i DB.
-        //  this.vendorPrice = totalVendorPrice(); //TODO metode til total vendor pris.
-        //  this.salesPrice = totalSalesPrice(); //TODO metode til total salgspris.
-        //  this.profit = totalProfit(); //TODO metode til total profit.
+        this.compList = new LinkedHashMap<>();
+        this.partList = new LinkedHashMap<>();
+        this.carport = ConfigurationMapper.getOneConfig(confId);
 
         generateCompList();
         generatePartList();
+        calcVendorPrice();
+        calcSalesPrice();
     }
 
     public OfferRequest() {
@@ -47,13 +46,13 @@ public class OfferRequest {
     //COMPONENTS
     private void addStolpe() {
 
-        int stolpeLength = carport.getConfLength() -400;
+        int stolpeLength = carport.getConfLength() - 400;
         int countUnit = 4;
         for (int i = stolpeLength; i > 0; i -= 200) {
             countUnit += 2;
         }
 
-        int stolpeWidth = carport.getConfWidth() -400;
+        int stolpeWidth = carport.getConfWidth() - 400;
         for (int i = stolpeWidth; i > 0; i -= 200) {
             countUnit += 2;
         }
@@ -90,7 +89,7 @@ public class OfferRequest {
 
         addUnit += carport.getConfWidth() / max;
 
-        Component sper = ComponentMapper.getComponent("Sper", carport.getConfMat());
+        Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
         sper.setCompLength(carport.getConfWidth() / addUnit);
         compList.put(sper, addUnit * countUnit);
 
@@ -112,13 +111,13 @@ public class OfferRequest {
 
         addUnit += carport.getConfLength() / max;
         addUnit *= countUnit;
-        addUnit *= 2;
 
         Component sternLengthOver = ComponentMapper.getComponent("Stern, over", carport.getConfMat());
         Component sternLengthUnder = ComponentMapper.getComponent("Stern, under", carport.getConfMat());
 
         sternLengthOver.setCompLength(carport.getConfLength() / addUnit);
         sternLengthUnder.setCompLength(carport.getConfLength() / addUnit);
+        addUnit *= 2;
 
         compList.put(sternLengthOver, addUnit);
         compList.put(sternLengthUnder, addUnit);
@@ -127,26 +126,25 @@ public class OfferRequest {
         countUnit = 1;
         addUnit = 1;
 
-        for (int i = carport.getConfWidth(); i > 0; i += max) {
+        for (int i = carport.getConfWidth(); i > 0; i -= max) {
             countUnit += 1;
         }
 
         addUnit += carport.getConfWidth() / max;
         addUnit *= countUnit;
-        addUnit *= 2;
 
         Component sternWidthOver = ComponentMapper.getComponent("Stern, over", carport.getConfMat());
         Component sternWidthUnder = ComponentMapper.getComponent("Stern, under", carport.getConfMat());
 
         sternWidthOver.setCompLength(carport.getConfWidth() / addUnit);
         sternWidthUnder.setCompLength(carport.getConfWidth() / addUnit);
+        addUnit *= 2;
 
         compList.put(sternWidthOver, addUnit);
         compList.put(sternWidthUnder, addUnit);
 
     }//addStern
     //COMPONENTS SLUT
-
 
     //PARTS
     private void generatePartList() {
@@ -216,13 +214,13 @@ public class OfferRequest {
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, over")) {
-                countUnitStern ++;
+                countUnitStern++;
             }
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, mellem")) {
-                countUnitStern ++;
+                countUnitStern++;
             }
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, under")) {
-                countUnitStern ++;
+                countUnitStern++;
             }
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Spær")) {
                 countUnitSper += entry.getValue();
@@ -234,16 +232,51 @@ public class OfferRequest {
 
         countUnitStern *= 2;                            //Hvert sternbrædde skal have 2 skruer per spær
         countUnitSper *= 2;                             //Sper skal have skruer i begge ender
-        countScrew += countUnitStern*countUnitSper;
+        countScrew += countUnitStern * countUnitSper;
         countWidth += this.carport.getConfWidth() / 50;
         countWidth *= countUnitStern;
         countScrew += countWidth;
 
-        countBox += countScrew/200;
+        countBox += countScrew / 200;
 
         partList.put(partSkruer, countBox);
 
-        }//addPartStern
+    }//addPartStern
+
+    private void calcVendorPrice() {
+        int price = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            price += entry.getKey().getVendorPrice() * entry.getValue();
+        }
+
+        for (Map.Entry<Part, Integer> entry : partList.entrySet()) {
+            price += entry.getKey().getVendorPrice() * entry.getValue();
+        }
+
+        setVendorPrice(price);
+    }
+
+    private void calcSalesPrice() {
+        int price = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            price += entry.getKey().getSalesPrice() * entry.getValue();
+        }
+
+        for (Map.Entry<Part, Integer> entry : partList.entrySet()) {
+            price += entry.getKey().getSalesPrice() * entry.getValue();
+        }
+
+        setSalesPrice(price);
+    }
+
+    public int profit(int price){
+
+        return price - getVendorPrice();
+    }
+
+
 
 
     //Getter & setter
@@ -263,12 +296,20 @@ public class OfferRequest {
         this.confId = confId;
     }
 
-    public HashMap<Component, Integer> getCompList() {
+    public LinkedHashMap<Component, Integer> getCompList() {
         return compList;
     }
 
-    public void setCompList(HashMap<Component, Integer> compList) {
+    public void setCompList(LinkedHashMap<Component, Integer> compList) {
         this.compList = compList;
+    }
+
+    public LinkedHashMap<Part, Integer> getPartList() {
+        return partList;
+    }
+
+    public void setPartList(LinkedHashMap<Part, Integer> partList) {
+        this.partList = partList;
     }
 
     public int getVendorPrice() {
@@ -285,13 +326,5 @@ public class OfferRequest {
 
     public void setSalesPrice(int salesPrice) {
         this.salesPrice = salesPrice;
-    }
-
-    public int getProfit() {
-        return profit;
-    }
-
-    public void setProfit(int profit) {
-        this.profit = profit;
     }
 }//class
