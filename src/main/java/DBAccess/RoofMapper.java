@@ -14,11 +14,11 @@ public class RoofMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT compDescription FROM carport.roof;";
+            String SQL = "SELECT roofDesc FROM carport.roof;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                materialList.add(rs.getString("compDescription"));
+                materialList.add(rs.getString("roofDesc"));
             }
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex);

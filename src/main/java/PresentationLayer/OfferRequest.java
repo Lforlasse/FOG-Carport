@@ -44,7 +44,7 @@ public class OfferRequest extends Command {
         } else if (heightInput > LogicFacade.heightLimits().get(1)) {
             heightInput = LogicFacade.heightLimits().get(1);
         }
-        String configMaterial = request.getParameter("configMaterial");
+        String confMaterial = request.getParameter("confMaterial");
 
         String roofCheck = request.getParameter("roofCheck");
         int roofInput = 0;
@@ -65,19 +65,19 @@ public class OfferRequest extends Command {
         }
         String roofMaterial = request.getParameter("roofMaterial");
 
-        String name = request.getParameter("surNameInput") + ", " + request.getParameter("foreNameInput");
-        String email = request.getParameter("emailInput");
-        String phone = request.getParameter("phoneInput");
-        String postcode = request.getParameter("postcodeInput");
+        String custName = request.getParameter("surNameInput") + ", " + request.getParameter("foreNameInput");
+        String custPhone = request.getParameter("phoneInput");
+        String custEmail = request.getParameter("emailInput");
+        String custPostal = request.getParameter("postalInput");
 
         try {
             request.setAttribute("offerRequestID", LogicFacade.submitOfferRequest(
-                    lengthInput, widthInput, heightInput, configMaterial,
+                    lengthInput, widthInput, heightInput, confMaterial,
                     roofInput, roofMaterial,
-                    name, email, phone, postcode));
+                    custName, custPhone, custEmail, custPostal));
             request.setAttribute("actionSuccess", true);
         } catch (Exception e) {
-            request.setAttribute("error", "Something went wrong!");
+            request.setAttribute("error", "Fejl i systemet!");
             System.out.println(e);
         }
         request.setAttribute("materials", LogicFacade.carportMaterials());

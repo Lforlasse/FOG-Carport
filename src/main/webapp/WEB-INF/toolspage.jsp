@@ -16,9 +16,9 @@
                 <input type="hidden" name="target" value="configurator">
                 <button type="submit" class="btn btn-outline-secondary mr-2" value="submit">Konfigurator</button>
             </form>
-            <form class="form-inline" role="form" name="prefab" action="FrontController" method="POST">
-                <input type="hidden" name="target" value="prefab">
-                <button type="submit" class="btn btn-outline-secondary" value="submit">Prefab</button>
+            <form class="form-inline" role="form" name="tools" action="FrontController" method="POST">
+                <input type="hidden" name="target" value="tools">
+                <button type="submit" class="btn btn-outline-secondary" value="submit">Værktøj</button>
             </form>
         </div>
     </nav>

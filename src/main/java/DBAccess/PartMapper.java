@@ -20,7 +20,7 @@ public class PartMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT partsId, partDescription, itemType, vendorPrice, salesPrice " +
+            String SQL = "SELECT partId, partDescription, itemType, vendorPrice, salesPrice " +
                     "FROM parts WHERE partDescription =?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, partIdentifier);

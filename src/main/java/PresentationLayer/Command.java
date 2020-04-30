@@ -14,8 +14,7 @@ abstract class Command {
         commands = new HashMap<>();
         commands.put("index", new Index());
         commands.put("configurator", new Configurator());
-        commands.put("prefab", new Prefab());
-        commands.put("redirect", new Redirect());
+        commands.put("tools", new Tools());
         commands.put("offerRequest", new OfferRequest());
         commands.put("offerRequestsOverview", new OfferRequestsOverview());
         commands.put("viewOfferRequest", new ViewOfferRequest());

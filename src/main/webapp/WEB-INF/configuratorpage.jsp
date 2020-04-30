@@ -16,9 +16,9 @@
                 <input type="hidden" name="target" value="configurator">
                 <button type="submit" class="btn btn-outline-secondary mr-2" value="submit">Konfigurator</button>
             </form>
-            <form class="form-inline" role="form" name="prefab" action="FrontController" method="POST">
-                <input type="hidden" name="target" value="prefab">
-                <button type="submit" class="btn btn-outline-secondary" value="submit">Prefab</button>
+            <form class="form-inline" role="form" name="tools" action="FrontController" method="POST">
+                <input type="hidden" name="target" value="tools">
+                <button type="submit" class="btn btn-outline-secondary" value="submit">Værktøj</button>
             </form>
         </div>
     </nav>
@@ -110,7 +110,7 @@
                             Materiale
                         </div>
                         <select class="custom-select col-10 border-secondary"
-                                name="configMaterial" id="configMaterial">
+                                name="confMaterial" id="confMaterial">
                             <c:forEach items="${requestScope.materials}" var="material">
                                 <option value="${material}">${material}</option>
                             </c:forEach>
@@ -200,7 +200,7 @@
                         </div>
                         <div class="col-3">
                             <input type="text" class="form-control text-right h-100 border-secondary"
-                                   placeholder="postnummer" name="postcodeInput" id="postcodeInput"
+                                   placeholder="postnummer" name="postalInput" id="postalInput"
                                    min="0" max="600" oninput="" required>
                         </div>
                     </div>

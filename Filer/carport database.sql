@@ -15,7 +15,7 @@ VALUES ("Trykimprægneret"),
 
 CREATE TABLE components (
 	compId INT AUTO_INCREMENT,
-    compDescription VARCHAR(20) NOT NULL,
+    compDesc VARCHAR(20) NOT NULL,
     material VARCHAR (30),
     compHeigth INT NOT NULL,
     compWidth INT NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE components (
 );
 ALTER TABLE components auto_increment=2000;
 
-INSERT INTO components (compDescription,material,compHeigth,compWidth,currentStock,vendorPrice,salesPrice)
+INSERT INTO components (compDesc,material,compHeigth,compWidth,currentStock,vendorPrice,salesPrice)
 VALUES  ("Stolpe", "Trykimprægneret", 100, 100, 74, 250, 475),
 		("Stolpe", "Egetræ", 90, 90, 56, 400, 750),
 
@@ -50,21 +50,21 @@ VALUES  ("Stolpe", "Trykimprægneret", 100, 100, 74, 250, 475),
         ("Stern, under", "Egetræ", 20, 115, 41, 60, 110);
 
 CREATE TABLE roof (
-	compId INT AUTO_INCREMENT,
-    compDescription VARCHAR(30) NOT NULL,
-    compHeight INT,
-    compWidth INT,
+	roofId INT AUTO_INCREMENT,
+    roofDesc VARCHAR(30) NOT NULL,
+    roofLength INT NOT NULL,
+    roofWidth INT NOT NULL,
     currentStock INT DEFAULT 0,
     vendorPrice INT,
     salesPrice INT,
     
-    PRIMARY KEY (compId)
+    PRIMARY KEY (roofId)
 );
 ALTER TABLE roof auto_increment=4000;
 
-INSERT INTO roof (compDescription,compHeight,compWidth,currentStock,vendorPrice,salesPrice)
+INSERT INTO roof (roofDesc,roofLength,roofWidth,currentStock,vendorPrice,salesPrice)
 VALUES  ("PLASTMO", 200, 120, 71, 75, 130),
-		("Betontagsten, sort", 15, 35, 224, 25, 45);
+		("Betontagsten, sort", 35, 15, 224, 25, 45);
 	
 CREATE TABLE itemTypes (
 	itemType VARCHAR(20) NOT NULL,
@@ -79,19 +79,19 @@ VALUES  ("Styk"),
         ("Rulle");
     
 CREATE TABLE parts (
-	partsId INT AUTO_INCREMENT,
-    partDescription VARCHAR(50) NOT NULL,
+	partId INT AUTO_INCREMENT,
+    partDesc VARCHAR(50) NOT NULL,
     itemType VARCHAR(20) NOT NULL,
     currentStock INT DEFAULT 0,
     vendorPrice INT,
     salesPrice INT,
     
-    PRIMARY KEY (partsId),
+    PRIMARY KEY (partId),
     FOREIGN KEY (itemType) REFERENCES itemTypes (itemType)
 );
 ALTER TABLE parts auto_increment=6000;
 
-INSERT INTO parts (partDescription,itemType,currentStock,vendorPrice,salesPrice)
+INSERT INTO parts (partDesc,itemType,currentStock,vendorPrice,salesPrice)
 VALUES  ("Skruer 4,5 x 120mm 200stk", "Pakke", 120, 15, 45),
 		("Vinkelbeslag", "Styk", 325, 5, 9),
         ("Skruer 5,0 x 100mm 100stk", "Pakke", 67, 10, 25),
@@ -105,33 +105,34 @@ VALUES  ("Skruer 4,5 x 120mm 200stk", "Pakke", 120, 15, 45),
         ("PLASTMO bundskruer 200stk", "Pakke", 30, 20, 45);
 
 CREATE TABLE validations (
-	valueDescription VARCHAR(40) NOT NULL,
+	valueDesc VARCHAR(40) NOT NULL,
     validValue INT NOT NULL,
     
-    PRIMARY KEY (valueDescription)
+    PRIMARY KEY (valueDesc)
 );
 
-INSERT INTO validations (valueDescription,validValue)
+INSERT INTO validations (valueDesc,validValue)
 VALUES  ("Carspace height", 185),
 		("Carspace length", 300),
         ("Carspace width", 250);
         
 CREATE TABLE configurationStatus (
-	configStatus VARCHAR(20) NOT NULL,
+	confStatus VARCHAR(20) NOT NULL,
     
-    PRIMARY KEY (configStatus)
+    PRIMARY KEY (confStatus)
 );
 
-INSERT INTO configurationStatus (configStatus)
+INSERT INTO configurationStatus (confStatus)
 VALUES  ("Ny"),
 		("Behandles"),
 		("Afsluttet");
 
 CREATE TABLE configurations (
-	configId INT NOT NULL AUTO_INCREMENT,
-    configStatus VARCHAR (20),
+	confId INT NOT NULL AUTO_INCREMENT,
+    confStatus VARCHAR (20),
     custName VARCHAR (35) NOT NULL,
     custPhone INT NOT NULL,
+    custEmail VARCHAR (30) NOT NULL,
     custPostal INT NOT NULL,
     length INT NOT NULL,
     width INT NOT NULL,
@@ -139,15 +140,15 @@ CREATE TABLE configurations (
     material VARCHAR (30),
     roofmaterial VARCHAR (30),
     
-    PRIMARY KEY (configId),
-    FOREIGN KEY (configStatus) REFERENCES configurationStatus (configStatus)
+    PRIMARY KEY (confId),
+    FOREIGN KEY (confStatus) REFERENCES configurationStatus (confStatus)
     
     );
 ALTER TABLE configurations auto_increment=224466;
     
-INSERT INTO configurations (configStatus,custName,custPhone,custPostal,length,width,height,material,roofMaterial)
-VALUES  ("Afsluttet", "Abbott", 44884488, 5020, 300, 620, 225, "Egetræ", "PLASTMO"),
-		("Behandles", "Costello", 22662266, 2550, 300, 450, 225, "Trykimprægneret", "Betontagsten, sort");
+INSERT INTO configurations (confStatus,custName,custPhone,custEmail,custPostal,length,width,height,material,roofMaterial)
+VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 620, 225, "Egetræ", "PLASTMO"),
+		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", "Betontagsten, sort");
 
 
 

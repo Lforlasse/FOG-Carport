@@ -27,6 +27,7 @@ public class OfferRequest {
         //  this.profit = totalProfit(); //TODO metode til total profit.
 
         generateCompList();
+        generatePartList();
     }
 
     public OfferRequest() {
@@ -34,8 +35,8 @@ public class OfferRequest {
 
     //metoder
     private void generateCompList() {
-        addStolper();
-        addRemme();
+        addStolpe();
+        addRem();
         addSper();
         //addLegter(); se metode.
         addStern();
@@ -44,7 +45,7 @@ public class OfferRequest {
 
 
     //COMPONENTS
-    private void addStolper() {
+    private void addStolpe() {
 
         carport.setConfLength(-400);
         int countUnit = 4;
@@ -61,9 +62,9 @@ public class OfferRequest {
         Stolpe.setCompLength(carport.getConfHeight() + 90);
         compList.put(Stolpe, countUnit);
 
-    }//addStolper
+    }//addStolpe
 
-    private void addRemme() {
+    private void addRem() {
         int max = 400;
 
         int countUnit = 1;
@@ -75,7 +76,7 @@ public class OfferRequest {
         rem.setCompLength(carport.getConfLength() / countUnit);
         compList.put(rem, countUnit * 2);
 
-    }//addRemme
+    }//addRem
 
     private void addSper() {
 
@@ -98,7 +99,7 @@ public class OfferRequest {
 //    private static void addLegter() { //TODO fremtidigt sprint, bruges til tag med rejsning.
 //
 //
-//    }//addLegter
+//    }//addLegte
 
     private void addStern() {
 
@@ -148,16 +149,16 @@ public class OfferRequest {
 
 
     //PARTS
-    private void partList() {
-        //addStolper();
-        addPartsRemme();
-        addPartsSper();
-        //addLegter(); se metode.
-        addPartsStern();
+    private void generatePartList() {
+        //addPartStolpe();
+        addPartRem();
+        addPartSper();
+        //addPartLegte(); se metode.
+        addPartStern();
 
     }//generateCompList
 
-    private void addPartsRemme() {
+    private void addPartRem() {
         //1 stolpe = 1 bræddebolt, 1 firkantskive
         int countUnit = 0;
 
@@ -175,9 +176,9 @@ public class OfferRequest {
         partList.put(partBolt, countUnit);
         partList.put(partSkive, countUnit);
 
-    }//addPartsRemme
+    }//addPartRem
 
-    private void addPartsSper() {
+    private void addPartSper() {
         //1 spær = 1 højre, 1 venstre uni.
         //1 spær = 18 skruer - spild 2?.
         int countUnit = 0;
@@ -202,9 +203,9 @@ public class OfferRequest {
         partList.put(partBeslagV, countUnit);
         partList.put(partSkruer, countBox);
 
-    }//addPartsSper
+    }//addPartSper
 
-    private void addPartsStern() {
+    private void addPartStern() {
         //1 sternbræt(over el. mellem el. under) = 2 skruer pr spær.
         // OG 2 pr bræt pr 50cm. på sider langs med spær.
         int countUnitStern = 0;
@@ -242,7 +243,7 @@ public class OfferRequest {
 
         partList.put(partSkruer, countBox);
 
-        }//addPartsStern
+        }//addPartStern
 
 
     //Getter & setter

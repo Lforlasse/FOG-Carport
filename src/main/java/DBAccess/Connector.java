@@ -37,8 +37,8 @@ public class Connector {
 
             String SCHEME = "carport";
             URL = "jdbc:mysql://localhost:3306/" + SCHEME + "?serverTimezone=CET&useSSL=false";
-            USERNAME = "admin";
-            PASSWORD = "cupcakeworld";
+            USERNAME = "fog";
+            PASSWORD = "carportworld";
         }
     }
 }

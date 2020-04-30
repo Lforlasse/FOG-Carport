@@ -2,16 +2,16 @@ package FunctionLayer;
 
 public class Part {
 
-    private int partsId;
-    private String partDescription;
+    private int partId;
+    private String partDesc;
     private String itemType;
     private int currentStock;
     private int vendorPrice;
     private int salesPrice;
 
-    public Part(int partsId, String partDescription, String itemType, int vendorPrice, int salesPrice) {
-        this.partsId = partsId;
-        this.partDescription = partDescription;
+    public Part(int partId, String partDesc, String itemType, int vendorPrice, int salesPrice) {
+        this.partId = partId;
+        this.partDesc = partDesc;
         this.itemType = itemType;
         this.vendorPrice = vendorPrice;
         this.salesPrice = salesPrice;
@@ -21,20 +21,20 @@ public class Part {
     }
 
     //Getter & Setter
-    public int getPartsId() {
-        return partsId;
+    public int getPartId() {
+        return partId;
     }
 
-    public void setPartsId(int partsId) {
-        this.partsId = partsId;
+    public void setPartId(int partId) {
+        this.partId = partId;
     }
 
-    public String getPartDescription() {
-        return partDescription;
+    public String getPartDesc() {
+        return partDesc;
     }
 
-    public void setPartDescription(String partDescription) {
-        this.partDescription = partDescription;
+    public void setPartDesc(String partDesc) {
+        this.partDesc = partDesc;
     }
 
     public String getItemType() {

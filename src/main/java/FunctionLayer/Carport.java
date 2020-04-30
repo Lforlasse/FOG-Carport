@@ -4,6 +4,7 @@ public class Carport {
     private int confId;
     private String custName;
     private int custPhone;
+    private String custEmail;
     private int custPostal;
     private int confLength;
     private int confWidth;
@@ -12,11 +13,12 @@ public class Carport {
     private String confRoof;
     private boolean carSpace;
 
-    public Carport(int confId, String custName, int custPhone, int custPostal,
-                   int confLength, int confWidth, int confHeight, String confMat, String confRoof){
+    public Carport(int confId, String custName, int custPhone, String custEmail, int custPostal,
+                   int confLength, int confWidth, int confHeight, String confMat, String confRoof) {
         this.confId = confId;
         this.custName = custName;
         this.custPhone = custPhone;
+        this.custEmail = custEmail;
         this.custPostal = custPostal;
         this.confLength = confLength;
         this.confWidth = confWidth;
@@ -28,16 +30,16 @@ public class Carport {
 
     }//Carport
 
-    private boolean checkCarSpace(){
+    private boolean checkCarSpace() {
         boolean result = true;
 
-        if (this.confLength < 1 ){ //Hent tal fra DB
+        if (this.confLength < 1) { //Hent tal fra DB
             result = false;
         }
-        if (this.confWidth < 1 ){ //Hent tal fra DB
+        if (this.confWidth < 1) { //Hent tal fra DB
             result = false;
         }
-        if (this.confHeight < 1 ){ //Hent tal fra DB
+        if (this.confHeight < 1) { //Hent tal fra DB
             result = false;
         }
         return result;
@@ -66,6 +68,14 @@ public class Carport {
 
     public void setCustPhone(int custPhone) {
         this.custPhone = custPhone;
+    }
+
+    public String getCustEmail() {
+        return custEmail;
+    }
+
+    public void setCustEmail(String custEmail) {
+        this.custEmail = custEmail;
     }
 
     public int getCustPostal() {
