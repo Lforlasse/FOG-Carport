@@ -37,38 +37,41 @@
                 Anmodningsoversigt
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-sm table-hover table-">
-                    <thead>
-                    <tr>
-                        <th scope="col">Request ID</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Kunde</th>
-                        <th scope="col">Telefon</th>
-                        <th scope="col">Postnr.</th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="offerRequest" items="${requestScope.offerRequestsList}">
+                <div class="overflow-auto mb-3">
+                    <table class="table table-bordered table-sm table-hover mb-0">
+                        <thead>
                         <tr>
-                            <form action="FrontController" method="POST">
-                                <th scope="row">#${offerRequest.confId}</th>
-                                <td>MISSING INFO</td>
-                                <td>${offerRequest.custName}</td>
-                                <td>${offerRequest.custPhone}</td>
-                                <td>${offerRequest.custPostal}</td>
-                                <td>
-                                    <input type="hidden" name="target" value="viewOfferRequest">
-                                    <input type="hidden" name="confId" value="${offerRequest.confId}">
-                                    <button type="submit" class="btn btn-sm btn-secondary w-100 px-0 py-1" value="submit">
-                                        Åben
-                                    </button>
-                                </td>
-                            </form>
+                            <th scope="col">Request ID</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Kunde</th>
+                            <th scope="col">Telefon</th>
+                            <th scope="col">Postnr.</th>
+                            <th scope="col"></th>
                         </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="offerRequest" items="${requestScope.offerRequestsList}">
+                            <tr>
+                                <form action="FrontController" method="POST">
+                                    <th scope="row">#${offerRequest.confId}</th>
+                                    <td>MISSING INFO</td>
+                                    <td>${offerRequest.custName}</td>
+                                    <td>${offerRequest.custPhone}</td>
+                                    <td>${offerRequest.custPostal}</td>
+                                    <td>
+                                        <input type="hidden" name="target" value="viewOfferRequest">
+                                        <input type="hidden" name="confId" value="${offerRequest.confId}">
+                                        <button type="submit" class="btn btn-sm btn-secondary w-100 px-0 py-1"
+                                                value="submit">
+                                            Åben
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

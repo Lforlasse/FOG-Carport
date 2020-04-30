@@ -132,51 +132,55 @@
                 Stykliste
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-sm table-hover table-">
-                    <thead>
-                    <tr>
-                        <th scope="col">Vare nr.</th>
-                        <th scope="col">Beskrivelse</th>
-                        <th scope="col">Materiale</th>
-                        <th scope="col">Længde</th>
-                        <th scope="col">Antal</th>
-                        <th scope="col">Beskrivelse</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:set var="compList" value="${requestScope.offerRequest.compList}"/>
-                    <c:forEach var="compItem" items="${compList}">
+                <div class="overflow-auto mb-3">
+                    <table class="table table-bordered table-sm table-hover mb-0">
+                        <thead>
                         <tr>
-                            <th scope="col">${compItem.key.compId}</th>
-                            <td scope="col">${compItem.key.compDesc}</td>
-                            <td scope="col">${compItem.key.material}</td>
-                            <td scope="col">${compItem.key.compLength}</td>
-                            <td scope="col">${compItem.value}</td>
-                            <td scope="col">INCOMING</td>
+                            <th scope="col">Vare nr.</th>
+                            <th scope="col">Beskrivelse</th>
+                            <th scope="col">Materiale</th>
+                            <th scope="col">Længde</th>
+                            <th scope="col">Antal</th>
+                            <th scope="col">Beskrivelse</th>
                         </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-                <table class="table table-bordered table-sm table-hover table-">
-                    <thead>
-                    <tr>
-                        <th scope="col">Vare nr.</th>
-                        <th scope="col">Beskrivelse</th>
-                        <th scope="col">Enhed</th>
-                        <th scope="col">Antal</th>
-                        <th scope="col">Beskrivelse</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row"># 0004384</th>
-                        <td>Ny anmodning</td>
-                        <td>Sørensen, Otto</td>
-                        <td>82524364</td>
-                        <td>2000</td>
-                    </tr>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <c:set var="compList" value="${requestScope.offerRequest.compList}"/>
+                        <c:forEach var="compItem" items="${compList}">
+                            <tr>
+                                <th scope="col">${compItem.key.compId}</th>
+                                <td scope="col">${compItem.key.compDesc}</td>
+                                <td scope="col">${compItem.key.material}</td>
+                                <td scope="col">${compItem.key.compLength}</td>
+                                <td scope="col">${compItem.value}</td>
+                                <td scope="col">INCOMING</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="overflow-auto">
+                    <table class="table table-bordered table-sm table-hover mb-0">
+                        <thead>
+                        <tr>
+                            <th scope="col">Vare nr.</th>
+                            <th scope="col">Beskrivelse</th>
+                            <th scope="col">Enhed</th>
+                            <th scope="col">Antal</th>
+                            <th scope="col">Beskrivelse</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row"># 0004384</th>
+                            <td>Ny anmodning</td>
+                            <td>Sørensen, Otto</td>
+                            <td>82524364</td>
+                            <td>2000</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
