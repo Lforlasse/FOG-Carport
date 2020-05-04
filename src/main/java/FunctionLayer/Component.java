@@ -5,14 +5,18 @@ public class Component {
     private int compId;
     private String compDesc;
     private String material;
+    private int compHeight;
+    private int compWidth;
+    private int compLength;
     private int vendorPrice;
     private int salesPrice;
-    private int compLength;
 
-    public Component(int compId, String compDesc, String material, int compLength, int vendorPrice, int salesPrice) {
+    public Component(int compId, String compDesc, String material, int compHeight, int compWidth, int compLength, int vendorPrice, int salesPrice) {
         this.compId = compId;
         this.compDesc = compDesc;
         this.material = material;
+        this.compHeight = compHeight;
+        this.compWidth = compWidth;
         this.compLength = compLength;
         this.vendorPrice = vendorPrice;
         this.salesPrice = salesPrice;
@@ -46,6 +50,30 @@ public class Component {
         this.material = material;
     }
 
+    public int getCompHeight() {
+        return compHeight;
+    }
+
+    public void setCompHeight(int compHeight) {
+        this.compHeight = compHeight;
+    }
+
+    public int getCompWidth() {
+        return compWidth;
+    }
+
+    public void setCompWidth(int compWidth) {
+        this.compWidth = compWidth;
+    }
+
+    public int getCompLength() {
+        return compLength;
+    }
+
+    public void setCompLength(int compLength) {
+        this.compLength = compLength;
+    }
+
     public int getVendorPrice() {
         return vendorPrice;
     }
@@ -62,11 +90,4 @@ public class Component {
         this.salesPrice = salesPrice;
     }
 
-    public int getCompLength() {
-        return compLength;
-    }
-
-    public void setCompLength(int compLength) {
-        this.compLength = compLength;
-    }
 }//class
