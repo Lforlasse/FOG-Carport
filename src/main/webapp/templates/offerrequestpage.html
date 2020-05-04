@@ -48,6 +48,27 @@
         <!--</c:if>-->
 
         <!-- CONTENT -->
+        <div class="alert alert-dark px-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text border-secondary">#234834</span>
+                    <span class="input-group-text border-secondary bg-white">Status:</span>
+
+                </div>
+                <select class="form-control custom-select border-secondary">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                <div class="input-group-append bg-white rounded">
+                    <button type="submit" class="btn btn-outline-secondary"
+                            value="submit">Opdater
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div class="card mb-4">
 
             <div class="card-header">
@@ -55,56 +76,58 @@
             </div>
             <div class="card-body">
                 <form>
+                    <!-- row 1 -->
                     <div class="form-row mb-3">
-                        <div class="col-1 px-0">
-                            <label for="length">Længde</label>
-                        </div>
-                        <div class="col mr-3">
+                        <div class="input-group input-group-sm col-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary"><label for="length">Længde</label></span>
+                            </div>
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
                                    placeholder="cm"
-                                   id="length" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                                   id="length" min="0" max="600" oninput="lengthRange.value=lengthInput.value" readonly>
                         </div>
-                        <div class="col-1 px-0">
-                            <label for="width">Bredde</label>
-                        </div>
-                        <div class="col mr-3">
+                        <div class="input-group input-group-sm col-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary"><label for="width">Bredde</label></span>
+                            </div>
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
                                    placeholder="cm"
                                    id="width" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
                         </div>
-                        <div class="col-1 px-0">
-                            <label for="height">Højde</label>
-                        </div>
-                        <div class="col">
+                        <div class="input-group input-group-sm col-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary"><label for="height">Højde</label></span>
+                            </div>
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
                                    placeholder="cm"
                                    id="height" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
                         </div>
                     </div>
+                    <!-- row 2 -->
                     <div class="form-row mb-3">
-                        <div class="col-1 px-0">
-                            <label for="length">Materiale</label>
-                        </div>
-                        <div class="col mr-3">
+                        <div class="input-group input-group-sm col-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary"><label for="material">Materiale</label></span>
+                            </div>
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
                                    placeholder="cm"
-                                   id="length" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                                   id="material" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
                         </div>
-                        <div class="col-1 px-0">
-                            <label for="width">Bredde</label>
-                        </div>
-                        <div class="col mr-3">
+                        <div class="input-group input-group-sm col-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary"><label for="roof1">roof1</label></span>
+                            </div>
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
                                    placeholder="cm"
-                                   id="width" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                                   id="roof1" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
                         </div>
-                        <div class="col-1 px-0">
-                            <label for="height">Højde</label>
-                        </div>
-                        <div class="col">
+                        <div class="input-group input-group-sm col-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary"><label for="roof2">roof2</label></span>
+                            </div>
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
                                    placeholder="cm"
-                                   id="height" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                                   id="roof2" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
                         </div>
                     </div>
                     <input type="hidden" name="target" value="prefab">
