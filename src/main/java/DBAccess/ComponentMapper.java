@@ -15,6 +15,8 @@ public class ComponentMapper {
         int compId = 0;
         String compDesc = "Ingen komponent fundet";
         String material = "0";
+        int compHeight = 0;
+        int compWidth = 0;
         int compLength = 0;
         int vendorPrice = 0;
         int salesPrice = 0;
@@ -32,15 +34,17 @@ public class ComponentMapper {
                 compId=rs.getInt(1);
                 compDesc=rs.getString(2);
                 material=rs.getString(3);
-                compLength=rs.getInt(4);
-                vendorPrice=rs.getInt(5);
-                salesPrice=rs.getInt(6);
+                compHeight=rs.getInt(4);
+                compWidth=rs.getInt(5);
+                compLength=rs.getInt(6);
+                vendorPrice=rs.getInt(7);
+                salesPrice=rs.getInt(8);
 
             }//if
         } catch (ClassNotFoundException | SQLException ex) {
 
         }//catch
-        Component component = new Component(compId, compDesc, material, compLength, vendorPrice, salesPrice);
+        Component component = new Component(compId, compDesc, material, compHeight, compWidth, compLength, vendorPrice, salesPrice);
         return component;
     }//getComponent
 
