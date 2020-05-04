@@ -125,6 +125,7 @@ CREATE TABLE configurationStatus (
 INSERT INTO configurationStatus (confStatus)
 VALUES  ("Ny"),
 		("Behandles"),
+        ("Tilbud sendt"),
 		("Afsluttet");
 
 CREATE TABLE configurations (
@@ -139,6 +140,8 @@ CREATE TABLE configurations (
     height INT NOT NULL,
     material VARCHAR (30),
     roofmaterial VARCHAR (30),
+    createdDate VARCHAR(10) DEFAULT (curdate()),
+    changedDate VARCHAR(10) DEFAULT NULL,
     
     PRIMARY KEY (confId),
     FOREIGN KEY (confStatus) REFERENCES configurationStatus (confStatus)
