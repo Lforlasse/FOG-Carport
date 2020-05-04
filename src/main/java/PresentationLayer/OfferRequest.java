@@ -77,7 +77,7 @@ public class OfferRequest extends Command {
                     custName, custPhone, custEmail, custPostal));
             request.setAttribute("actionSuccess", true);
         } catch (Exception e) {
-            request.setAttribute("error", "Fejl i systemet!");
+            request.setAttribute("error", "Der skete en fejl.");
             System.out.println(e);
         }
         request.setAttribute("materials", LogicFacade.carportMaterials());

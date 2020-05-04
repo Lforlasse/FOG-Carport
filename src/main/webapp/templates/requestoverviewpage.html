@@ -53,35 +53,42 @@
                 Anmodningsoversigt
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-sm table-hover table-">
-                    <thead>
-                    <tr>
-                        <th scope="col">Request ID</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Kunde</th>
-                        <th scope="col">Telefon</th>
-                        <th scope="col">Postnr.</th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <form action="FrontController" method="POST">
-                            <th scope="row"># 0004384</th>
-                            <td>Ny anmodning</td>
-                            <td>Sørensen, Otto</td>
-                            <td>82524364</td>
-                            <td>2000</td>
-                            <td>
-                                <input type="hidden" name="target" value="viewOfferRequests">
-                                <button type="submit" class="btn btn-sm btn-secondary w-100 px-0 py-1" value="submit">
-                                    Åben
-                                </button>
-                            </td>
-                        </form>
-                    </tr>
-                    </tbody>
-                </table>
+                <form action="FrontController" method="POST">
+                    <table class="table table-bordered table-sm table-hover table-">
+                        <thead>
+                        <tr>
+                            <th scope="col">Request ID</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Kunde</th>
+                            <th scope="col">Telefon</th>
+                            <th scope="col">Postnr.</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <form action="FrontController" method="POST">
+                                <th scope="row"># 0004384</th>
+                                <td>Ny anmodning</td>
+                                <td>Sørensen, Otto</td>
+                                <td>82524364</td>
+                                <td>2000</td>
+                                <td>
+                                    <input type="hidden" name="target" value="viewOfferRequests">
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary w-100 px-0 py-1"
+                                            value="submit">Åben
+                                    </button>
+                                </td>
+                            </form>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <input type="hidden" name="target" value="updateOfferRequests">
+                    <button type="submit" class="btn btn-secondary float-right"
+                            value="submit">Opdater
+                    </button>
+                </form>
             </div>
         </div>
     </div>

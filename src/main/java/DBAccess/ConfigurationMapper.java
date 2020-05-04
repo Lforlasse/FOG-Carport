@@ -96,6 +96,22 @@ public class ConfigurationMapper {
         return offerRequestId;
     }
 
+    public static boolean setConfigStatus(int confId, String confStatus) {
+        boolean result = false;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE configurations SET confStatus = ? WHERE confId = ?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, confStatus);
+            ps.setInt(2, confId);
+            ps.executeUpdate();
+            result = true;
+        } catch (ClassNotFoundException | SQLException ex) {
+
+        }
+        return result;
+    }
+
     public static Carport getOneConfig(int confId) {
         Carport carport = null;
         try {
@@ -149,6 +165,22 @@ public class ConfigurationMapper {
 
         return configs;
     }//getAllConfigs
+
+    public static String getConfigStatus(int confId) {
+        String confStatus = "";
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT confStatus FROM configurations WHERE confId = ?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1,confId);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            confStatus = rs.getString("confStatus");
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex);
+        }
+        return confStatus;
+    }
 
     public ArrayList<Carport> getNewConfigs() {
         ArrayList<Carport> configs = new ArrayList<>();

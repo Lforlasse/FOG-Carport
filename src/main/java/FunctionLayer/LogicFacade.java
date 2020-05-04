@@ -100,4 +100,16 @@ public class LogicFacade {
     public static OfferRequest getOfferRequest(int confId) {
         return new OfferRequest(confId);
     }
+
+    public static String getOfferRequestStatus(int confId) {
+        return ConfigurationMapper.getConfigStatus(confId);
+    }
+
+    public static List<String> getOfferRequestStatusTypes() {
+        return new ArrayList<>(ConfigurationStatusMapper.getAllConfigStatusTypes());
+    }
+
+    public static boolean updateOfferRequestStatus(int confId, String offerRequestStatus) {
+        return ConfigurationMapper.setConfigStatus(confId, offerRequestStatus);
+    }
 }

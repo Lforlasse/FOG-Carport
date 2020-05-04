@@ -30,69 +30,102 @@
 
         <!-- ALERTS -->
         <%@include file="../includes/error.html" %>
+        <%@include file="../includes/success.html" %>
 
         <!-- CONTENT -->
-        <div class="card mb-4">
+        <form action="FrontController" method="POST">
+            <div class="alert alert-dark px-3">
+                <div class="input-group">
 
+                    <div class="input-group-prepend">
+                        <span class="input-group-text border-secondary">#${requestScope.confId}</span>
+                        <span class="input-group-text border-secondary bg-white">Status</span>
+                    </div>
+                    <select class="form-control custom-select border-secondary" name="offerRequestStatus">
+                        <c:forEach var="statusList" items="${requestScope.offerRequestStatusList}">
+                            <option
+                                    <c:choose>
+                                        <c:when test="${requestScope.offerRequestStatus.equals(statusList)}">
+                                            selected
+                                        </c:when>
+                                    </c:choose>
+                            >${statusList}</option>
+                        </c:forEach>
+                    </select>
+                    <div class="input-group-append bg-white rounded">
+                        <input type="hidden" name="target" value="viewOfferRequest">
+                        <input type="hidden" name="confId" value="${requestScope.confId}">
+                        <input type="hidden" name="pageFunction" value="0">
+                        <button type="submit" class="btn btn-outline-secondary" value="submit">Opdater</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="card mb-4">
             <div class="card-header">
-                #${requestScope.confId}
+                Konfiguration
             </div>
             <div class="card-body">
                 <form>
+                    <!-- row 1 -->
                     <div class="form-row mb-3">
-                        <div class="col-1 px-0">
-                            <label for="length">Længde</label>
+                        <div class="input-group input-group-sm col-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary"><label
+                                        for="length">Længde</label></span>
+                            </div>
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm" id="length"
+                                   value="${requestScope.offerRequest.carport.confLength} cm" readonly>
                         </div>
-                        <div class="col mr-3">
-                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
-                                   id="carportLength" value="${requestScope.offerRequest.carport.confLength} cm"
-                                   readonly>
+                        <div class="input-group input-group-sm col-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary"><label for="width">Bredde</label></span>
+                            </div>
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm" id="width"
+                                   value="${requestScope.offerRequest.carport.confWidth} cm" readonly>
                         </div>
-                        <div class="col-1 px-0">
-                            <label for="width">Bredde</label>
-                        </div>
-                        <div class="col mr-3">
-                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
-                                   id="carportWidth" value="${requestScope.offerRequest.carport.confWidth} cm"
-                                   readonly>
-                        </div>
-                        <div class="col-1 px-0">
-                            <label for="height">Højde</label>
-                        </div>
-                        <div class="col">
-                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
-                                   id="carportHeight" value="${requestScope.offerRequest.carport.confHeight} cm"
-                                   readonly>
+                        <div class="input-group input-group-sm col-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary"><label for="height">Højde</label></span>
+                            </div>
+                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                                   placeholder="cm" id="height"
+                                   value="${requestScope.offerRequest.carport.confHeight} cm" readonly>
                         </div>
                     </div>
+                    <!-- row 2 -->
                     <div class="form-row mb-3">
-                        <div class="col-1 px-0">
-                            <label for="length">Materiale</label>
-                        </div>
-                        <div class="col mr-3">
+                        <div class="input-group input-group-sm col-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary"><label for="material">Materiale</label></span>
+                            </div>
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
-                                   placeholder="cm"
-                                   id="length" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                                   placeholder="cm" id="material"
+                                   min="0" max="600" oninput="lengthRange.value=lengthInput.value" readonly>
                         </div>
-                        <div class="col-1 px-0">
-                            <label for="width">Bredde</label>
-                        </div>
-                        <div class="col mr-3">
+                        <div class="input-group input-group-sm col-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary"><label for="roof1">roof1</label></span>
+                            </div>
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
-                                   placeholder="cm"
-                                   id="width" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                                   placeholder="cm" id="roof1"
+                                   min="0" max="600" oninput="lengthRange.value=lengthInput.value" readonly>
                         </div>
-                        <div class="col-1 px-0">
-                            <label for="height">Højde</label>
-                        </div>
-                        <div class="col">
+                        <div class="input-group input-group-sm col-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary"><label for="roof2">roof2</label></span>
+                            </div>
                             <input type="number" class="form-control text-right px-0 h-100 border-secondary"
-                                   placeholder="cm"
-                                   id="height" min="0" max="600" oninput="lengthRange.value=lengthInput.value">
+                                   placeholder="cm" id="roof2"
+                                   min="0" max="600" oninput="lengthRange.value=lengthInput.value" readonly>
                         </div>
-                    </div>
+                    </div><!--
                     <input type="hidden" name="target" value="prefab">
                     <button type="submit" class="btn btn-secondary float-right" value="submit">Gem</button>
+                    -->
                 </form>
             </div>
         </div>
@@ -102,7 +135,7 @@
                 Prisudregner
             </div>
             <div class="card-body">
-                <form>
+                <form action="FrontController" method="POST">
                     <div class="form-row mb-3">
                         <div class="col-1 px-0">
                             <label for="length">Indkøb</label>
@@ -154,7 +187,7 @@
                                    id="profitNew" value="${profitNew}" readonly>
                         </div>
                     </div>
-                    <input type="hidden" name="target" value="calculateNewProfit">
+                    <input type="hidden" name="target" value="viewOfferRequest">
                     <input type="hidden" name="confId" value="${requestScope.confId}">
                     <button type="submit" class="btn btn-secondary float-right" value="submit">Udregn</button>
                 </form>
