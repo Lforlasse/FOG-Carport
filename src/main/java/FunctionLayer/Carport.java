@@ -2,6 +2,8 @@ package FunctionLayer;
 
 import DBAccess.ConfigurationMapper;
 
+import java.util.Date;
+
 public class Carport {
     private int confId;
     private String custName;
@@ -15,6 +17,8 @@ public class Carport {
     private String confRoof;
     private boolean carSpace;
     private String confStatus;
+    private final Date CREATED_DATE;
+    private Date changedDate;
 
     public Carport(int confId, String custName, int custPhone, String custEmail, int custPostal,
                    int confLength, int confWidth, int confHeight, String confMat, String confRoof) {
@@ -31,6 +35,8 @@ public class Carport {
         this.carSpace = checkCarSpace();
 
         this.confStatus = ConfigurationMapper.getConfigStatus(confId);
+        this.CREATED_DATE = ConfigurationMapper.getCreatedDate(confId);
+        this.changedDate = ConfigurationMapper.getChangedDate(confId);
 
     }//Carport
 
@@ -148,5 +154,19 @@ public class Carport {
             return true;
         }
         return false;
-    }//class
-}
+    }
+
+    public Date getCREATED_DATE() {
+        return CREATED_DATE;
+    }
+
+    public Date getChangedDate() {
+        return changedDate;
+    }
+
+    public void setChangedDate(Date changedDate) {
+        if (ConfigurationMapper.setChangedDate(confId, changedDate)) {
+            this.changedDate = changedDate;
+        }
+    }
+}//class
