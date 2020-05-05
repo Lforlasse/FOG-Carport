@@ -16,6 +16,7 @@ public class OfferRequest {
     private LinkedHashMap<Part, Integer> partList;
     private int vendorPrice;
     private int salesPrice;
+    private Blueprint blueprint;
 
     public OfferRequest(int confId) {
         this.confId = confId;
@@ -27,10 +28,12 @@ public class OfferRequest {
         generatePartList();
         calcVendorPrice();
         calcSalesPrice();
+
+        this.blueprint = new Blueprint();
     }
 
     public OfferRequest() {
-    }
+    }//tom constructor
 
     //metoder
     private void generateCompList() {
@@ -144,11 +147,10 @@ public class OfferRequest {
         compList.put(sternWidthUnder, addUnit);
 
     }//addStern
-    //COMPONENTS SLUT
+    //COMPONENTS END
 
     //PARTS
     private void generatePartList() {
-        //addPartStolpe();
         addPartRem();
         addPartSper();
         //addPartLegte(); se metode.
@@ -255,7 +257,7 @@ public class OfferRequest {
         }
 
         setVendorPrice(price);
-    }
+    }//calcVendorPrice
 
     private void calcSalesPrice() {
         int price = 0;
@@ -269,15 +271,216 @@ public class OfferRequest {
         }
 
         setSalesPrice(price);
-    }
+    }//calcSalesPrice
 
-    public int profit(int price){
+    public int profit(int price) {
 
         return price - getVendorPrice();
-    }
+    }//profit
+    //PARTS END
+
+    //BLUEPRINT
+    private void generateBlueprint() {
+        assignCanvasBack();
+        assignCanvasFront();
+        placeStolpe(); //TODO mangler logik i metode
 
 
+    }//generateBlueprint
 
+    //TIL MARKERS + carport canvas
+    private void assignCanvasBack() {
+
+        int canvasX = 750;
+        int canvasY = 750;
+
+        blueprint.setCanvasBack("<svg version=\"1.1\"\n" +
+                "     xmlns=\"http://www.w3.org/2000/svg\"\n" +
+                "     xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n" +
+                "     height=\"100%\" viewBox=\"0 0 " + canvasX + " " + canvasY + "\n" +
+                "     preserveAspectRatio=\"xMinYMin\">");
+
+    }//assignCanvasBack
+
+    //TIL CARPORT
+    private void assignCanvasFront() {
+
+        int positionRight = 100;
+        int positionDown = 100;
+
+        blueprint.setCanvasFront("<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" " +
+                "xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n" +
+                "     viewBox=\"" + positionRight + " " + positionDown + " " + carport.getConfLength() + " " +
+                carport.getConfWidth() + "\">");
+
+    }//assignCanvasFront
+
+    private void assignStolper() {
+
+        int height = defineStolpeHeight();
+        int width = defineStolpeWidth();
+
+
+        blueprint.setStolpe("<rect x=\"110\" y=\"32\" height=\"\" width=\"10\" " +
+                "style=\"stroke:#000000; fill:#ffffff\"/>");
+
+    }//assignStolper
+
+    private int defineStolpeWidth() {
+
+        int width = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Stolpe")) {
+                width = entry.getKey().getCompWidth();
+            }//if
+        }//for
+
+        return width;
+    } //defineStolpeWidth
+
+    private int defineStolpeHeight() {
+
+        int height = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Stolpe")) {
+                height = entry.getKey().getCompHeight();
+            }//if
+        }//for
+
+        return height;
+    }//defineStolpeHeight
+
+    private void placeStolpe() {
+
+        blueprint.setStolpe();
+
+    }//placeStolpe
+
+    private int defineRemWidth(){
+
+        int width = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Rem")) {
+                width = entry.getKey().getCompWidth();
+            }//if
+        }//for
+        return width;
+
+    }//defineRemWidth
+
+    private int defineRemLength(){
+
+        int length = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Rem")) {
+                length = entry.getKey().getCompLength();
+            }//if
+        }//for
+        return length;
+
+    }//defineRemLength
+
+    private void placeRem() {
+
+        blueprint.setRem();
+
+    }//placeRem
+
+
+    private int defineSperWidth(){
+
+        int width = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Sper")) {
+                width = entry.getKey().getCompWidth();
+            }//if
+        }//for
+        return width;
+
+    }//defineSperWidth
+
+    private int defineSperLength(){
+
+        int length = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Sper")) {
+                length = entry.getKey().getCompLength();
+            }//if
+        }//for
+        return length;
+
+    }//defineSperLength
+
+    private void placeSper(){
+
+        blueprint.setSper();
+
+    }//placeSper
+
+    private int defineSternOverWidth(){
+
+        int width = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, over")) {
+                width = entry.getKey().getCompWidth();
+            }//if
+        }//for
+        return width;
+
+    }//defineSternOverWidth
+
+    private int defineSternUnderWidth(){
+
+        int width = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, under")) {
+                width = entry.getKey().getCompWidth();
+            }//if
+        }//for
+        return width;
+
+    }//defineSternUnderWidth
+
+    private int defineSternOverLength(){
+
+        int length = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, over")) {
+                length = entry.getKey().getCompLength();
+            }//if
+        }//for
+        return length;
+
+    }//defineSternOverLength
+
+    private int defineSternUnderLength(){
+
+        int length = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, under")) {
+                length = entry.getKey().getCompLength();
+            }//if
+        }//for
+        return length;
+
+    }//defineSternUnderLength
+
+    private void placeStern(){
+
+        blueprint.setSper();
+
+    }//placeSper
+    //BLUEPRINT END
 
     //Getter & setter
     public Carport getCarport() {
