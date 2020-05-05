@@ -3,26 +3,7 @@
 <%@include file="../includes/header.html" %>
 
 <!-- NAVBAR -->
-<div class="container">
-    <nav class="navbar navbar-light bg-light shadow-sm border-left border-right">
-        <form class="form-inline" role="form" name="index" action="FrontController" method="POST">
-            <input type="hidden" name="target" value="index">
-            <button class="px-0 mx-0 border-0" style="width: 40px;">
-                <img src="img/fog_logo_2015.jpg" class="img-fluid rounded" alt="Responsive image">
-            </button>
-        </form>
-        <div class="d-inline-flex">
-            <form class="form-inline" role="form" name="configurator" action="FrontController" method="POST">
-                <input type="hidden" name="target" value="configurator">
-                <button type="submit" class="btn btn-outline-secondary mr-2" value="submit">Konfigurator</button>
-            </form>
-            <form class="form-inline" role="form" name="tools" action="FrontController" method="POST">
-                <input type="hidden" name="target" value="tools">
-                <button type="submit" class="btn btn-outline-secondary" value="submit">Værktøj</button>
-            </form>
-        </div>
-    </nav>
-</div>
+<%@include file="../includes/navbar.html" %>
 
 <!-- BODY -->
 <div class="container">
@@ -37,7 +18,7 @@
                 Anmodningsoversigt
             </div>
             <div class="card-body">
-                <div class="overflow-auto mb-3">
+                <div class="overflow-auto mb">
                     <form action="FrontController" method="POST">
                         <table class="table table-bordered table-sm table-hover text-nowrap mb-0" id="offerRequestsTable">
                             <thead>
@@ -55,7 +36,7 @@
                                 <tr>
                                     <form action="FrontController" method="POST">
                                         <th scope="row">#${offerRequest.confId}</th>
-                                        <td>STATUS HERE</td>
+                                        <td>${offerRequest.confStatus}</td>
                                         <td>${offerRequest.custName}</td>
                                         <td>${offerRequest.custPhone}</td>
                                         <td>${offerRequest.custPostal}</td>
@@ -72,9 +53,6 @@
                             </c:forEach>
                             </tbody>
                         </table>
-                        <button type="submit" class="btn btn-secondary float-right"
-                                value="submit">Opdater
-                        </button>
                     </form>
                 </div>
             </div>

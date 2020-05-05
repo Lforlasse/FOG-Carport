@@ -3,26 +3,7 @@
 <%@include file="../includes/header.html" %>
 
 <!-- NAVBAR -->
-<div class="container">
-    <nav class="navbar navbar-light bg-light shadow-sm border-left border-right">
-        <form class="form-inline" role="form" name="index" action="FrontController" method="POST">
-            <input type="hidden" name="target" value="index">
-            <button class="px-0 mx-0 border-0" style="width: 40px;">
-                <img src="img/fog_logo_2015.jpg" class="img-fluid rounded" alt="Responsive image">
-            </button>
-        </form>
-        <div class="d-inline-flex">
-            <form class="form-inline" role="form" name="configurator" action="FrontController" method="POST">
-                <input type="hidden" name="target" value="configurator">
-                <button type="submit" class="btn btn-outline-secondary mr-2" value="submit">Konfigurator</button>
-            </form>
-            <form class="form-inline" role="form" name="tools" action="FrontController" method="POST">
-                <input type="hidden" name="target" value="tools">
-                <button type="submit" class="btn btn-outline-secondary" value="submit">Værktøj</button>
-            </form>
-        </div>
-    </nav>
-</div>
+<%@include file="../includes/navbar.html" %>
 
 <!-- BODY -->
 <div class="container">
@@ -38,14 +19,14 @@
                 <div class="input-group">
 
                     <div class="input-group-prepend">
-                        <span class="input-group-text border-secondary">#${requestScope.confId}</span>
+                        <span class="input-group-text border-secondary">#${requestScope.offerRequest.confId}</span>
                         <span class="input-group-text border-secondary bg-white">Status</span>
                     </div>
                     <select class="form-control custom-select border-secondary" name="offerRequestStatus">
                         <c:forEach var="statusList" items="${requestScope.offerRequestStatusList}">
                             <option
                                     <c:choose>
-                                        <c:when test="${requestScope.offerRequestStatus.equals(statusList)}">
+                                        <c:when test="${requestScope.offerRequest.carport.confStatus.equals(statusList)}">
                                             selected
                                         </c:when>
                                     </c:choose>
@@ -54,8 +35,8 @@
                     </select>
                     <div class="input-group-append bg-white rounded">
                         <input type="hidden" name="target" value="viewOfferRequest">
-                        <input type="hidden" name="confId" value="${requestScope.confId}">
-                        <input type="hidden" name="pageFunction" value="0">
+                        <input type="hidden" name="confId" value="${requestScope.offerRequest.confId}">
+                        <input type="hidden" name="pageFunction" value="1">
                         <button type="submit" class="btn btn-outline-secondary" value="submit">Opdater</button>
                     </div>
                 </div>
@@ -70,57 +51,74 @@
                 <form>
                     <!-- row 1 -->
                     <div class="form-row mb-3">
-                        <div class="input-group input-group-sm col-4">
+                        <div class="col-2">
+                            Struktur
+                        </div>
+                        <div class="input-group input-group-sm col">
                             <div class="input-group-prepend">
-                                <span class="input-group-text border-secondary"><label
-                                        for="length">Længde</label></span>
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="length">Længde</label>
+                                </span>
                             </div>
-                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                            <input type="text" class="form-control text-right h-100 border-secondary"
                                    placeholder="cm" id="length"
                                    value="${requestScope.offerRequest.carport.confLength} cm" readonly>
                         </div>
-                        <div class="input-group input-group-sm col-4">
+                        <div class="input-group input-group-sm col">
                             <div class="input-group-prepend">
-                                <span class="input-group-text border-secondary"><label for="width">Bredde</label></span>
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="width">Bredde</label>
+                                </span>
                             </div>
-                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                            <input type="text" class="form-control text-right h-100 border-secondary"
                                    placeholder="cm" id="width"
                                    value="${requestScope.offerRequest.carport.confWidth} cm" readonly>
                         </div>
-                        <div class="input-group input-group-sm col-4">
+                        <div class="input-group input-group-sm col">
                             <div class="input-group-prepend">
-                                <span class="input-group-text border-secondary"><label for="height">Højde</label></span>
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="height">Højde</label>
+                                </span>
                             </div>
-                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
+                            <input type="text" class="form-control text-right h-100 border-secondary"
                                    placeholder="cm" id="height"
                                    value="${requestScope.offerRequest.carport.confHeight} cm" readonly>
                         </div>
+                        <div class="input-group input-group-sm col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="material">Materiale</label>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control text-right h-100 border-secondary"
+                                   placeholder="cm" id="material"
+                                   value="${requestScope.offerRequest.carport.confMat}" readonly>
+                        </div>
                     </div>
                     <!-- row 2 -->
-                    <div class="form-row mb-3">
-                        <div class="input-group input-group-sm col-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text border-secondary"><label for="material">Materiale</label></span>
-                            </div>
-                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
-                                   placeholder="cm" id="material"
-                                   min="0" max="600" oninput="lengthRange.value=lengthInput.value" readonly>
+                    <div class="form-row">
+                        <div class="col-2">
+                            Tag
                         </div>
-                        <div class="input-group input-group-sm col-4">
+                        <div class="input-group input-group-sm col">
                             <div class="input-group-prepend">
-                                <span class="input-group-text border-secondary"><label for="roof1">roof1</label></span>
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="roofAngle">Tagvinkel</label>
+                                </span>
                             </div>
-                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
-                                   placeholder="cm" id="roof1"
-                                   min="0" max="600" oninput="lengthRange.value=lengthInput.value" readonly>
+                            <input type="text" class="form-control text-right h-100 border-secondary"
+                                   placeholder="cm" id="roofAngle"
+                                   value="${requestScope.offerRequest.carport.confRoof}" readonly>
                         </div>
-                        <div class="input-group input-group-sm col-4">
+                        <div class="input-group input-group-sm col">
                             <div class="input-group-prepend">
-                                <span class="input-group-text border-secondary"><label for="roof2">roof2</label></span>
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="roofMaterial">Materiale</label>
+                                </span>
                             </div>
-                            <input type="number" class="form-control text-right px-0 h-100 border-secondary"
-                                   placeholder="cm" id="roof2"
-                                   min="0" max="600" oninput="lengthRange.value=lengthInput.value" readonly>
+                            <input type="text" class="form-control text-right h-100 border-secondary"
+                                   placeholder="cm" id="roofMaterial"
+                                   value="${requestScope.offerRequest.carport.confRoof}" readonly>
                         </div>
                     </div><!--
                     <input type="hidden" name="target" value="prefab">
@@ -136,59 +134,87 @@
             </div>
             <div class="card-body">
                 <form action="FrontController" method="POST">
+                    <!-- Row 1 -->
                     <div class="form-row mb-3">
-                        <div class="col-1 px-0">
-                            <label for="length">Indkøb</label>
+                        <div class="col-2">
+                            Leverance
                         </div>
-                        <div class="col mr-3">
-                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
-                                   id="vendorPrice" value="${requestScope.offerRequest.vendorPrice} kr" readonly>
+                        <div class="input-group input-group-sm col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="vendorPrice">Kostpris</label>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control text-right h-100 border-secondary"
+                                   placeholder="kr." id="vendorPrice"
+                                   value="${requestScope.offerRequest.vendorPrice} kr." readonly>
                         </div>
                     </div>
+                    <!-- Row 2 -->
                     <div class="form-row mb-3">
-                        <div class="col-1 px-0">
-                            <label for="width">Estimeret Salg</label>
+                        <div class="col-2">
+                            Estimeret Salg
                         </div>
-                        <div class="col mr-3">
-                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
-                                   id="salesPriceReadonly" value="${requestScope.offerRequest.salesPrice} kr" readonly>
+                        <div class="input-group input-group-sm col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="salesPrice">Salgspris</label>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control text-right h-100 border-secondary"
+                                   placeholder="kr." id="salesPrice"
+                                   value="${requestScope.offerRequest.salesPrice} kr." readonly>
                         </div>
-                        <div class="col-1 px-0">
-                            <label for="width">Profit</label>
-                        </div>
-                        <div class="col mr-3">
-                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
-                                   id="profitReadonly"
-                                   value="${requestScope.offerRequest.profit(requestScope.offerRequest.salesPrice)} kr"
+                        <div class="input-group input-group-sm col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="salesPriceProfit">Profit</label>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control text-right h-100 border-secondary"
+                                   placeholder="kr." id="salesPriceProfit"
+                                   value="${requestScope.offerRequest.profit(requestScope.offerRequest.salesPrice)} kr."
                                    readonly>
                         </div>
                     </div>
+
+                    <!-- Row 3 -->
                     <div class="form-row mb-3">
-                        <div class="col-1 px-0">
-                            <label for="salesPrice">Foreslå salgspris</label>
+                        <div class="col-2">
+                            Forslået Salg
                         </div>
-                        <div class="col mr-3">
-                            <input class="form-control text-right px-0 h-100 border-secondary" type="number"
-                                   name="salesPrice" id="salesPrice" value="">
+                        <div class="input-group input-group-sm col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="suggestedSalesPrice">Ny pris</label>
+                                </span>
+                            </div>
+                            <input type="number" class="form-control text-right h-100 border-secondary"
+                                   placeholder="" name="suggestedSalesPrice" id="suggestedSalesPrice"
+                                   value="">
                         </div>
-                        <div class="col-1 px-0">
-                            <label for="profitNew">Profit</label>
-                        </div>
-                        <div class="col mr-3">
+                        <div class="input-group input-group-sm col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="suggestedSalesPriceProfit">Profit</label>
+                                </span>
+                            </div>
                             <c:choose>
-                                <c:when test="${requestScope.newProfit != null}">
-                                    <c:set var="profitNew" value="${requestScope.newProfit}"/>
+                                <c:when test="${requestScope.suggestedSalesPriceProfit != null}">
+                                    <c:set var="suggestedSalesPriceProfit" value="${requestScope.suggestedSalesPriceProfit}"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:set var="profitNew" value=""/>
+                                    <c:set var="suggestedSalesPriceProfit" value="N/A"/>
                                 </c:otherwise>
                             </c:choose>
-                            <input class="form-control text-right px-0 h-100 border-secondary" type="text"
-                                   id="profitNew" value="${profitNew}" readonly>
+                            <input type="text" class="form-control text-right h-100 border-secondary"
+                                   placeholder="kr." id="suggestedSalesPriceProfit"
+                                   value="${suggestedSalesPriceProfit} kr." readonly>
                         </div>
                     </div>
                     <input type="hidden" name="target" value="viewOfferRequest">
-                    <input type="hidden" name="confId" value="${requestScope.confId}">
+                    <input type="hidden" name="confId" value="${requestScope.offerRequest.confId}">
+                    <input type="hidden" name="pageFunction" value="2">
                     <button type="submit" class="btn btn-secondary float-right" value="submit">Udregn</button>
                 </form>
             </div>

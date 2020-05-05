@@ -1,5 +1,7 @@
 package FunctionLayer;
 
+import DBAccess.ConfigurationMapper;
+
 public class Carport {
     private int confId;
     private String custName;
@@ -12,6 +14,7 @@ public class Carport {
     private String confMat;
     private String confRoof;
     private boolean carSpace;
+    private String confStatus;
 
     public Carport(int confId, String custName, int custPhone, String custEmail, int custPostal,
                    int confLength, int confWidth, int confHeight, String confMat, String confRoof) {
@@ -25,8 +28,9 @@ public class Carport {
         this.confHeight = confHeight;
         this.confMat = confMat;
         this.confRoof = confRoof;
-
         this.carSpace = checkCarSpace();
+
+        this.confStatus = ConfigurationMapper.getConfigStatus(confId);
 
     }//Carport
 
@@ -133,4 +137,16 @@ public class Carport {
     public void setCarSpace(boolean carSpace) {
         this.carSpace = carSpace;
     }
-}//class
+
+    public String getConfStatus() {
+        return confStatus;
+    }
+
+    public boolean setConfStatus(String confStatus) {
+        if (ConfigurationMapper.setConfigStatus(this.confId, confStatus)) {
+            this.confStatus = confStatus;
+            return true;
+        }
+        return false;
+    }//class
+}

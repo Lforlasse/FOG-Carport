@@ -10,6 +10,7 @@ public class OfferRequestsOverview extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         request.setAttribute("offerRequestsList", LogicFacade.getAllOfferRequests());
+
         return "requestoverviewpage";
     }
 }
