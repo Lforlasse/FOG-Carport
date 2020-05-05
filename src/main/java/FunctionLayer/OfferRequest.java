@@ -4,6 +4,7 @@ import DBAccess.ComponentMapper;
 import DBAccess.ConfigurationMapper;
 import DBAccess.PartMapper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -55,11 +56,12 @@ public class OfferRequest {
             countUnit += 2;
         }
 
-        int stolpeWidth = carport.getConfWidth() - 400;
+//Udkommenteret fordi vi lige nu ikke skal have midterstolper på denne side.
+/*        int stolpeWidth = carport.getConfWidth() - 400;
         for (int i = stolpeWidth; i > 0; i -= 200) {
             countUnit += 2;
         }
-
+*/
         Component Stolpe = ComponentMapper.getComponent("Stolpe", carport.getConfMat());
         Stolpe.setCompLength(carport.getConfHeight() + 90);
         compList.put(Stolpe, countUnit);
@@ -283,7 +285,7 @@ public class OfferRequest {
     private void generateBlueprint() {
         assignCanvasBack();
         assignCanvasFront();
-        placeStolpe(); //TODO mangler logik i metode
+
 
 
     }//generateBlueprint
@@ -316,14 +318,12 @@ public class OfferRequest {
 
     }//assignCanvasFront
 
-    private void assignStolper() {
+    private void assignStolpe() {
 
         int height = defineStolpeHeight();
         int width = defineStolpeWidth();
 
-
-        blueprint.setStolpe("<rect x=\"110\" y=\"32\" height=\"\" width=\"10\" " +
-                "style=\"stroke:#000000; fill:#ffffff\"/>");
+        blueprint.setStolpe(placeStolpe(height, width));
 
     }//assignStolper
 
@@ -353,10 +353,46 @@ public class OfferRequest {
         return height;
     }//defineStolpeHeight
 
-    private void placeStolpe() {
+    private ArrayList<String> placeStolpe(int height, int width) {
+        ArrayList<String> stolper = new ArrayList<>();
+        int quantity = 0;
+        int halfWidth = width/2;
+        int distance = carport.getConfLength();
+        int pushRight = 100;
+        int insertRight = pushRight - halfWidth;
+        int pushDown = carport.getConfWidth()-height;
 
-//        blueprint.setStolpe();
 
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("stolpe")){
+              quantity = entry.getValue() / 2;
+            }//if
+        }//for
+        distance /= quantity - 1;
+
+
+        stolper.add("<rect x=\""+ insertRight +"\" y=\""+0+"\" height=\""+ height + "\" width=\"" + width + "\" " +
+                "style=\"stroke:#000000; fill:#ffffff\"/>");
+
+        for (int i = 1; i < quantity; i++){
+            pushRight += distance;
+            insertRight = pushRight - halfWidth;
+            stolper.add("<rect x=\""+ insertRight +"\" y=\""+0+"\" height=\""+ height + "\" width=\"" + width + "\" " +
+                    "style=\"stroke:#000000; fill:#ffffff\"/>");
+        }//for
+
+        pushRight = 100;
+        insertRight = pushRight - halfWidth;
+        stolper.add("<rect x=\""+ insertRight +"\" y=\""+pushDown+"\" height=\""+ height + "\" width=\"" + width + "\" " +
+                "style=\"stroke:#000000; fill:#ffffff\"/>");
+
+        for (int i = 1; i < quantity; i++){
+            pushRight += i*distance;
+            insertRight = pushRight - halfWidth;
+            stolper.add("<rect x=\""+ insertRight +"\" y=\""+pushDown+"\" height=\""+ height + "\" width=\"" + width + "\" " +
+                    "style=\"stroke:#000000; fill:#ffffff\"/>");
+        }//for
+        return stolper;
     }//placeStolpe
 
     private int defineRemWidth(){

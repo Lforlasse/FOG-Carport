@@ -1,10 +1,12 @@
 package FunctionLayer;
 
+import java.util.ArrayList;
+
 public class Blueprint {
 
     private String canvasFront;
     private String canvasBack;
-    private String Stolpe;
+    private ArrayList<String> Stolpe;
     private String Rem;
     private String Sper;
     private String Legte;
@@ -32,11 +34,11 @@ public class Blueprint {
         this.canvasBack = canvasBack;
     }
 
-    public String getStolpe() {
+    public ArrayList<String> getStolpe() {
         return Stolpe;
     }
 
-    public void setStolpe(String stolpe) {
+    public void setStolpe(ArrayList<String> stolpe) {
         Stolpe = stolpe;
     }
 
