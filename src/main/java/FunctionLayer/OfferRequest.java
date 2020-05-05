@@ -5,7 +5,6 @@ import DBAccess.ConfigurationMapper;
 import DBAccess.PartMapper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -285,7 +284,10 @@ public class OfferRequest {
     private void generateBlueprint() {
         assignCanvasBack();
         assignCanvasFront();
-
+        assignStolpe();
+        assignRem();
+        assignSper();
+        assignStern();
 
 
     }//generateBlueprint
@@ -356,96 +358,124 @@ public class OfferRequest {
     private ArrayList<String> placeStolpe(int height, int width) {
         ArrayList<String> stolper = new ArrayList<>();
         int quantity = 0;
-        int halfWidth = width/2;
+        int halfWidth = width / 2;
         int distance = carport.getConfLength();
         int pushRight = 100;
         int insertRight = pushRight - halfWidth;
-        int pushDown = carport.getConfWidth()-height;
+        int pushDown = carport.getConfWidth() - height;
 
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
-            if (entry.getKey().getCompDesc().equalsIgnoreCase("stolpe")){
-              quantity = entry.getValue() / 2;
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("stolpe")) {
+                quantity = entry.getValue() / 2;
             }//if
         }//for
         distance /= quantity - 1;
 
 
-        stolper.add("<rect x=\""+ insertRight +"\" y=\""+0+"\" height=\""+ height + "\" width=\"" + width + "\" " +
+        stolper.add("<rect x=\"" + insertRight + "\" y=\"" + 0 + "\" height=\"" + height + "\" width=\"" + width + "\" " +
                 "style=\"stroke:#000000; fill:#ffffff\"/>");
 
-        for (int i = 1; i < quantity; i++){
+        for (int i = 1; i < quantity; i++) {
             pushRight += distance;
             insertRight = pushRight - halfWidth;
-            stolper.add("<rect x=\""+ insertRight +"\" y=\""+0+"\" height=\""+ height + "\" width=\"" + width + "\" " +
+            stolper.add("<rect x=\"" + insertRight + "\" y=\"" + 0 + "\" height=\"" + height + "\" width=\"" + width + "\" " +
                     "style=\"stroke:#000000; fill:#ffffff\"/>");
         }//for
 
         pushRight = 100;
         insertRight = pushRight - halfWidth;
-        stolper.add("<rect x=\""+ insertRight +"\" y=\""+pushDown+"\" height=\""+ height + "\" width=\"" + width + "\" " +
+        stolper.add("<rect x=\"" + insertRight + "\" y=\"" + pushDown + "\" height=\"" + height + "\" width=\"" + width + "\" " +
                 "style=\"stroke:#000000; fill:#ffffff\"/>");
 
-        for (int i = 1; i < quantity; i++){
-            pushRight += i*distance;
+        for (int i = 1; i < quantity; i++) {
+            pushRight += i * distance;
             insertRight = pushRight - halfWidth;
-            stolper.add("<rect x=\""+ insertRight +"\" y=\""+pushDown+"\" height=\""+ height + "\" width=\"" + width + "\" " +
+            stolper.add("<rect x=\"" + insertRight + "\" y=\"" + pushDown + "\" height=\"" + height + "\" width=\"" + width + "\" " +
                     "style=\"stroke:#000000; fill:#ffffff\"/>");
         }//for
         return stolper;
     }//placeStolpe
 
-    private int defineRemWidth(){
+    private void assignRem() {
+
+        int height = defineRemHeight();
+        int width = defineRemWidth();
+
+
+        blueprint.setRem(placeRem(height, width)); //indsæt fra blueprintSVG
+
+    }//assignRem
+
+    private int defineRemWidth() {
 
         int width = 0;
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Rem")) {
-                width = entry.getKey().getCompWidth();
+                width = entry.getKey().getCompHeight();
             }//if
         }//for
         return width;
 
     }//defineRemWidth
 
-    private int defineRemLength(){
+    private int defineRemHeight() {
 
-        int length = 0;
+        int height = 0;
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Rem")) {
-                length = entry.getKey().getCompLength();
+                height = entry.getKey().getCompWidth();
             }//if
         }//for
-        return length;
+        return height;
 
-    }//defineRemLength
+    }//defineRemHeight
 
-    private void placeRem() {
+    private ArrayList<String> placeRem(int heigth, int width) {
+        ArrayList<String> remme = new ArrayList<>();
+        int quantity = 0;
+        int pushRight = 0;
+        int pushDown = carport.getConfWidth() - heigth;
 
-//        blueprint.setRem();
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("rem")) {
+                quantity = entry.getValue() / 2;
+            }//if
+        }//for
+
+        remme.add("<rect x=\"" + pushRight + "\" y=\"" + 0 + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+
+        for (int i = 1; i < quantity; i++) {
+            pushRight += width;
+            remme.add("<rect x=\"" + pushRight + "\" y=\"" + 0 + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+
+        }//for
+
+        pushRight = 0;
+        remme.add("<rect x=\"" + pushRight + "\" y=\"" + pushDown + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+
+        for (int i = 1; i < quantity; i++) {
+            pushRight += width;
+            remme.add("<rect x=\"" + pushRight + "\" y=\"" + pushDown + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+
+        }//for
+
+        return remme;
 
     }//placeRem
-
-    private void assignRem() {
-
-        int width = defineRemWidth();
-        int length = defineRemLength();
-
-        blueprint.setRem(""); //indsæt fra blueprintSVG
-
-    }//assignRem
 
     private void assignSper() {
 
         int width = defineSperWidth();
-        int length = defineSperLength();
+        int heigth = defineSperHeigth();
 
-        blueprint.setSper(""); //indsæt fra blueprintSVG
+        blueprint.setSper(placeSper(heigth, width)); //indsæt fra blueprintSVG
 
     }//assignSper
 
-    private int defineSperWidth(){
+    private int defineSperWidth() {
 
         int width = 0;
 
@@ -458,23 +488,42 @@ public class OfferRequest {
 
     }//defineSperWidth
 
-    private int defineSperLength(){
+    private int defineSperHeigth() {
 
-        int length = 0;
+        int height = 0;
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Sper")) {
-                length = entry.getKey().getCompLength();
+                height = entry.getKey().getCompLength();
             }//if
         }//for
-        return length;
+        return height;
 
-    }//defineSperLength
+    }//defineSperHeigth
 
-    private void placeSper(){
+    private ArrayList<String> placeSper(int heigth, int width) {
+        ArrayList<String> sper = new ArrayList<>();
+        int quantity = 0;
+        int pushRight = 0;
+        int insertRight;
+        int distance;
+        int halfWidth = width / 2;
 
-//        blueprint.setSper();
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("sper")) {
+                quantity = entry.getValue();
+            }//if
+        }//for
+        distance = carport.getConfLength() / (quantity - 1);
 
+        sper.add("<rect x=\"" + pushRight + "\" y=\"" + 0 + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+        for (int i = 1; i < quantity; i++) {
+            pushRight += distance;
+            insertRight = pushRight - halfWidth;
+            sper.add("<rect x=\"" + insertRight + "\" y=\"" + 0 + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+        }//for
+
+        return sper;
     }//placeSper
 
     private void assignStern() {
@@ -484,12 +533,11 @@ public class OfferRequest {
         int length1 = defineSternOver1Length();
         int length2 = defineSternOver2Length(length1);
 
-
-        blueprint.setStern(""); //indsæt fra blueprintSVG
+        blueprint.setStern(placeStern(length1, width, length2)); //indsæt fra blueprintSVG
 
     }//assignStern
 
-    private int defineSternWidth(){
+    private int defineSternWidth() {
 
         int width = 0;
 
@@ -502,7 +550,7 @@ public class OfferRequest {
 
     }//defineSternOverWidth
 
-    private int defineSternOver1Length(){
+    private int defineSternOver1Length() {
 
         int length = 0;
 
@@ -515,7 +563,7 @@ public class OfferRequest {
 
     }//defineSternOver1Length
 
-    private int defineSternUnder1Length(){
+    private int defineSternUnder1Length() {
 
         int length = 0;
 
@@ -528,16 +576,16 @@ public class OfferRequest {
 
     }//defineSternUnder1Length
 
-    private int defineSternOver2Length(int length1){
+    private int defineSternOver2Length(int length1) {
 
         int length = 0;
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, over") &&
-                entry.getKey().getCompLength() != length1) {
+                    entry.getKey().getCompLength() != length1) {
                 length = entry.getKey().getCompLength();
             }//if
-            if(length == 0){
+            if (length == 0) {
                 length = length1;
             }
         }//for
@@ -545,7 +593,7 @@ public class OfferRequest {
 
     }//defineSternOver2Length
 
-    private int defineSternUnder2Length(){
+    private int defineSternUnder2Length() {
 
         int length = 0;
 
@@ -559,10 +607,41 @@ public class OfferRequest {
 
     }//defineSternUnder2Length
 
-    private void placeStern(){
+    private ArrayList<String> placeStern(int height1, int width, int height2) {
+        ArrayList<String> stern = new ArrayList<>();
+        int quantity = 0;
+        int pushRight = 0;
+        int pushDown;
 
-//        blueprint.setSper();
+        for (Map.Entry<Component, Integer> entry1 : compList.entrySet()) {
+            if (entry1.getKey().getCompDesc().equalsIgnoreCase("sper") && entry1.getKey().getCompLength() != height2) {
+                quantity = entry1.getValue();
+            }//if
+        }//for
 
+        pushDown = carport.getConfWidth() - width;
+        for (int i = 0; i < quantity; i++) {
+            stern.add("<rect x=\"" + pushRight + "\" y=\"" + 0 + "\" height=\"" + width + "\" width=\"" + height1 + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+            stern.add("<rect x=\"" + pushRight + "\" y=\"" + pushDown + "\" height=\"" + width + "\" width=\"" + height1 + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+            pushRight += height1;
+        }//for
+
+
+        for (Map.Entry<Component, Integer> entry2 : compList.entrySet()) {
+            if (entry2.getKey().getCompDesc().equalsIgnoreCase("sper") && entry2.getKey().getCompLength() != height1) {
+                quantity = entry2.getValue();
+            }//if
+        }//for
+
+        pushRight = carport.getConfLength() - width;
+        pushDown = 0;
+        for (int i = 0; i < quantity; i++) {
+            stern.add("<rect x=\"" + 0 + "\" y=\"" + pushDown + "\" height=\"" + height2 + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+            stern.add("<rect x=\"" + pushRight + "\" y=\"" + pushDown + "\" height=\"" + height2 + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+            pushDown += height2;
+        }//for
+
+        return stern;
     }//placeSper
     //BLUEPRINT END
 
