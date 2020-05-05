@@ -100,4 +100,7 @@ public class LogicFacade {
     public static OfferRequest getOfferRequest(int confId) {
         return new OfferRequest(confId);
     }
+
+    //GETTER & SETTER
+
 }
