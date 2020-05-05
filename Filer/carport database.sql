@@ -150,7 +150,7 @@ CREATE TABLE configurations (
 ALTER TABLE configurations auto_increment=224466;
     
 INSERT INTO configurations (confStatus,custName,custPhone,custEmail,custPostal,length,width,height,material,roofMaterial)
-VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 620, 225, "Egetræ", "PLASTMO"),
+VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 580, 225, "Egetræ", "PLASTMO"),
 		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", "Betontagsten, sort");
 
 

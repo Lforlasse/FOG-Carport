@@ -305,13 +305,14 @@ public class OfferRequest {
     //TIL CARPORT
     private void assignCanvasFront() {
 
-        int positionRight = 100;
-        int positionDown = 100;
+        int positionRight = 50;
+        int positionDown = 50;
 
         blueprint.setCanvasFront("<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" " +
                 "xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n" +
-                "     viewBox=\"" + positionRight + " " + positionDown + " " + carport.getConfLength() + " " +
-                carport.getConfWidth() + "\">");
+                "x=\"" + positionRight + "\" y=\"" + positionDown + "\" " +
+                "height=\"" + carport.getConfWidth() + "\" width=\"" + carport.getConfLength() + "\" " +
+                "viewBox=\"0 0 " + carport.getConfWidth() + " " + carport.getConfLength() + "\">");
 
     }//assignCanvasFront
 
@@ -354,7 +355,7 @@ public class OfferRequest {
 
     private void placeStolpe() {
 
-        blueprint.setStolpe();
+//        blueprint.setStolpe();
 
     }//placeStolpe
 
@@ -386,10 +387,27 @@ public class OfferRequest {
 
     private void placeRem() {
 
-        blueprint.setRem();
+//        blueprint.setRem();
 
     }//placeRem
 
+    private void assignRem() {
+
+        int width = defineRemWidth();
+        int length = defineRemLength();
+
+        blueprint.setRem(""); //indsæt fra blueprintSVG
+
+    }//assignRem
+
+    private void assignSper() {
+
+        int width = defineSperWidth();
+        int length = defineSperLength();
+
+        blueprint.setSper(""); //indsæt fra blueprintSVG
+
+    }//assignSper
 
     private int defineSperWidth(){
 
@@ -419,11 +437,23 @@ public class OfferRequest {
 
     private void placeSper(){
 
-        blueprint.setSper();
+//        blueprint.setSper();
 
     }//placeSper
 
-    private int defineSternOverWidth(){
+    private void assignStern() {
+
+        int width = defineSternWidth();
+
+        int length1 = defineSternOver1Length();
+        int length2 = defineSternOver2Length(length1);
+
+
+        blueprint.setStern(""); //indsæt fra blueprintSVG
+
+    }//assignStern
+
+    private int defineSternWidth(){
 
         int width = 0;
 
@@ -436,20 +466,7 @@ public class OfferRequest {
 
     }//defineSternOverWidth
 
-    private int defineSternUnderWidth(){
-
-        int width = 0;
-
-        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
-            if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, under")) {
-                width = entry.getKey().getCompWidth();
-            }//if
-        }//for
-        return width;
-
-    }//defineSternUnderWidth
-
-    private int defineSternOverLength(){
+    private int defineSternOver1Length(){
 
         int length = 0;
 
@@ -460,9 +477,9 @@ public class OfferRequest {
         }//for
         return length;
 
-    }//defineSternOverLength
+    }//defineSternOver1Length
 
-    private int defineSternUnderLength(){
+    private int defineSternUnder1Length(){
 
         int length = 0;
 
@@ -473,11 +490,42 @@ public class OfferRequest {
         }//for
         return length;
 
-    }//defineSternUnderLength
+    }//defineSternUnder1Length
+
+    private int defineSternOver2Length(int length1){
+
+        int length = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, over") &&
+                entry.getKey().getCompLength() != length1) {
+                length = entry.getKey().getCompLength();
+            }//if
+            if(length == 0){
+                length = length1;
+            }
+        }//for
+        return length;
+
+    }//defineSternOver2Length
+
+    private int defineSternUnder2Length(){
+
+        int length = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Stern, under")) {
+                length = entry.getKey().getCompLength();
+            }//if
+        }//for
+
+        return length;
+
+    }//defineSternUnder2Length
 
     private void placeStern(){
 
-        blueprint.setSper();
+//        blueprint.setSper();
 
     }//placeSper
     //BLUEPRINT END

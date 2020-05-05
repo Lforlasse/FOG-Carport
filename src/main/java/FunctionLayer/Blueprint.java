@@ -1,6 +1,6 @@
 package FunctionLayer;
 
-public class Blueprint (){
+public class Blueprint {
 
     private String canvasFront;
     private String canvasBack;
