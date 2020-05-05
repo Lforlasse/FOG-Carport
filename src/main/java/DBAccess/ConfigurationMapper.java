@@ -5,12 +5,13 @@ import FunctionLayer.LoginSampleException;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ConfigurationMapper {
 
     public static Carport makeConfigObject(int getConfId) {
-       Carport carport = null;
+        Carport carport = null;
 //        int confId = 0;
 //        String custName = "Ingen konfiguration fundet";
 //        int custPhone = 0;
@@ -31,16 +32,16 @@ public class ConfigurationMapper {
             ResultSet rs = ps.executeQuery();
             rs.next();
             carport = new Carport(
-            rs.getInt(1),
-            rs.getString(2),
-            rs.getInt(3),
-            rs.getString(4),
-            rs.getInt(5),
-            rs.getInt(6),
-            rs.getInt(7),
-            rs.getInt(8),
-            rs.getString(9),
-            rs.getString(10)
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getInt(3),
+                    rs.getString(4),
+                    rs.getInt(5),
+                    rs.getInt(6),
+                    rs.getInt(7),
+                    rs.getInt(8),
+                    rs.getString(9),
+                    rs.getString(10)
             );
 
         } catch (ClassNotFoundException | SQLException ex) {
@@ -172,7 +173,7 @@ public class ConfigurationMapper {
             Connection con = Connector.connection();
             String SQL = "SELECT confStatus FROM configurations WHERE confId = ?;";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setInt(1,confId);
+            ps.setInt(1, confId);
             ResultSet rs = ps.executeQuery();
             rs.next();
             confStatus = rs.getString("confStatus");
@@ -180,6 +181,54 @@ public class ConfigurationMapper {
             System.out.println(ex);
         }
         return confStatus;
+    }
+
+    public static Date getCreatedDate(int confId) {
+        Date createdDate = null;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT createdDate FROM configurations WHERE confId = ?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, confId);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            createdDate = rs.getDate("createdDate");
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex);
+        }
+        return createdDate;
+    }
+
+    public static Date getChangedDate(int confId) {
+        Date changedDate = null;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT changedDate FROM configurations WHERE confId = ?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, confId);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            changedDate = rs.getDate("changedDate");
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex);
+        }
+        return changedDate;
+    }
+
+    public static boolean setChangedDate(int confId, Date changedDate) {
+        boolean result = false;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE configurations SET changedDate = ? WHERE confId = ?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setDate(1, (java.sql.Date) changedDate);
+            ps.setInt(2, confId);
+            ps.executeUpdate();
+            result = true;
+        } catch (ClassNotFoundException | SQLException ex) {
+
+        }
+        return result;
     }
 
     public ArrayList<Carport> getNewConfigs() {

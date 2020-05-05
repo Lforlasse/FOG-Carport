@@ -20,7 +20,7 @@
 
                     <div class="input-group-prepend">
                         <span class="input-group-text border-secondary">#${requestScope.offerRequest.confId}</span>
-                        <span class="input-group-text border-secondary bg-white">Status</span>
+                        <span class="input-group-text border-secondary">Status</span>
                     </div>
                     <select class="form-control custom-select border-secondary" name="offerRequestStatus">
                         <c:forEach var="statusList" items="${requestScope.offerRequestStatusList}">
@@ -34,6 +34,9 @@
                         </c:forEach>
                     </select>
                     <div class="input-group-append bg-white rounded">
+                        <span class="input-group-text border-secondary">Oprettet:&nbsp;<b>${requestScope.offerRequest.carport.CREATED_DATE}</b></span>
+                        <span class="input-group-text border-secondary border-right-0">Ændret:&nbsp;<b>${requestScope.offerRequest.carport.changedDate}</b></span>
+
                         <input type="hidden" name="target" value="viewOfferRequest">
                         <input type="hidden" name="confId" value="${requestScope.offerRequest.confId}">
                         <input type="hidden" name="pageFunction" value="1">
@@ -201,7 +204,8 @@
                             </div>
                             <c:choose>
                                 <c:when test="${requestScope.suggestedSalesPriceProfit != null}">
-                                    <c:set var="suggestedSalesPriceProfit" value="${requestScope.suggestedSalesPriceProfit}"/>
+                                    <c:set var="suggestedSalesPriceProfit"
+                                           value="${requestScope.suggestedSalesPriceProfit}"/>
                                 </c:when>
                                 <c:otherwise>
                                     <c:set var="suggestedSalesPriceProfit" value="N/A"/>
