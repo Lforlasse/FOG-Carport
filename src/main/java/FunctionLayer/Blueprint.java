@@ -7,10 +7,10 @@ public class Blueprint {
     private String canvasFront;
     private String canvasBack;
     private ArrayList<String> Stolpe;
-    private String Rem;
-    private String Sper;
-    private String Legte;
-    private String Stern;
+    private ArrayList<String> Rem;
+    private ArrayList<String> Sper;
+    private ArrayList<String> Legte;
+    private ArrayList<String> Stern;
     private String MarkerX;
     private String MarkerY;
 
@@ -42,35 +42,35 @@ public class Blueprint {
         Stolpe = stolpe;
     }
 
-    public String getRem() {
+    public ArrayList<String> getRem() {
         return Rem;
     }
 
-    public void setRem(String rem) {
+    public void setRem(ArrayList<String> rem) {
         Rem = rem;
     }
 
-    public String getSper() {
+    public ArrayList<String> getSper() {
         return Sper;
     }
 
-    public void setSper(String sper) {
+    public void setSper(ArrayList<String> sper) {
         Sper = sper;
     }
 
-    public String getLegte() {
+    public ArrayList<String> getLegte() {
         return Legte;
     }
 
-    public void setLegte(String legte) {
+    public void setLegte(ArrayList<String> legte) {
         Legte = legte;
     }
 
-    public String getStern() {
+    public ArrayList<String> getStern() {
         return Stern;
     }
 
-    public void setStern(String stern) {
+    public void setStern(ArrayList<String> stern) {
         Stern = stern;
     }
 
