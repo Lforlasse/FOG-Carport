@@ -282,8 +282,15 @@ public class OfferRequest {
 
     //BLUEPRINT
     private void generateBlueprint() {
-        assignCanvasBack();
-        assignCanvasFront();
+        int canvasBackX = 750;
+        int canvasBackY = 750;
+        int canvasFrontPushRight = 50;
+        int canvasFrontPushDown = 50;
+
+        assignCanvasBack(canvasBackX, canvasBackY);
+        assignMarkerHead();
+        assignMarkers(canvasFrontPushRight, canvasFrontPushDown);
+        assignCanvasFront(canvasFrontPushRight, canvasFrontPushDown);
         assignStolpe();
         assignRem();
         assignSper();
@@ -293,10 +300,8 @@ public class OfferRequest {
     }//generateBlueprint
 
     //TIL MARKERS + carport canvas
-    private void assignCanvasBack() {
+    private void assignCanvasBack(int canvasX, int canvasY) {
 
-        int canvasX = 750;
-        int canvasY = 750;
 
         blueprint.setCanvasBack("<svg version=\"1.1\"\n" +
                 "     xmlns=\"http://www.w3.org/2000/svg\"\n" +
@@ -306,11 +311,64 @@ public class OfferRequest {
 
     }//assignCanvasBack
 
-    //TIL CARPORT
-    private void assignCanvasFront() {
+    private void assignMarkerHead() {
 
-        int positionRight = 50;
-        int positionDown = 50;
+        blueprint.setMarkerHead("        <defs>\n" +
+                "            <marker\n" +
+                "                    id=\"beginArrow\"\n" +
+                "                    markerWidth=\"12\"\n" +
+                "                    markerHeight=\"12\"\n" +
+                "                    refX=\"0\"\n" +
+                "                    refY=\"6\"\n" +
+                "                    orient=\"auto\">\n" +
+                "                <path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
+                "            </marker>\n" +
+                "            <marker\n" +
+                "                    id=\"endArrow\"\n" +
+                "                    markerWidth=\"12\"\n" +
+                "                    markerHeight=\"12\"\n" +
+                "                    refX=\"12\"\n" +
+                "                    refY=\"6\"\n" +
+                "                    orient=\"auto\">\n" +
+                "                <path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
+                "            </marker>\n" +
+                "        </defs>");
+
+    }//assignMarkerHead
+
+    private void assignMarkers(int positionRight, int positionDown) {
+
+        int headStartX;
+        int headStartY;
+        int headEndX;
+        int headEndY;
+
+
+        headStartX = positionRight - 15;
+        headStartY = positionDown + 5;
+        headEndX = headStartX;
+        headEndY = carport.getConfWidth() + positionDown - 5;
+
+        blueprint.setMarkerX("<line x1=\""+headStartX+"\"  y1=\""+headStartY+"\" x2=\""+headEndX+"\"   y2=\""+headEndY+"\"\n" +
+                "              style=\"stroke: #006600;\n" +
+                "\tmarker-start: url(#beginArrow);\n" +
+                "\tmarker-end: url(#endArrow);\"/>");
+
+
+        headStartX = positionRight + 5;
+        headStartY = positionDown + carport.getConfWidth() + 15;
+        headEndX = carport.getConfLength() - 5;
+        headEndY = headStartY;
+
+        blueprint.setMarkerY("<line x1=\""+headStartX+"\"  y1=\""+headStartY+"\" x2=\""+headEndX+"\"   y2=\""+headEndY+"\"\n" +
+                "              style=\"stroke: #006600;\n" +
+                "\tmarker-start: url(#beginArrow);\n" +
+                "\tmarker-end: url(#endArrow);\"/>");
+
+    }//assignMarkers
+
+    //TIL CARPORT
+    private void assignCanvasFront(int positionRight, int positionDown) {
 
         blueprint.setCanvasFront("<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" " +
                 "xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n" +
@@ -642,7 +700,7 @@ public class OfferRequest {
         }//for
 
         return stern;
-    }//placeSper
+    }//placeStern
     //BLUEPRINT END
 
     //Getter & setter

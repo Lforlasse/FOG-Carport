@@ -11,6 +11,7 @@ public class Blueprint {
     private ArrayList<String> Sper;
     private ArrayList<String> Legte;
     private ArrayList<String> Stern;
+    private String MarkerHead;
     private String MarkerX;
     private String MarkerY;
 
@@ -72,6 +73,14 @@ public class Blueprint {
 
     public void setStern(ArrayList<String> stern) {
         Stern = stern;
+    }
+
+    public String getMarkerHead() {
+        return MarkerHead;
+    }
+
+    public void setMarkerHead(String markerHead) {
+        MarkerHead = markerHead;
     }
 
     public String getMarkerX() {
