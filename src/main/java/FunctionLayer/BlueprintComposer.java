@@ -28,10 +28,10 @@ public class BlueprintComposer {
                 blueprint.getCanvasFront() + "\n\n" +
                 "<!-- CanvasFill -->" + "\n" +
                 blueprint.getCanvasFill() + "\n\n" +
-                "<!-- Rem -->" + "\n" +
-                composeRem(blueprint) + "\n" +
                 "<!-- Stolpe -->" + "\n" +
                 composeStolpe(blueprint) + "\n" +
+                "<!-- Rem -->" + "\n" +
+                composeRem(blueprint) + "\n" +
                 "<!-- Sper -->" + "\n" +
                 composeSper(blueprint) + "\n" +
                 "<!-- Stern -->" + "\n" +
