@@ -31,7 +31,9 @@ public class OfferRequest {
         calcSalesPrice();
 
         this.blueprint = new Blueprint();
+        generateBlueprint();
         this.blueprintComposer = new BlueprintComposer(blueprint);
+         System.out.println(blueprintComposer.getBlueprintSVG());
     }
 
     public OfferRequest() {
@@ -293,6 +295,7 @@ public class OfferRequest {
         assignMarkerHead();
         assignMarkers(canvasFrontPushRight, canvasFrontPushDown);
         assignCanvasFront(canvasFrontPushRight, canvasFrontPushDown);
+        assignCanvasFill();
         assignText(canvasFrontPushRight, canvasFrontPushDown);
         assignStolpe();
         assignRem();
@@ -309,7 +312,7 @@ public class OfferRequest {
         blueprint.setCanvasBack("<svg version=\"1.1\"\n" +
                 "     xmlns=\"http://www.w3.org/2000/svg\"\n" +
                 "     xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n" +
-                "     height=\"100%\" viewBox=\"0 0 " + canvasX + " " + canvasY + "\n" +
+                "     height=\"" + canvasY + "\" width=\"" + canvasX + "\" viewBox=\"0 0 " + canvasX + " " + canvasY + "\"\n" +
                 "     preserveAspectRatio=\"xMinYMin\">");
 
     }//assignCanvasBack
@@ -378,8 +381,8 @@ public class OfferRequest {
         int x2 = positionRigth + (carport.getConfLength() / 2);
         int y2 = positionDown + carport.getConfWidth() + 30;
 
-        int value1 = carport.getConfLength();
-        int value2 = carport.getConfWidth();
+        int value1 = carport.getConfWidth();
+        int value2 = carport.getConfLength();
 
         blueprint.setCanvasText("    <text style=\"text-anchor: middle\" transform=\"translate(" + x1 + "," + y1 + ") rotate(-90)\"> " + value1 + "cm </text>\n" +
                 "    <text style=\"text-anchor: middle\" x=\"" + x2 + "\" y=\"" + y2 + "\">" + value2 + "cm </text>");
@@ -388,11 +391,13 @@ public class OfferRequest {
     //TIL CARPORT
     private void assignCanvasFront(int positionRight, int positionDown) {
 
-        blueprint.setCanvasFront("<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" " +
-                "xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n" +
-                "x=\"" + positionRight + "\" y=\"" + positionDown + "\" " +
-                "height=\"" + carport.getConfWidth() + "\" width=\"" + carport.getConfLength() + "\" " +
-                "viewBox=\"0 0 " + carport.getConfWidth() + " " + carport.getConfLength() + "\">");
+        blueprint.setCanvasFront("<svg x=\""+positionRight+"\" y=\""+positionDown+"\" width=\""+carport.getConfLength()+"\" height=\""+carport.getConfWidth()+"\">");
+
+    }//assignCanvasFront
+
+    private void assignCanvasFill(){
+
+        blueprint.setCanvasFill("<rect x=\"0\" y=\"0\" height=\""+carport.getConfWidth()+"\" width=\""+carport.getConfLength()+"\" style=\"stroke:#000000; fill:#ffffff\" />");
 
     }//assignCanvasFront
 
@@ -465,7 +470,7 @@ public class OfferRequest {
                 "style=\"stroke:#000000; fill:#ffffff\"/>");
 
         for (int i = 1; i < quantity; i++) {
-            pushRight += i * distance;
+            pushRight += distance;
             insertRight = pushRight - halfWidth;
             stolper.add("<rect x=\"" + insertRight + "\" y=\"" + pushDown + "\" height=\"" + height + "\" width=\"" + width + "\" " +
                     "style=\"stroke:#000000; fill:#ffffff\"/>");

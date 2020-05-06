@@ -30,14 +30,14 @@ CREATE TABLE components (
 ALTER TABLE components auto_increment=2000;
 
 INSERT INTO components (compDesc,material,compHeigth,compWidth,currentStock,vendorPrice,salesPrice)
-VALUES  ("Stolpe", "Trykimprægneret", 100, 100, 74, 250, 475),
-		("Stolpe", "Egetræ", 90, 90, 56, 400, 750),
+VALUES  ("Stolpe", "Trykimprægneret", 10, 10, 74, 250, 475),
+		("Stolpe", "Egetræ", 9, 9, 56, 400, 750),
 
-		("Rem", "Trykimprægneret", 45, 195, 45, 135, 205),
-		("Rem", "Egetræ", 40, 185, 42, 145, 215),
+		("Rem", "Trykimprægneret", 4, 19, 45, 135, 205),
+		("Rem", "Egetræ", 4, 18, 4, 145, 215),
         
-		("Spær", "Trykimprægneret", 45, 195, 80, 45, 85),
-		("Spær", "Egetræ", 40, 185, 73, 50, 95),
+		("Spær", "Trykimprægneret", 4, 19, 80, 45, 85),
+		("Spær", "Egetræ", 4, 18, 73, 50, 95),
 
 		("Lægte", "Trykimprægneret", 38, 73, 37, 50, 95),
 		("Lægte", "Egetræ", 35, 70, 7, 60, 105),

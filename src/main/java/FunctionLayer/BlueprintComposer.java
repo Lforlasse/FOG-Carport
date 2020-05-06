@@ -9,19 +9,33 @@ public class BlueprintComposer {
     }
 
     private String composer(Blueprint blueprint) {
+
+
         String SVG = "<?xml version=\"1.0\" ?>\n" +
                 "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" +
                 "\n" +
-                blueprint.getCanvasBack() + "\n" +
-                blueprint.getMarkerHead() + "\n" +
-                blueprint.getMarkerX() + "\n" +
-                blueprint.getMarkerY() + "\n" +
-                blueprint.getCanvasFront() + "\n" +
-                blueprint.getCanvasText() + "\n" +
-                composeRem(blueprint) + "\n\n" +
-                composeStolpe(blueprint) + "\n\n" +
-                composeSper(blueprint) + "\n\n" +
-                composeStern(blueprint) + "\n\n" +
+                "<!-- CanvasBack -->" + "\n" +
+                blueprint.getCanvasBack() + "\n\n" +
+                "<!-- MarkerHead -->" + "\n" +
+                blueprint.getMarkerHead() + "\n\n" +
+                "<!-- MarkerX -->" + "\n" +
+                blueprint.getMarkerX() + "\n\n" +
+                "<!-- MarkerY -->" + "\n" +
+                blueprint.getMarkerY() + "\n\n" +
+                "<!-- CanvasText -->" + "\n" +
+                blueprint.getCanvasText() + "\n\n" +
+                "<!-- CanvasFront -->" + "\n" +
+                blueprint.getCanvasFront() + "\n\n" +
+                "<!-- CanvasFill -->" + "\n" +
+                blueprint.getCanvasFill() + "\n\n" +
+                "<!-- Rem -->" + "\n" +
+                composeRem(blueprint) + "\n" +
+                "<!-- Stolpe -->" + "\n" +
+                composeStolpe(blueprint) + "\n" +
+                "<!-- Sper -->" + "\n" +
+                composeSper(blueprint) + "\n" +
+                "<!-- Stern -->" + "\n" +
+                composeStern(blueprint) + "\n" +
                 "    </svg>\n" +
                 "</svg>";
 
