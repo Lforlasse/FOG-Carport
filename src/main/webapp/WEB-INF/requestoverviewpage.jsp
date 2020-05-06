@@ -24,10 +24,10 @@
                             <thead>
                             <tr>
                                 <th scope="col">Request ID</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Kunde</th>
-                                <th scope="col">Telefon</th>
-                                <th scope="col">Postnr.</th>
+                                <th scope="col" onclick="sortTable(0, 'offerRequestsTable')">Status</th>
+                                <th scope="col" onclick="sortTable(1, 'offerRequestsTable')">Kunde</th>
+                                <th scope="col" onclick="sortTable(2, 'offerRequestsTable')">Oprettet</th>
+                                <th scope="col" onclick="sortTable(3, 'offerRequestsTable')">Ændret.</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>
@@ -38,8 +38,8 @@
                                         <th scope="row">#${offerRequest.confId}</th>
                                         <td>${offerRequest.confStatus}</td>
                                         <td>${offerRequest.custName}</td>
-                                        <td>${offerRequest.custPhone}</td>
-                                        <td>${offerRequest.custPostal}</td>
+                                        <td>${offerRequest.CREATED_DATE}</td>
+                                        <td>${offerRequest.changedDate}</td>
                                         <td>
                                             <input type="hidden" name="target" value="viewOfferRequest">
                                             <input type="hidden" name="confId" value="${offerRequest.confId}">

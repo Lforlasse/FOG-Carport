@@ -54,14 +54,14 @@
             </div>
             <div class="card-body">
                 <form action="FrontController" method="POST">
-                    <table class="table table-bordered table-sm table-hover table-">
+                    <table class="table table-bordered table-sm table-hover table-" id="myTable">
                         <thead>
                         <tr>
                             <th scope="col">Request ID</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Kunde</th>
-                            <th scope="col">Telefon</th>
-                            <th scope="col">Postnr.</th>
+                            <th scope="col" onclick="sortTable(0, 'myTable')">Status</th>
+                            <th scope="col" onclick="sortTable(0, 'myTable')">Kunde</th>
+                            <th scope="col" onclick="sortTable(0, 'myTable')">Telefon</th>
+                            <th scope="col" onclick="sortTable(0, 'myTable')">Postnr.</th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
@@ -71,9 +71,51 @@
                             <form action="FrontController" method="POST">
                                 <th scope="row"># 0004384</th>
                                 <td>Ny anmodning</td>
-                                <td>Sørensen, Otto</td>
-                                <td>82524364</td>
-                                <td>2000</td>
+                                <td>a</td>
+                                <td>a</td>
+                                <td>a</td>
+                                <td>
+                                    <input type="hidden" name="target" value="viewOfferRequests">
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary w-100 px-0 py-1"
+                                            value="submit">Åben
+                                    </button>
+                                </td>
+                            </form>
+                        </tr><tr>
+                            <form action="FrontController" method="POST">
+                                <th scope="row"># 0004385</th>
+                                <td>Ny anmodning</td>
+                                <td>b</td>
+                                <td>b</td>
+                                <td>b</td>
+                                <td>
+                                    <input type="hidden" name="target" value="viewOfferRequests">
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary w-100 px-0 py-1"
+                                            value="submit">Åben
+                                    </button>
+                                </td>
+                            </form>
+                        </tr><tr>
+                            <form action="FrontController" method="POST">
+                                <th scope="row"># 0004386</th>
+                                <td>Behandles</td>
+                                <td>c</td>
+                                <td>c</td>
+                                <td>c</td>
+                                <td>
+                                    <input type="hidden" name="target" value="viewOfferRequests">
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary w-100 px-0 py-1"
+                                            value="submit">Åben
+                                    </button>
+                                </td>
+                            </form>
+                        </tr><tr>
+                            <form action="FrontController" method="POST">
+                                <th scope="row"># 0004387</th>
+                                <td>Afsluttet</td>
+                                <td>d</td>
+                                <td>d</td>
+                                <td>d</td>
                                 <td>
                                     <input type="hidden" name="target" value="viewOfferRequests">
                                     <button type="submit" class="btn btn-sm btn-outline-secondary w-100 px-0 py-1"
@@ -95,7 +137,9 @@
 </div>
 
 
+
 <!-- Optional JavaScript -->
+<script src="../js/sorttable.js"></script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
