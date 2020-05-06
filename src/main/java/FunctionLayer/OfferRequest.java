@@ -17,6 +17,7 @@ public class OfferRequest {
     private int vendorPrice;
     private int salesPrice;
     private Blueprint blueprint;
+    private BlueprintComposer blueprintComposer;
 
     public OfferRequest(int confId) {
         this.confId = confId;
@@ -30,6 +31,7 @@ public class OfferRequest {
         calcSalesPrice();
 
         this.blueprint = new Blueprint();
+        this.blueprintComposer = new BlueprintComposer(blueprint);
     }
 
     public OfferRequest() {
@@ -291,6 +293,7 @@ public class OfferRequest {
         assignMarkerHead();
         assignMarkers(canvasFrontPushRight, canvasFrontPushDown);
         assignCanvasFront(canvasFrontPushRight, canvasFrontPushDown);
+        assignText(canvasFrontPushRight, canvasFrontPushDown);
         assignStolpe();
         assignRem();
         assignSper();
@@ -366,6 +369,21 @@ public class OfferRequest {
                 "\tmarker-end: url(#endArrow);\"/>");
 
     }//assignMarkers
+
+    private void assignText(int positionRigth, int positionDown){
+
+        int x1 = positionRigth - 30;
+        int y1 = positionDown + (carport.getConfWidth() / 2);
+
+        int x2 = positionRigth + (carport.getConfLength() / 2);
+        int y2 = positionDown + carport.getConfWidth() + 30;
+
+        int value1 = carport.getConfLength();
+        int value2 = carport.getConfWidth();
+
+        blueprint.setCanvasText("    <text style=\"text-anchor: middle\" transform=\"translate(" + x1 + "," + y1 + ") rotate(-90)\"> " + value1 + "cm </text>\n" +
+                "    <text style=\"text-anchor: middle\" x=\"" + x2 + "\" y=\"" + y2 + "\">" + value2 + "cm </text>");
+    }//assignText
 
     //TIL CARPORT
     private void assignCanvasFront(int positionRight, int positionDown) {
