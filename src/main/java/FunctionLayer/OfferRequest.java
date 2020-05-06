@@ -356,18 +356,18 @@ public class OfferRequest {
         headEndY = carport.getConfWidth() + positionDown - 5;
 
         blueprint.setMarkerX("<line x1=\""+headStartX+"\"  y1=\""+headStartY+"\" x2=\""+headEndX+"\"   y2=\""+headEndY+"\"\n" +
-                "              style=\"stroke: #006600;\n" +
+                "              style=\"stroke: #000000;\n" +
                 "\tmarker-start: url(#beginArrow);\n" +
                 "\tmarker-end: url(#endArrow);\"/>");
 
 
         headStartX = positionRight + 5;
         headStartY = positionDown + carport.getConfWidth() + 15;
-        headEndX = carport.getConfLength() - 5;
+        headEndX = positionRight + carport.getConfLength() - 5;
         headEndY = headStartY;
 
         blueprint.setMarkerY("<line x1=\""+headStartX+"\"  y1=\""+headStartY+"\" x2=\""+headEndX+"\"   y2=\""+headEndY+"\"\n" +
-                "              style=\"stroke: #006600;\n" +
+                "              style=\"stroke: #000000;\n" +
                 "\tmarker-start: url(#beginArrow);\n" +
                 "\tmarker-end: url(#endArrow);\"/>");
 
@@ -397,7 +397,7 @@ public class OfferRequest {
 
     private void assignCanvasFill(){
 
-        blueprint.setCanvasFill("<rect x=\"0\" y=\"0\" height=\""+carport.getConfWidth()+"\" width=\""+carport.getConfLength()+"\" style=\"stroke:#000000; fill:#ffffff\" />");
+        blueprint.setCanvasFill("<rect x=\"0\" y=\"0\" height=\""+carport.getConfWidth()+"\" width=\""+carport.getConfLength()+"\" style=\"stroke:#000000; fill:#797D7F\" />");
 
     }//assignCanvasFront
 
@@ -440,7 +440,7 @@ public class OfferRequest {
         ArrayList<String> stolper = new ArrayList<>();
         int quantity = 0;
         int halfWidth = width / 2;
-        int distance = carport.getConfLength();
+        int distance = carport.getConfLength() - 200;
         int pushRight = 100;
         int insertRight = pushRight - halfWidth;
         int pushDown = carport.getConfWidth() - height;
@@ -494,7 +494,7 @@ public class OfferRequest {
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Rem")) {
-                width = entry.getKey().getCompHeight();
+                width = entry.getKey().getCompLength();
             }//if
         }//for
         return width;
@@ -507,7 +507,7 @@ public class OfferRequest {
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Rem")) {
-                height = entry.getKey().getCompWidth();
+                height = entry.getKey().getCompHeight();
             }//if
         }//for
         return height;
@@ -561,8 +561,8 @@ public class OfferRequest {
         int width = 0;
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
-            if (entry.getKey().getCompDesc().equalsIgnoreCase("Sper")) {
-                width = entry.getKey().getCompWidth();
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Spær")) {
+                width = entry.getKey().getCompHeight();
             }//if
         }//for
         return width;
@@ -574,7 +574,7 @@ public class OfferRequest {
         int height = 0;
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
-            if (entry.getKey().getCompDesc().equalsIgnoreCase("Sper")) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Spær")) {
                 height = entry.getKey().getCompLength();
             }//if
         }//for
@@ -591,7 +591,7 @@ public class OfferRequest {
         int halfWidth = width / 2;
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
-            if (entry.getKey().getCompDesc().equalsIgnoreCase("sper")) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Spær")) {
                 quantity = entry.getValue();
             }//if
         }//for
