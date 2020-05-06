@@ -17,7 +17,6 @@ public class OfferRequest {
     private int vendorPrice;
     private int salesPrice;
     private Blueprint blueprint;
-    private BlueprintComposer blueprintComposer;
 
     public OfferRequest(int confId) {
         this.confId = confId;
@@ -32,8 +31,7 @@ public class OfferRequest {
 
         this.blueprint = new Blueprint();
         generateBlueprint();
-        this.blueprintComposer = new BlueprintComposer(blueprint);
-         System.out.println(blueprintComposer.getBlueprintSVG());
+         System.out.println(blueprint.getBlueprintSVG());
     }
 
     public OfferRequest() {
@@ -302,6 +300,7 @@ public class OfferRequest {
         assignSper();
         assignStern();
 
+        blueprint.setBlueprintSVG(blueprint.composeSVG());
 
     }//generateBlueprint
 
