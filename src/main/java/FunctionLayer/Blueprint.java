@@ -7,6 +7,7 @@ public class Blueprint {
     private String canvasFront;
     private String canvasBack;
     private String canvasText;
+    private String canvasFill;
     private ArrayList<String> Stolpe;
     private ArrayList<String> Rem;
     private ArrayList<String> Sper;
@@ -34,6 +35,14 @@ public class Blueprint {
 
     public void setCanvasBack(String canvasBack) {
         this.canvasBack = canvasBack;
+    }
+
+    public String getCanvasFill() {
+        return canvasFill;
+    }
+
+    public void setCanvasFill(String canvasFill) {
+        this.canvasFill = canvasFill;
     }
 
     public String getCanvasText() {
