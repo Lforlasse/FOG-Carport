@@ -307,6 +307,7 @@ public class OfferRequest {
     //TIL MARKERS + carport canvas
     private void assignCanvasBack(int canvasX, int canvasY) {
 
+
         blueprint.setCanvasBack("<svg version=\"1.1\"\n" +
                 "     xmlns=\"http://www.w3.org/2000/svg\"\n" +
                 "     xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n" +
