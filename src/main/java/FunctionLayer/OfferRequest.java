@@ -284,17 +284,17 @@ public class OfferRequest {
 
     //BLUEPRINT
     private void generateBlueprint() {
-        int canvasBackX = 750;
-        int canvasBackY = 750;
-        int canvasFrontPushRight = 50;
-        int canvasFrontPushDown = 50;
+        int canvasBorderSides = 50;
+        int canvasBorderTopBot = 50;
+        int canvasBackX = canvasBorderSides + carport.getConfLength() + canvasBorderSides;
+        int canvasBackY = canvasBorderTopBot + carport.getConfWidth() + canvasBorderTopBot;
 
         assignCanvasBack(canvasBackX, canvasBackY);
         assignMarkerHead();
-        assignMarkers(canvasFrontPushRight, canvasFrontPushDown);
-        assignCanvasFront(canvasFrontPushRight, canvasFrontPushDown);
+        assignMarkers(canvasBorderSides, canvasBorderTopBot);
+        assignCanvasFront(canvasBorderSides, canvasBorderTopBot);
         assignCanvasFill();
-        assignText(canvasFrontPushRight, canvasFrontPushDown);
+        assignText(canvasBorderSides, canvasBorderTopBot);
         assignStolpe();
         assignRem();
         assignSper();
@@ -306,7 +306,6 @@ public class OfferRequest {
 
     //TIL MARKERS + carport canvas
     private void assignCanvasBack(int canvasX, int canvasY) {
-
 
         blueprint.setCanvasBack("<svg version=\"1.1\"\n" +
                 "     xmlns=\"http://www.w3.org/2000/svg\"\n" +

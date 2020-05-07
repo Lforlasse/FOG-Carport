@@ -283,6 +283,15 @@
                 </div>
             </div>
         </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                SVG
+            </div>
+            <div class="card-body">
+                <img src="svg/preview.svg">
+            </div>
+        </div>
     </div>
 </div>
 
