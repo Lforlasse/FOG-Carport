@@ -289,7 +289,7 @@
                 SVG
             </div>
             <div class="card-body">
-                <img src="svg/preview.svg">
+                <img src="svg/${requestScope.offerRequest.confId}.svg">
             </div>
         </div>
     </div>

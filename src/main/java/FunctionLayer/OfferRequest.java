@@ -31,7 +31,7 @@ public class OfferRequest {
 
         this.blueprint = new Blueprint();
         generateBlueprint();
-         System.out.println(blueprint.getBlueprintSVG());
+        blueprint.toFile(blueprint.getBlueprintSVG(),getConfId());
     }
 
     public OfferRequest() {
@@ -301,6 +301,7 @@ public class OfferRequest {
         assignStern();
 
         blueprint.setBlueprintSVG(blueprint.composeSVG());
+
 
     }//generateBlueprint
 

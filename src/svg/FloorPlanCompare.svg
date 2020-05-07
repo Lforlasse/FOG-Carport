@@ -5,7 +5,7 @@
 <svg version="1.1"
      xmlns="http://www.w3.org/2000/svg"
      xmlns:xlink="http://www.w3.org/1999/xlink"
-     height="750" width="750" viewBox="0 0 750 750"
+     height="400" width="700" viewBox="0 0 700 400"
      preserveAspectRatio="xMinYMin">
 
     <!-- MarkerHead -->
@@ -37,49 +37,49 @@
 	marker-end: url(#endArrow);"/>
 
     <!-- MarkerY -->
-    <line x1="55"  y1="365" x2="625"   y2="365"
+    <line x1="55"  y1="365" x2="645"   y2="365"
           style="stroke: #000000;
 	marker-start: url(#beginArrow);
 	marker-end: url(#endArrow);"/>
 
     <!-- CanvasText -->
     <text style="text-anchor: middle" transform="translate(20,200) rotate(-90)"> 300cm </text>
-    <text style="text-anchor: middle" x="340" y="380">580cm </text>
+    <text style="text-anchor: middle" x="350" y="380">600cm </text>
 
     <!-- CanvasFront -->
-    <svg x="50" y="50" width="580" height="300">
+    <svg x="50" y="50" width="600" height="300">
 
         <!-- CanvasFill -->
-        <rect x="0" y="0" height="300" width="580" style="stroke:#000000; fill:#797D7F" />
+        <rect x="0" y="0" height="300" width="600" style="stroke:#000000; fill:#797D7F" />
 
         <!-- Stolpe -->
         <rect x="96" y="0" height="9" width="9" style="stroke:#000000; fill:#ffffff"/>
-        <rect x="286" y="0" height="9" width="9" style="stroke:#000000; fill:#ffffff"/>
-        <rect x="476" y="0" height="9" width="9" style="stroke:#000000; fill:#ffffff"/>
+        <rect x="296" y="0" height="9" width="9" style="stroke:#000000; fill:#ffffff"/>
+        <rect x="496" y="0" height="9" width="9" style="stroke:#000000; fill:#ffffff"/>
         <rect x="96" y="291" height="9" width="9" style="stroke:#000000; fill:#ffffff"/>
-        <rect x="286" y="291" height="9" width="9" style="stroke:#000000; fill:#ffffff"/>
-        <rect x="476" y="291" height="9" width="9" style="stroke:#000000; fill:#ffffff"/>
+        <rect x="296" y="291" height="9" width="9" style="stroke:#000000; fill:#ffffff"/>
+        <rect x="496" y="291" height="9" width="9" style="stroke:#000000; fill:#ffffff"/>
 
         <!-- Rem -->
-        <rect x="0" y="0" height="4" width="290" style="stroke:#000000; fill:#ffffff" />
-        <rect x="290" y="0" height="4" width="290" style="stroke:#000000; fill:#ffffff" />
-        <rect x="0" y="296" height="4" width="290" style="stroke:#000000; fill:#ffffff" />
-        <rect x="290" y="296" height="4" width="290" style="stroke:#000000; fill:#ffffff" />
+        <rect x="0" y="0" height="4" width="300" style="stroke:#000000; fill:#ffffff" />
+        <rect x="300" y="0" height="4" width="300" style="stroke:#000000; fill:#ffffff" />
+        <rect x="0" y="296" height="4" width="300" style="stroke:#000000; fill:#ffffff" />
+        <rect x="300" y="296" height="4" width="300" style="stroke:#000000; fill:#ffffff" />
 
         <!-- Sper -->
         <rect x="0" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
-        <rect x="46" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
-        <rect x="94" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
-        <rect x="142" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
-        <rect x="190" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
-        <rect x="238" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
-        <rect x="286" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
-        <rect x="334" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
-        <rect x="382" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
-        <rect x="430" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
-        <rect x="478" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
-        <rect x="526" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
-        <rect x="574" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
+        <rect x="48" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
+        <rect x="98" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
+        <rect x="148" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
+        <rect x="198" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
+        <rect x="248" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
+        <rect x="298" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
+        <rect x="348" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
+        <rect x="398" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
+        <rect x="448" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
+        <rect x="498" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
+        <rect x="548" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
+        <rect x="598" y="0" height="300" width="4" style="stroke:#000000; fill:#ffffff" />
 
         <!-- Stern -->
 

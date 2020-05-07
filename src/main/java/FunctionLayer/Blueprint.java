@@ -1,5 +1,12 @@
 package FunctionLayer;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class Blueprint {
@@ -20,7 +27,26 @@ public class Blueprint {
 
     public Blueprint() {
 
+
     }//Blueprint
+
+    public void toFile(String content, int confId) {
+
+        String directory = "/svg";
+        directory += confId + ".svg";
+
+
+        try {
+            BufferedWriter svgFile = new BufferedWriter(new FileWriter(directory));
+
+            svgFile.write(content);
+
+            svgFile.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }//toFile
 
     public String composeSVG() {
 
