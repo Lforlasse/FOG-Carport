@@ -31,7 +31,6 @@ public class OfferRequest {
 
         this.blueprint = new Blueprint();
         generateBlueprint();
-        blueprint.toFile(blueprint.getBlueprintSVG(),getConfId());
     }
 
     public OfferRequest() {
@@ -589,20 +588,38 @@ public class OfferRequest {
         int insertRight;
         int distance;
         int halfWidth = width / 2;
+        int sperLength = 0;
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Spær")) {
                 quantity = entry.getValue();
+                sperLength = entry.getKey().getCompLength();
             }//if
         }//for
-        distance = carport.getConfLength() / (quantity - 1);
 
-        sper.add("<rect x=\"" + pushRight + "\" y=\"" + 0 + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
-        for (int i = 1; i < quantity; i++) {
-            pushRight += distance;
-            insertRight = pushRight - halfWidth;
-            sper.add("<rect x=\"" + insertRight + "\" y=\"" + 0 + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
-        }//for
+        if (carport.getConfWidth() == sperLength) {
+            distance = carport.getConfLength() / (quantity - 1);
+
+            sper.add("<rect x=\"" + pushRight + "\" y=\"" + 0 + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+            for (int i = 1; i < quantity; i++) {
+                pushRight += distance;
+                insertRight = pushRight - halfWidth;
+                sper.add("<rect x=\"" + insertRight + "\" y=\"" + 0 + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+            }//for
+        } else {
+            quantity /= 2;
+            distance = carport.getConfLength() / (quantity - 1);
+
+            sper.add("<rect x=\"" + pushRight + "\" y=\"" + 0 + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+            sper.add("<rect x=\"" + pushRight + "\" y=\"" + sperLength + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+
+            for (int i = 1; i < quantity; i++) {
+                pushRight += distance;
+                insertRight = pushRight - halfWidth;
+                sper.add("<rect x=\"" + insertRight + "\" y=\"" + 0 + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+                sper.add("<rect x=\"" + insertRight + "\" y=\"" + sperLength + "\" height=\"" + heigth + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" />");
+            }//for
+        }//else
 
         return sper;
     }//placeSper
@@ -773,5 +790,9 @@ public class OfferRequest {
 
     public void setSalesPrice(int salesPrice) {
         this.salesPrice = salesPrice;
+    }
+
+    public Blueprint getBlueprint() {
+        return blueprint;
     }
 }//class

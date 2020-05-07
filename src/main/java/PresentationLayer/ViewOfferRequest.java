@@ -17,6 +17,7 @@ public class ViewOfferRequest extends Command {
         request.setAttribute("offerRequestStatus", offerRequestStatus);
         request.setAttribute("offerRequest", offerRequest);
         request.setAttribute("confId", confId);
+        request.setAttribute("svg",offerRequest.getBlueprint().getBlueprintSVG());
 
         try {
             int pageFunction = Integer.parseInt(request.getParameter("pageFunction"));
