@@ -3,6 +3,7 @@ package FunctionLayer;
 import DBAccess.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -106,7 +107,7 @@ public class LogicFacade {
     }
 
     public static List<String> getOfferRequestStatusTypes() {
-        return new ArrayList<>(ConfigurationStatusMapper.getAllConfigStatusTypes());
+        return new LinkedList<>(ConfigurationStatusMapper.getAllConfigStatusTypes());
     }
 
     public static boolean updateOfferRequestStatus(int confId, String offerRequestStatus) {
