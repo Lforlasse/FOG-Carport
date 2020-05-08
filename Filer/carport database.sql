@@ -117,16 +117,17 @@ VALUES  ("Carspace height", 185),
         ("Carspace width", 250);
         
 CREATE TABLE configurationStatus (
+	confStatusId INT NOT NULL,
 	confStatus VARCHAR(20) NOT NULL,
     
     PRIMARY KEY (confStatus)
 );
 
-INSERT INTO configurationStatus (confStatus)
-VALUES  ("Ny"),
-		("Behandles"),
-        ("Tilbud sendt"),
-		("Afsluttet");
+INSERT INTO configurationStatus (confStatusId, confStatus)
+VALUES  ("1", "Ny"),
+		("2","Behandles"),
+        ("3","Tilbud sendt"),
+		("4","Afsluttet");
 
 CREATE TABLE configurations (
 	confId INT NOT NULL AUTO_INCREMENT,
@@ -148,10 +149,14 @@ CREATE TABLE configurations (
     
     );
 ALTER TABLE configurations auto_increment=224466;
-    
-INSERT INTO configurations (confStatus,custName,custPhone,custEmail,custPostal,length,width,height,material,roofMaterial)
-VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 580, 225, "Egetræ", "PLASTMO"),
-		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", "Betontagsten, sort");
+CREATE TRIGGER changeDateTrigger
+BEFORE UPDATE ON configurations 
+FOR EACH ROW 
+SET new.changedDate = curdate();
+
+INSERT INTO configurations (confStatus,custName,custPhone,custEmail,custPostal,length,width,height,material,roofMaterial, changedDate, createdDate)
+VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 580, 225, "Egetræ", "PLASTMO", "2020-05-01", "2020-05-01"),
+		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", "Betontagsten, sort", "2020-05-03", "2020-05-03");
 
 
 
