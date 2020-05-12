@@ -17,6 +17,7 @@ public class OfferRequest {
     private int vendorPrice;
     private int salesPrice;
     private Blueprint blueprint;
+    //private string roof;
 
     public OfferRequest(int confId) {
         this.confId = confId;
@@ -100,10 +101,10 @@ public class OfferRequest {
 
     }//addSper
 
-//    private static void addLegter() { //TODO fremtidigt sprint, bruges til tag med rejsning.
-//
-//
-//    }//addLegte
+    private void addLegter() { //TODO fremtidigt sprint, bruges til tag med rejsning.
+
+
+    }//addLegte
 
     private void addStern() {
 
