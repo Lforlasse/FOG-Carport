@@ -14,14 +14,14 @@ public class Carport {
     private int confWidth;
     private int confHeight;
     private String confMat;
-    private String confRoof;
+    private Roof roof;
     private boolean carSpace;
     private String confStatus;
     private final Date CREATED_DATE;
     private Date changedDate;
 
     public Carport(int confId, String custName, int custPhone, String custEmail, int custPostal,
-                   int confLength, int confWidth, int confHeight, String confMat, String confRoof) {
+                   int confLength, int confWidth, int confHeight, String confMat, int inclination, String confRoof) {
         this.confId = confId;
         this.custName = custName;
         this.custPhone = custPhone;
@@ -31,7 +31,7 @@ public class Carport {
         this.confWidth = confWidth;
         this.confHeight = confHeight;
         this.confMat = confMat;
-        this.confRoof = confRoof;
+        this.roof = new Roof(confRoof, inclination);
         this.carSpace = checkCarSpace();
 
         this.confStatus = ConfigurationMapper.getConfigStatus(confId);
@@ -128,12 +128,8 @@ public class Carport {
         this.confMat = confMat;
     }
 
-    public String getConfRoof() {
-        return confRoof;
-    }
-
-    public void setConfRoof(String confRoof) {
-        this.confRoof = confRoof;
+    public Roof getRoof() {
+        return roof;
     }
 
     public boolean isCarSpace() {

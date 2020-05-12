@@ -25,7 +25,7 @@ public class ConfigurationMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material FROM configurations WHERE confId =?;";
+            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material, roofInclination, roofMaterial FROM configurations WHERE confId =?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, getConfId);
 
@@ -40,8 +40,9 @@ public class ConfigurationMapper {
                     rs.getInt(6),
                     rs.getInt(7),
                     rs.getInt(8),
-                    rs.getString(9),
-                    rs.getString(10)
+                    rs.getInt(9),
+                    rs.getString(10),
+                    rs.getString(11)
             );
 
         } catch (ClassNotFoundException | SQLException ex) {

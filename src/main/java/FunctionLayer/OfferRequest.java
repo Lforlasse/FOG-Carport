@@ -17,7 +17,6 @@ public class OfferRequest {
     private int vendorPrice;
     private int salesPrice;
     private Blueprint blueprint;
-    //private string roof;
 
     public OfferRequest(int confId) {
         this.confId = confId;
@@ -42,7 +41,11 @@ public class OfferRequest {
         addStolpe();
         addRem();
         addSper();
-        //addLegter(); se metode.
+
+        if (carport.getRoof().inclination > 0) {
+            addLegte();
+        }
+
         addStern();
 
     }//generateCompList
@@ -89,6 +92,7 @@ public class OfferRequest {
         int maxSpread = 50;
         int countUnit = 1;
         int addUnit = 1;
+
         for (int i = carport.getConfLength(); i > 0; i -= maxSpread) {
             countUnit += 1;
         }
@@ -101,9 +105,34 @@ public class OfferRequest {
 
     }//addSper
 
-    private void addLegter() { //TODO fremtidigt sprint, bruges til tag med rejsning.
+    private void addLegte() { //TODO fremtidigt sprint, bruges til tag med rejsning.
+
+        int bottomSpace = 35;
+        int Spread = 30;
+        int countUnit = 2;
+        int sideC = carport.getRoof().getSideC() - bottomSpace;
+
+        for (int i = sideC; i > Spread; i -= Spread){
+            countUnit += 1;
+        }
+
+        countUnit += countUnit;
 
 
+        if (carport.getConfLength() > carport.getRoof().maxLengthComponent) {
+            countUnit *= countUnit;
+
+            Component legte = ComponentMapper.getComponent("Lægte", carport.getConfMat());
+            legte.setCompLength(carport.getConfLength() / 2);
+            compList.put(legte, countUnit);
+
+        }else {
+
+        Component legte = ComponentMapper.getComponent("Lægte", carport.getConfMat());
+        legte.setCompLength(carport.getConfLength());
+        compList.put(legte, countUnit);
+
+        }//else
     }//addLegte
 
     private void addStern() {
@@ -156,7 +185,11 @@ public class OfferRequest {
     private void generatePartList() {
         addPartRem();
         addPartSper();
-        //addPartLegte(); se metode.
+
+        if (carport.getRoof().inclination > 0) {
+            addPartLegte();
+        }
+
         addPartStern();
 
     }//generateCompList
@@ -207,6 +240,39 @@ public class OfferRequest {
         partList.put(partSkruer, countBox);
 
     }//addPartSper
+
+    private void addPartLegte(){
+
+        int countLegte= 0;
+        int countSper = 0;
+        int countScrew = 2;
+        int countBox = 1;
+
+        for(Map.Entry<Component, Integer> entry : compList.entrySet()){
+            if(entry.getKey().getCompDesc().equalsIgnoreCase("Spær")){
+                countSper = entry.getValue();
+            }
+
+            if(entry.getKey().getCompDesc().equalsIgnoreCase("Lægte")){
+                countLegte = entry.getValue();
+            }
+
+        }//for
+
+            if (carport.getConfLength() > carport.getRoof().maxLengthComponent) {
+                countSper /= 2;
+            }
+
+        countScrew *= countSper;
+        countScrew *= countLegte;
+
+        countBox += countScrew / 100;
+
+        //Parts
+        Part partScrew = PartMapper.getPart("Skruer 5 x 100mm 100stk");
+
+        partList.put(partScrew, countBox);
+    }//addPartLegte
 
     private void addPartStern() {
         //1 sternbræt(over el. mellem el. under) = 2 skruer pr spær.
