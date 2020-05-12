@@ -33,21 +33,21 @@ INSERT INTO components (compDesc,material,compHeigth,compWidth,currentStock,vend
 VALUES  ("Stolpe", "Trykimprægneret", 10, 10, 74, 250, 475),
 		("Stolpe", "Egetræ", 9, 9, 56, 400, 750),
 
-		("Rem", "Trykimprægneret", 4, 19, 45, 135, 205),
-		("Rem", "Egetræ", 4, 18, 4, 145, 215),
+		("Rem", "Trykimprægneret", 5, 19, 45, 135, 205),
+		("Rem", "Egetræ", 5, 18, 4, 145, 215),
         
-		("Spær", "Trykimprægneret", 4, 19, 80, 45, 85),
-		("Spær", "Egetræ", 4, 18, 73, 50, 95),
+		("Spær", "Trykimprægneret", 5, 19, 80, 45, 85),
+		("Spær", "Egetræ", 5, 18, 73, 50, 95),
 
-		("Lægte", "Trykimprægneret", 38, 73, 37, 50, 95),
-		("Lægte", "Egetræ", 35, 70, 7, 60, 105),
+		("Lægte", "Trykimprægneret", 4, 7, 37, 50, 95),
+		("Lægte", "Egetræ", 4, 7, 7, 60, 105),
         
-        ("Stern, over", "Trykimprægneret", 25, 125, 37, 50, 95),
-        ("Stern, mellem", "Trykimprægneret", 25, 125, 37, 50, 95),
-        ("Stern, under", "Trykimprægneret", 25, 125, 37, 50, 95),
-		("Stern, over", "Egetræ", 20, 115, 41, 60, 110),
-        ("Stern, mellem", "Egetræ", 20, 115, 41, 60, 110),
-        ("Stern, under", "Egetræ", 20, 115, 41, 60, 110);
+        ("Stern, over", "Trykimprægneret", 3, 13, 37, 50, 95),
+        ("Stern, mellem", "Trykimprægneret", 3, 13, 37, 50, 95),
+        ("Stern, under", "Trykimprægneret", 3, 13, 37, 50, 95),
+		("Stern, over", "Egetræ", 2, 12, 41, 60, 110),
+        ("Stern, mellem", "Egetræ", 2, 12, 41, 60, 110),
+        ("Stern, under", "Egetræ", 2, 12, 41, 60, 110);
 
 CREATE TABLE roof (
 	roofId INT AUTO_INCREMENT,
@@ -102,6 +102,7 @@ VALUES  ("Skruer 4,5 x 120mm 200stk", "Pakke", 120, 15, 45),
         ("Universalbeslag 190mm højre", "Styk", 83, 15, 35),
         ("Universalbeslag 190mm venstre", "Styk", 85, 15, 35),
         ("Skruer 4,5 x 60mm 200stk", "Pakke", 102, 15, 40),
+        ("Skruer 5 x 100mm 100stk", "Pakke", 85, 40, 120),
         ("PLASTMO bundskruer 200stk", "Pakke", 30, 20, 45);
 
 CREATE TABLE validations (
@@ -117,17 +118,16 @@ VALUES  ("Carspace height", 185),
         ("Carspace width", 250);
         
 CREATE TABLE configurationStatus (
-	confStatusId INT NOT NULL,
 	confStatus VARCHAR(20) NOT NULL,
     
     PRIMARY KEY (confStatus)
 );
 
-INSERT INTO configurationStatus (confStatusId, confStatus)
-VALUES  ("1", "Ny"),
-		("2","Behandles"),
-        ("3","Tilbud sendt"),
-		("4","Afsluttet");
+INSERT INTO configurationStatus (confStatus)
+VALUES  ("Ny"),
+		("Behandles"),
+        ("Tilbud sendt"),
+		("Afsluttet");
 
 CREATE TABLE configurations (
 	confId INT NOT NULL AUTO_INCREMENT,
@@ -140,7 +140,8 @@ CREATE TABLE configurations (
     width INT NOT NULL,
     height INT NOT NULL,
     material VARCHAR (30),
-    roofmaterial VARCHAR (30),
+    roofInclination INT DEFAULT 0,
+	roofMaterial VARCHAR (30),
     createdDate VARCHAR(10) DEFAULT (curdate()),
     changedDate VARCHAR(10) DEFAULT (curdate()),
     
@@ -149,14 +150,10 @@ CREATE TABLE configurations (
     
     );
 ALTER TABLE configurations auto_increment=224466;
-CREATE TRIGGER changeDateTrigger
-BEFORE UPDATE ON configurations 
-FOR EACH ROW 
-SET new.changedDate = curdate();
-
-INSERT INTO configurations (confStatus,custName,custPhone,custEmail,custPostal,length,width,height,material,roofMaterial, changedDate, createdDate)
-VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 580, 225, "Egetræ", "PLASTMO", "2020-05-01", "2020-05-01"),
-		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", "Betontagsten, sort", "2020-05-03", "2020-05-03");
+    
+INSERT INTO configurations (confStatus,custName,custPhone,custEmail,custPostal,length,width,height,material,roofMaterial)
+VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 580, 225, "Egetræ", "PLASTMO"),
+		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", "Betontagsten, sort");
 
 
 
