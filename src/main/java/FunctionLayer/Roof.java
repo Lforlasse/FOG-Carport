@@ -3,16 +3,32 @@ package FunctionLayer;
 public class Roof {
 
     int roofHeight;
-    String materiale;
+    String material;
     int inclination;
+    int maxLengthComponent;
+    int sideC;
 
 
-    public Roof(int roofHeight, String materiale, int inclination) {
-        this.roofHeight = roofHeight;
-        this.materiale = materiale;
+
+    public Roof(String material, int inclination) {
+        this.material = material;
         this.inclination = inclination;
+        this.sideC = calcSideC();
+        this.maxLengthComponent = 400;
     }
 
+    public Roof() {
+    }
+
+    public int calcSideC() {
+
+        int res = 0;
+
+
+
+        return res;
+
+    }
 
     //Getter & Setter
     public int getRoofHeight() {
@@ -23,12 +39,12 @@ public class Roof {
         this.roofHeight = roofHeight;
     }
 
-    public String getMateriale() {
-        return materiale;
+    public String getMaterial() {
+        return material;
     }
 
-    public void setMateriale(String materiale) {
-        this.materiale = materiale;
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
     public int getInclination() {
@@ -37,5 +53,13 @@ public class Roof {
 
     public void setInclination(int inclination) {
         this.inclination = inclination;
+    }
+
+    public int getSideC() {
+        return sideC;
+    }
+
+    public void setSideC(int sideC) {
+        this.sideC = sideC;
     }
 }
