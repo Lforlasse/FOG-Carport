@@ -40,10 +40,9 @@ public class ConfigurationMapper {
                     rs.getInt(6),
                     rs.getInt(7),
                     rs.getInt(8),
-                    rs.getInt(9),
-                    rs.getString(10),
-                    rs.getString(11)
-            );
+                    rs.getString(9),
+                    rs.getInt(10),
+                    rs.getString(11));
 
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex);
@@ -118,7 +117,7 @@ public class ConfigurationMapper {
         Carport carport = null;
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material FROM configurations WHERE confId =?;";
+            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material, roofInclination, roofMaterial FROM configurations WHERE confId =?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, confId);
 
@@ -133,7 +132,8 @@ public class ConfigurationMapper {
                     rs.getInt(7),
                     rs.getInt(8),
                     rs.getString(9),
-                    "roof");
+                    rs.getInt(10),
+                    rs.getString(11));
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex);
         }//catch
@@ -159,7 +159,8 @@ public class ConfigurationMapper {
                         rs.getInt(7),
                         rs.getInt(8),
                         rs.getString(9),
-                        rs.getString(10)));
+                        rs.getInt(10),
+                        rs.getString(11)));
             }//while
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex);
@@ -237,7 +238,7 @@ public class ConfigurationMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material FROM configurations WHERE confStatus = \"ny\";";
+            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material, roofInclination, roofMaterial FROM configurations WHERE confStatus = \"ny\";";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ResultSet rs = ps.executeQuery();
@@ -252,7 +253,8 @@ public class ConfigurationMapper {
                         rs.getInt(7),
                         rs.getInt(8),
                         rs.getString(9),
-                        rs.getString(10)));
+                        rs.getInt(10),
+                        rs.getString(11)));
             }//while
 
         } catch (ClassNotFoundException | SQLException ex) {
@@ -267,7 +269,7 @@ public class ConfigurationMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material FROM configurations WHERE confStatus = \"behandles\";";
+            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material, roofInclination, roofMaterial FROM configurations WHERE confStatus = \"behandles\";";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ResultSet rs = ps.executeQuery();
@@ -282,7 +284,8 @@ public class ConfigurationMapper {
                         rs.getInt(7),
                         rs.getInt(8),
                         rs.getString(9),
-                        rs.getString(10)));
+                        rs.getInt(10),
+                        rs.getString(11)));
             }//while
 
         } catch (ClassNotFoundException | SQLException ex) {
@@ -297,7 +300,7 @@ public class ConfigurationMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material FROM configurations WHERE confStatus = \"afsluttet\";";
+            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material, roofInclination, roofMaterial FROM configurations WHERE confStatus = \"afsluttet\";";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ResultSet rs = ps.executeQuery();
@@ -311,7 +314,8 @@ public class ConfigurationMapper {
                         rs.getInt(7),
                         rs.getInt(8),
                         rs.getString(9),
-                        rs.getString(10)));
+                        rs.getInt(10),
+                        rs.getString(11)));
             }//while
 
         } catch (ClassNotFoundException | SQLException ex) {
