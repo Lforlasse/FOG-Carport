@@ -47,7 +47,9 @@ VALUES  ("Stolpe", "Trykimprægneret", 10, 10, 74, 250, 475),
         ("Stern, under", "Trykimprægneret", 3, 13, 37, 50, 95),
 		("Stern, over", "Egetræ", 2, 12, 41, 60, 110),
         ("Stern, mellem", "Egetræ", 2, 12, 41, 60, 110),
-        ("Stern, under", "Egetræ", 2, 12, 41, 60, 110);
+        ("Stern, under", "Egetræ", 2, 12, 41, 60, 110),
+        
+        ("Beklædning", "Trykimprægneret", 2, 10, 55, 16, 20);
 
 CREATE TABLE roof (
 	roofId INT AUTO_INCREMENT,
@@ -92,18 +94,23 @@ CREATE TABLE parts (
 ALTER TABLE parts auto_increment=6000;
 
 INSERT INTO parts (partDesc,itemType,currentStock,vendorPrice,salesPrice)
-VALUES  ("Skruer 4,5 x 120mm 200stk", "Pakke", 120, 15, 45),
-		("Vinkelbeslag", "Styk", 325, 5, 9),
-        ("Skruer 5,0 x 100mm 100stk", "Pakke", 67, 10, 25),
-        ("Bræddebolt 10 x 120mm", "Styk", 128, 10, 19),
-        ("Firkantskive 40 x 40 x 11mm", "Styk", 392, 3, 5),
-        ("Hulbånd 1x20mm x 10m", "Rulle", 48, 90, 200),
-        ("Skruer 4,0 x 50mm 250stk", "Pakke" ,75, 70, 150),
-        ("Universalbeslag 190mm højre", "Styk", 83, 15, 35),
-        ("Universalbeslag 190mm venstre", "Styk", 85, 15, 35),
+VALUES  ("Skruer 5 x 100mm 100stk", "Pakke", 85, 40, 120),
+		("Skruer 4,5 x 120mm 200stk", "Pakke", 120, 15, 45),
+		("Skruer 4,5 x 70mm 200stk", "Pakke", 60, 20, 65),
         ("Skruer 4,5 x 60mm 200stk", "Pakke", 102, 15, 40),
-        ("Skruer 5 x 100mm 100stk", "Pakke", 85, 40, 120),
-        ("PLASTMO bundskruer 200stk", "Pakke", 30, 20, 45);
+        ("Skruer 4,5 x 50mm 350stk", "Pakke", 48, 20, 50),
+        ("Skruer 4,0 x 50mm 250stk", "Pakke" ,75, 70, 150),
+        ("PLASTMO bundskruer 200stk", "Pakke", 30, 20, 45),
+        
+        ("Bræddebolt 10 x 120mm", "Styk", 128, 10, 19),
+        
+        ("Hulbånd 1x20mm x 10m", "Rulle", 48, 90, 200),
+
+		("Universalbeslag 190mm højre", "Styk", 83, 15, 35),
+        ("Universalbeslag 190mm venstre", "Styk", 85, 15, 35),
+        ("Vinkelbeslag", "Styk", 325, 5, 9),
+        ("Firkantskive 40 x 40 x 11mm", "Styk", 392, 3, 5);
+        
 
 CREATE TABLE validations (
 	valueDesc VARCHAR(40) NOT NULL,
@@ -151,9 +158,9 @@ CREATE TABLE configurations (
     );
 ALTER TABLE configurations auto_increment=224466;
     
-INSERT INTO configurations (confStatus,custName,custPhone,custEmail,custPostal,length,width,height,material,roofMaterial)
-VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 580, 225, "Egetræ", "PLASTMO"),
-		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", "Betontagsten, sort");
+INSERT INTO configurations (confStatus, custName, custPhone, custEmail, custPostal, length, width, height, material, roofInclination, roofMaterial)
+VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 580, 225, "Egetræ", 0, "PLASTMO"),
+		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", 0, "Betontagsten, sort");
 
 
 
