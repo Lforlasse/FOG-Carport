@@ -31,7 +31,7 @@ public class Carport {
         this.confWidth = confWidth;
         this.confHeight = confHeight;
         this.confMat = confMat;
-        this.roof = new Roof(inclination, roofMaterial);
+        this.roof = new Roof(inclination, roofMaterial, confWidth);
         this.carSpace = checkCarSpace();
 
         this.confStatus = ConfigurationMapper.getConfigStatus(confId);

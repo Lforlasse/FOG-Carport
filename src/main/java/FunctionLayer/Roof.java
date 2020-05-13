@@ -4,31 +4,46 @@ public class Roof {
 
     int roofHeight;
     String material;
-    int roofInclination;
+    int inclination;
     int maxLengthComponent;
     int sideC;
 
 
 
-    public Roof(int roofInclination, String material) {
+    public Roof(int inclination, String material, int width) {
         this.material = material;
-        this.roofInclination = roofInclination;
-        this.sideC = calcSideC();
+        this.inclination = inclination;
+        this.sideC = calcSideC(inclination, width);
         this.maxLengthComponent = 400;
     }
 
     public Roof() {
     }
 
-    public int calcSideC() {
+    private int calcSideC(int inclination, int width) {
 
-        int res = 0;
+        double dWidth = width/2;
+        double dInclination = 90-inclination;
+        double dCornerC = Math.toRadians(90);
+        dCornerC = Math.sin(dCornerC);
 
+        dInclination = Math.toRadians(dInclination);
+        dInclination = Math.sin(dInclination);
 
+        dWidth /= dInclination * dCornerC;
+
+        int res = toInt(dWidth);
 
         return res;
+    }//calcSideC
 
-    }
+    private int toInt(double d){
+        d = Math.round(d);
+        String s = ""+d;
+        s = s.substring(0,s.length()-2);
+        int i = Integer.parseInt(s);
+        return i;
+    }//toDouble
 
     //Getter & Setter
     public int getRoofHeight() {
@@ -48,11 +63,11 @@ public class Roof {
     }
 
     public int getRoofInclination() {
-        return roofInclination;
+        return inclination;
     }
 
     public void setRoofInclination(int roofInclination) {
-        this.roofInclination = roofInclination;
+        this.inclination = roofInclination;
     }
 
     public int getSideC() {

@@ -42,7 +42,7 @@ public class OfferRequest {
         addRem();
         addSper();
 
-        if (carport.getRoof().roofInclination > 0) {
+        if (carport.getRoof().inclination > 0) {
             addLegte();
         }
 
@@ -141,6 +141,12 @@ public class OfferRequest {
 
     private void addStern() {
 
+        boolean hasInclination;
+        if (carport.getRoof().inclination == 0){
+            hasInclination = false;
+        } else{
+            hasInclination = true;
+        }//else
         int max = 400;
         int countUnit = 1;
         int addUnit = 1;
@@ -169,19 +175,36 @@ public class OfferRequest {
             countUnit += 1;
         }
 
-        addUnit += carport.getConfWidth() / max;
-        addUnit *= countUnit;
+        //flat tag
+        if (!hasInclination) {
+            addUnit += carport.getConfWidth() / max;
+            addUnit *= countUnit;
 
-        Component sternWidthOver = ComponentMapper.getComponent("Stern, over", carport.getConfMat());
-        Component sternWidthUnder = ComponentMapper.getComponent("Stern, under", carport.getConfMat());
+            Component sternWidthOver = ComponentMapper.getComponent("Stern, over", carport.getConfMat());
+            Component sternWidthUnder = ComponentMapper.getComponent("Stern, under", carport.getConfMat());
 
-        sternWidthOver.setCompLength(carport.getConfWidth() / addUnit);
-        sternWidthUnder.setCompLength(carport.getConfWidth() / addUnit);
-        addUnit *= 2;
+            sternWidthOver.setCompLength(carport.getConfWidth() / addUnit);
+            sternWidthUnder.setCompLength(carport.getConfWidth() / addUnit);
+            addUnit *= 2;
 
-        compList.put(sternWidthOver, addUnit);
-        compList.put(sternWidthUnder, addUnit);
+            compList.put(sternWidthOver, addUnit);
+            compList.put(sternWidthUnder, addUnit);
+        }//if
+        //tag med rejsning
+        else {
 
+            Component sternWidthOver = ComponentMapper.getComponent("Stern, over", carport.getConfMat());
+            Component sternWidthUnder = ComponentMapper.getComponent("Stern, under", carport.getConfMat());
+
+            sternWidthOver.setCompLength(carport.getConfWidth() / addUnit);
+            sternWidthOver.setCompInfo("Singlecut "+ carport.getRoof().inclination+"°");
+            sternWidthUnder.setCompLength(carport.getConfWidth() / addUnit);
+            sternWidthUnder.setCompInfo("Singlecut "+ carport.getRoof().inclination+"°");
+            addUnit *= 2;
+
+            compList.put(sternWidthOver, addUnit);
+            compList.put(sternWidthUnder, addUnit);
+        }//else
     }//addStern
 
     //lister til beklædning
@@ -253,7 +276,7 @@ public class OfferRequest {
         addPartRem();
         addPartSper();
 
-        if (carport.getRoof().roofInclination > 0) {
+        if (carport.getRoof().inclination > 0) {
             addPartLegte();
         }
 
@@ -278,6 +301,9 @@ public class OfferRequest {
         //Parts
         Part partBolt = PartMapper.getPart("Bræddebolt 10 x 120mm");
         Part partSkive = PartMapper.getPart("Firkantskive 40 x 40 x 11mm");
+
+        partBolt.setPartInfo("Samler rem og stolpe");
+        partSkive.setPartInfo("Samler rem og stolpe");
 
         partList.put(partBolt, countUnit);
         partList.put(partSkive, countUnit);
@@ -304,6 +330,10 @@ public class OfferRequest {
         Part partSkruer = PartMapper.getPart("Skruer 4,0 x 50mm 250stk");
         countScrew *= countUnit;
         countBox += countScrew / 250;
+
+        partBeslagH.setPartInfo("Samler spær og rem");
+        partBeslagV.setPartInfo("Samler spær og rem");
+        partSkruer.setPartInfo("Anvendes med Universalbeslag");
 
         partList.put(partBeslagH, countUnit);
         partList.put(partBeslagV, countUnit);
@@ -340,6 +370,8 @@ public class OfferRequest {
 
         //Parts
         Part partScrew = PartMapper.getPart("Skruer 5 x 100mm 100stk");
+
+        partScrew.setPartInfo("Samler lægte og spær");
 
         partList.put(partScrew, countBox);
     }//addPartLegte
@@ -379,6 +411,8 @@ public class OfferRequest {
         countScrew += countWidth;
 
         countBox += countScrew / 200;
+
+        partSkruer.setPartInfo("Samler stern og spær");
 
         partList.put(partSkruer, countBox);
 
@@ -476,7 +510,7 @@ public class OfferRequest {
 
     }//generateBlueprint
 
-    //TIL MARKERS + carport canvas
+    //MARKERS + carport canvas
     private void assignCanvasBack(int canvasX, int canvasY) {
 
 
@@ -559,7 +593,7 @@ public class OfferRequest {
                 "    <text style=\"text-anchor: middle\" x=\"" + x2 + "\" y=\"" + y2 + "\">" + value2 + "cm </text>");
     }//assignText
 
-    //TIL CARPORTSVG
+    //CARPORTSVG
     private void assignCanvasFront(int positionRight, int positionDown) {
 
         blueprint.setCanvasFront("<svg x=\""+positionRight+"\" y=\""+positionDown+"\" width=\""+carport.getConfLength()+"\" height=\""+carport.getConfWidth()+"\">");
@@ -914,6 +948,8 @@ public class OfferRequest {
         return stern;
     }//placeStern
     //BLUEPRINT END
+
+
 
     //Getter & setter
     public Carport getCarport() {
