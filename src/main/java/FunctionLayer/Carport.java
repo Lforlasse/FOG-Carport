@@ -21,7 +21,7 @@ public class Carport {
     private Date changedDate;
 
     public Carport(int confId, String custName, int custPhone, String custEmail, int custPostal,
-                   int confLength, int confWidth, int confHeight, String confMat, int inclination, String confRoof) {
+                   int confLength, int confWidth, int confHeight, String confMat, int inclination, String roofMaterial) {
         this.confId = confId;
         this.custName = custName;
         this.custPhone = custPhone;
@@ -31,7 +31,7 @@ public class Carport {
         this.confWidth = confWidth;
         this.confHeight = confHeight;
         this.confMat = confMat;
-        this.roof = new Roof(confRoof, inclination);
+        this.roof = new Roof(inclination, roofMaterial);
         this.carSpace = checkCarSpace();
 
         this.confStatus = ConfigurationMapper.getConfigStatus(confId);
