@@ -4,15 +4,15 @@ public class Roof {
 
     int roofHeight;
     String material;
-    int inclination;
+    int roofInclination;
     int maxLengthComponent;
     int sideC;
 
 
 
-    public Roof(String material, int inclination) {
+    public Roof(int roofInclination, String material) {
         this.material = material;
-        this.inclination = inclination;
+        this.roofInclination = roofInclination;
         this.sideC = calcSideC();
         this.maxLengthComponent = 400;
     }
@@ -47,12 +47,12 @@ public class Roof {
         this.material = material;
     }
 
-    public int getInclination() {
-        return inclination;
+    public int getRoofInclination() {
+        return roofInclination;
     }
 
-    public void setInclination(int inclination) {
-        this.inclination = inclination;
+    public void setRoofInclination(int roofInclination) {
+        this.roofInclination = roofInclination;
     }
 
     public int getSideC() {

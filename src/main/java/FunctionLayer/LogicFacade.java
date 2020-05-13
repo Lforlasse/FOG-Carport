@@ -70,12 +70,12 @@ public class LogicFacade {
     }
 
     public static int submitOfferRequest(int length, int width, int height, String confMaterial,
-                                          int roofAngle, String roofMaterial,
+                                          int roofInclination, String roofMaterial,
                                           String custName, String custPhone, String custEmail, String custPostal)
             throws LoginSampleException {
         //TODO Test data, replace with DBAccess method
         int confId = ConfigurationMapper.newOfferRequest(length, width, height, confMaterial,
-                roofAngle, roofMaterial, custName, custPhone, custEmail, custPostal);
+                roofInclination, roofMaterial, custName, custPhone, custEmail, custPostal);
 
         System.out.println();
         System.out.println("NEW offer request: " + confId);
@@ -84,7 +84,7 @@ public class LogicFacade {
         System.out.println("width: " + width);
         System.out.println("height: " + height);
         System.out.println("configMaterial: " + configMaterial);
-        System.out.println("roofAngle: " + roofAngle);
+        System.out.println("roofInclination: " + roofInclination);
         System.out.println("roofMaterial: " + roofMaterial);
         System.out.println("name: " + name);
         System.out.println("email: " + email);

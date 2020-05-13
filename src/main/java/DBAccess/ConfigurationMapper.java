@@ -67,7 +67,7 @@ public class ConfigurationMapper {
     }//makeConfigObject
 
     public static int newOfferRequest(int length, int width, int height, String confMaterial,
-                                      int roofAngle, String roofMaterial,
+                                      int inclination, String roofMaterial,
                                       String custName, String custPhone, String custEmail, String custPostal) throws LoginSampleException {
         int offerRequestId;
         try {
@@ -145,7 +145,7 @@ public class ConfigurationMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material, roofmaterial FROM configurations;";
+            String SQL = "SELECT confId, custName, custPhone, custEmail, custPostal, width, length, height, material, roofInclination, roofmaterial FROM configurations;";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ResultSet rs = ps.executeQuery();

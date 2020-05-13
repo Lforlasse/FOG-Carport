@@ -42,7 +42,7 @@ public class OfferRequest {
         addRem();
         addSper();
 
-        if (carport.getRoof().inclination > 0) {
+        if (carport.getRoof().roofInclination > 0) {
             addLegte();
         }
 
@@ -105,7 +105,7 @@ public class OfferRequest {
 
     }//addSper
 
-    private void addLegte() { //TODO fremtidigt sprint, bruges til tag med rejsning.
+    private void addLegte() {
 
         int bottomSpace = 35;
         int Spread = 30;
@@ -179,6 +179,12 @@ public class OfferRequest {
         compList.put(sternWidthUnder, addUnit);
 
     }//addStern
+
+    private void addBekledning() {
+
+        
+
+    }
     //COMPONENTS END
 
     //PARTS
@@ -186,7 +192,7 @@ public class OfferRequest {
         addPartRem();
         addPartSper();
 
-        if (carport.getRoof().inclination > 0) {
+        if (carport.getRoof().roofInclination > 0) {
             addPartLegte();
         }
 
@@ -454,7 +460,7 @@ public class OfferRequest {
                 "    <text style=\"text-anchor: middle\" x=\"" + x2 + "\" y=\"" + y2 + "\">" + value2 + "cm </text>");
     }//assignText
 
-    //TIL CARPORT
+    //TIL CARPORTSVG
     private void assignCanvasFront(int positionRight, int positionDown) {
 
         blueprint.setCanvasFront("<svg x=\""+positionRight+"\" y=\""+positionDown+"\" width=\""+carport.getConfLength()+"\" height=\""+carport.getConfWidth()+"\">");
