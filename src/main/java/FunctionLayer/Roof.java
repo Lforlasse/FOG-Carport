@@ -6,9 +6,9 @@ public class Roof {
 
     int roofHeight;
     String material;
+    int inclination;
     int compLength;
     int compWidth;
-    int inclination;
     int maxLengthComponent;
     int sideC;
 
@@ -26,7 +26,7 @@ public class Roof {
     public Roof() {
     }
 
-    private int calcSideC(int inclination, int width) {
+    public int calcSideC(int inclination, int width) {
 
         double dWidth = width/2;
         double dInclination = 90-inclination;

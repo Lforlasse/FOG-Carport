@@ -59,6 +59,8 @@ public class OfferRequest {
 
     }//generateCompList
 
+
+    //COMPONENTS
     private void addStolpe() {
 
         int stolpeLength = carport.getConfLength() - 400;
@@ -82,6 +84,7 @@ public class OfferRequest {
 
     private void addRem() {
         int max = 400;
+
         int countUnit = 1;
 
         for (int i = 400; i < carport.getConfLength(); i += max) {
@@ -95,7 +98,6 @@ public class OfferRequest {
     }//addRem
 
     private void addSper() {
-//TODO metode ikke færdig
         boolean hasInclination;
         if (carport.getRoof().inclination == 0) {
             hasInclination = false;
@@ -1064,7 +1066,6 @@ public class OfferRequest {
         return stern;
     }//placeStern
     //BLUEPRINT END
-
 
     //Getter & setter
     public Carport getCarport() {
