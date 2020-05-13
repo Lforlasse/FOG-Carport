@@ -111,7 +111,7 @@
                             </div>
                             <input type="text" class="form-control text-right h-100 border-secondary"
                                    placeholder="cm" id="roofAngle"
-                                   value="${requestScope.offerRequest.carport.confRoof}" readonly>
+                                   value="${requestScope.offerRequest.carport.roof}" readonly>
                         </div>
                         <div class="input-group input-group-sm col">
                             <div class="input-group-prepend">
@@ -121,7 +121,7 @@
                             </div>
                             <input type="text" class="form-control text-right h-100 border-secondary"
                                    placeholder="cm" id="roofMaterial"
-                                   value="${requestScope.offerRequest.carport.confRoof}" readonly>
+                                   value="${requestScope.offerRequest.carport.roof}" readonly>
                         </div>
                     </div><!--
                     <input type="hidden" name="target" value="prefab">

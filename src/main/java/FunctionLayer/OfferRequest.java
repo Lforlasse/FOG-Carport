@@ -182,7 +182,7 @@ public class OfferRequest {
 
     private void addBekledning() {
 
-        
+
 
     }
     //COMPONENTS END
