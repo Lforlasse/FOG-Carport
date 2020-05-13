@@ -4,6 +4,7 @@ public class Part {
 
     private int partId;
     private String partDesc;
+    private String partInfo;
     private String itemType;
     private int currentStock;
     private int vendorPrice;
@@ -12,6 +13,7 @@ public class Part {
     public Part(int partId, String partDesc, String itemType, int vendorPrice, int salesPrice) {
         this.partId = partId;
         this.partDesc = partDesc;
+        this.partInfo = "-";
         this.itemType = itemType;
         this.vendorPrice = vendorPrice;
         this.salesPrice = salesPrice;
@@ -35,6 +37,14 @@ public class Part {
 
     public void setPartDesc(String partDesc) {
         this.partDesc = partDesc;
+    }
+
+    public String getPartInfo() {
+        return partInfo;
+    }
+
+    public void setPartInfo(String partInfo) {
+        this.partInfo = partInfo;
     }
 
     public String getItemType() {

@@ -4,6 +4,7 @@ public class Component {
 
     private int compId;
     private String compDesc;
+    private String compInfo;
     private String material;
     private int compHeight;
     private int compWidth;
@@ -14,6 +15,7 @@ public class Component {
     public Component(int compId, String compDesc, String material, int compHeight, int compWidth, int compLength, int vendorPrice, int salesPrice) {
         this.compId = compId;
         this.compDesc = compDesc;
+        this.compInfo = "-";
         this.material = material;
         this.compHeight = compHeight;
         this.compWidth = compWidth;
@@ -40,6 +42,14 @@ public class Component {
 
     public void setCompDesc(String compDesc) {
         this.compDesc = compDesc;
+    }
+
+    public String getCompInfo() {
+        return compInfo;
+    }
+
+    public void setCompInfo(String compInfo) {
+        this.compInfo = compInfo;
     }
 
     public String getMaterial() {
