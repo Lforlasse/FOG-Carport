@@ -113,4 +113,8 @@ public class LogicFacade {
     public static boolean updateOfferRequestStatus(int confId, String offerRequestStatus) {
         return ConfigurationMapper.setConfigStatus(confId, offerRequestStatus);
     }
+
+    public static Component getComponent(int componentId) {
+        return ComponentMapper.getComponentById(componentId);
+    }
 }

@@ -48,4 +48,39 @@ public class ComponentMapper {
         return component;
     }//getComponent
 
+    public static Component getComponentById(int compId){
+
+        String compDesc = "Ingen komponent fundet";
+        String material = "0";
+        int compHeight = 0;
+        int compWidth = 0;
+        int compLength = 0;
+        int vendorPrice = 0;
+        int salesPrice = 0;
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT compDesc, material, compHeigth, compWidth, compLength, vendorPrice," +
+                    " salesPrice FROM Components WHERE compId = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, compId);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                compDesc=rs.getString(1);
+                material=rs.getString(2);
+                compHeight=rs.getInt("compHeigth");
+                compWidth=rs.getInt("compWidth");
+                compLength=rs.getInt("compLength");
+                vendorPrice=rs.getInt("vendorPrice");
+                salesPrice=rs.getInt("salesPrice");
+
+            }//if
+        } catch (ClassNotFoundException | SQLException ex) {
+
+        }//catch
+        Component component = new Component(compId, compDesc, material, compHeight, compWidth, compLength, vendorPrice, salesPrice);
+        return component;
+    }//getComponent
+
 }//ComponentMapper

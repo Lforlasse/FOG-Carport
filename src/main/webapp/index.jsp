@@ -46,6 +46,7 @@
                             <br>
                             <span class="text-center text-white h1">VÆRKTØJ</span>
                             <input type="hidden" name="target" value="tools">
+                            <input type="hidden" name="pageFunction" value="">
                             <br>
                             <br>
                             <br>
