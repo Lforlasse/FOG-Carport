@@ -250,7 +250,7 @@
                                 <td scope="col">${compItem.key.material}</td>
                                 <td scope="col">${compItem.key.compLength}</td>
                                 <td scope="col">${compItem.value}</td>
-                                <td scope="col">INCOMING</td>
+                                <td scope="col">${compItem.key.compInfo}</td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -275,7 +275,7 @@
                                 <td scope="col">${partItem.key.partDesc}</td>
                                 <td scope="col">${partItem.key.itemType}</td>
                                 <td scope="col">${partItem.value}</td>
-                                <td scope="col">INCOMING</td>
+                                <td scope="col">${partItem.key.partInfo}</td>
                             </tr>
                         </c:forEach>
                         </tbody>
