@@ -3,8 +3,10 @@ package FunctionLayer;
 import DBAccess.ComponentMapper;
 import DBAccess.ConfigurationMapper;
 import DBAccess.PartMapper;
+import DBAccess.RoofMapper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -14,6 +16,7 @@ public class OfferRequest {
     private int confId;
     private LinkedHashMap<Component, Integer> compList;
     private LinkedHashMap<Part, Integer> partList;
+    private LinkedHashMap<RoofUnit, Integer> roofUnitList;
     private int vendorPrice;
     private int salesPrice;
     private Blueprint blueprint;
@@ -22,9 +25,11 @@ public class OfferRequest {
         this.confId = confId;
         this.compList = new LinkedHashMap<>();
         this.partList = new LinkedHashMap<>();
+        this.roofUnitList = new LinkedHashMap<>();
         this.carport = ConfigurationMapper.getOneConfig(confId);
 
         generateCompList();
+        generateRoofList();
         generatePartList();
         calcVendorPrice();
         calcSalesPrice();
@@ -36,7 +41,7 @@ public class OfferRequest {
     public OfferRequest() {
     }//tom constructor
 
-    //metoder
+    //COMPONENTS
     private void generateCompList() {
         addStolpe();
         addRem();
@@ -47,14 +52,13 @@ public class OfferRequest {
         }
 
         addStern();
+        addRoof();
 
         //Skal der være tilvalg af beklædning?
         addBekledning();
 
     }//generateCompList
 
-
-    //COMPONENTS
     private void addStolpe() {
 
         int stolpeLength = carport.getConfLength() - 400;
@@ -283,6 +287,60 @@ public class OfferRequest {
 
     }//addBekledning
     //COMPONENTS END
+
+    //ROOFUNIT
+    private void generateRoofList(){
+    addRoof();
+
+    }//generateRoofList
+
+    private void addRoof() {
+
+        boolean hasInclination;
+        if (carport.getRoof().inclination == 0) {
+            hasInclination = false;
+        } else {
+            hasInclination = true;
+        }//else
+        int quantityX = 0;
+        int quantityY = 0;
+        int restX;
+        int restY;
+
+        if (!hasInclination) {
+            restX = carport.getConfLength();
+            restY = carport.getConfWidth();
+
+            for (int i = carport.getConfLength(); i > carport.getRoof().compWidth; i -= carport.getRoof().compWidth) {
+                quantityX++;
+                restX -= carport.getRoof().compWidth;
+            }//for
+            for (int i = carport.getConfWidth(); i > carport.getRoof().compLength; i -= carport.getRoof().compLength) {
+                quantityY++;
+                restY -= carport.getRoof().compLength;
+            }//for
+
+       /*     RoofUnit roofComp = RoofMapper.getRoofUnit(carport.getRoof().material);
+            sper.setCompLength(carport.getConfWidth() / addUnit);
+            compList.put(sper, addUnit * countUnit);
+*/
+        } else {
+            restX = carport.getConfLength();
+            restY = carport.getRoof().sideC;
+
+            for (int i = carport.getConfLength(); i > carport.getRoof().compWidth; i -= carport.getRoof().compWidth) {
+                quantityX++;
+                restX -= carport.getRoof().compWidth;
+            }//for
+            for (int i = carport.getRoof().sideC; i > carport.getRoof().compLength; i -= carport.getRoof().compLength) {
+                quantityY++;
+                restY -= carport.getRoof().compLength;
+            }//for
+
+        }//else
+
+    }//addRoof
+    //ROOFUNIT END
 
     //PARTS
     private void generatePartList() {
