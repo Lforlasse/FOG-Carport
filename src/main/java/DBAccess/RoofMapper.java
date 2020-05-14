@@ -1,5 +1,8 @@
 package DBAccess;
 
+import FunctionLayer.Roof;
+import FunctionLayer.RoofUnit;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,4 +28,81 @@ public class RoofMapper {
         }
         return materialList;
     }
-}
+
+    public static RoofUnit getRoofUnit(String roofUnitIdentifier) {
+
+        int unitId = 0;
+        String unitDesc = "Ingen tagdel fundet";
+        int unitLength = 0;
+        int unitWidth = 0;
+        int vendorPrice = 0;
+        int salesPrice = 0;
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT roofId, roofDesc, roofLength, roofWidth, vendorPrice, salesPrice " +
+                    "FROM roof WHERE roofDesc =?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, roofUnitIdentifier);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                unitId=rs.getInt(1);
+                unitDesc=rs.getString(2);
+                unitLength=rs.getInt(3);
+                unitWidth=rs.getInt(4);
+                vendorPrice=rs.getInt(5);
+                salesPrice=rs.getInt(6);
+
+            }//if
+        } catch (ClassNotFoundException | SQLException ex) {
+
+        }//catch
+
+        RoofUnit roofUnit = new RoofUnit(unitId,unitDesc,unitLength,unitWidth,vendorPrice,salesPrice);
+        return roofUnit;
+    }
+
+    public static int getRoofCompLength(String material) {
+
+        int roofCompLength = 0;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT roofLength FROM roof WHERE roofDesc =?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1,material);
+
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                roofCompLength = rs.getInt(1);
+            }//if
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex);
+        }//catch
+        return roofCompLength;
+    }//getRoofCompLength
+
+    public static int getRoofCompWidth(String material) {
+
+        int roofCompWidth = 0;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT roofWidth FROM roof WHERE roofDesc =?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1,material);
+
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                roofCompWidth = rs.getInt(1);
+            }//if
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex);
+        }//catch
+        return roofCompWidth;
+
+    }//getRoofCompWidth
+
+
+}//class
