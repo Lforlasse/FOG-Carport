@@ -92,6 +92,12 @@ public class OfferRequest {
 
     private void addSper() {
 
+        boolean hasInclination;
+        if (carport.getRoof().inclination == 0) {
+            hasInclination = false;
+        } else {
+            hasInclination = true;
+        }//else
         int max = 400;
         int maxSpread = 50;
         int countUnit = 1;
@@ -101,12 +107,19 @@ public class OfferRequest {
             countUnit += 1;
         }
 
-        addUnit += carport.getConfWidth() / max;
+        if (!hasInclination) {
+            addUnit += carport.getConfWidth() / max;
 
-        Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
-        sper.setCompLength(carport.getConfWidth() / addUnit);
-        compList.put(sper, addUnit * countUnit);
+            Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
+            sper.setCompLength(carport.getConfWidth() / addUnit);
+            compList.put(sper, addUnit * countUnit);
+        } else {
 
+            Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
+            sper.setCompLength(carport.getConfWidth() / addUnit);
+            sper.setCompInfo("Singlecut " + carport.getRoof().inclination + "°");
+            compList.put(sper, addUnit * countUnit);
+        }//else
     }//addSper
 
     private void addLegte() {
@@ -116,7 +129,7 @@ public class OfferRequest {
         int countUnit = 2;
         int sideC = carport.getRoof().getSideC() - bottomSpace;
 
-        for (int i = sideC; i > Spread; i -= Spread){
+        for (int i = sideC; i > Spread; i -= Spread) {
             countUnit += 1;
         }
 
@@ -130,11 +143,11 @@ public class OfferRequest {
             legte.setCompLength(carport.getConfLength() / 2);
             compList.put(legte, countUnit);
 
-        }else {
+        } else {
 
-        Component legte = ComponentMapper.getComponent("Lægte", carport.getConfMat());
-        legte.setCompLength(carport.getConfLength());
-        compList.put(legte, countUnit);
+            Component legte = ComponentMapper.getComponent("Lægte", carport.getConfMat());
+            legte.setCompLength(carport.getConfLength());
+            compList.put(legte, countUnit);
 
         }//else
     }//addLegte
@@ -142,9 +155,9 @@ public class OfferRequest {
     private void addStern() {
 
         boolean hasInclination;
-        if (carport.getRoof().inclination == 0){
+        if (carport.getRoof().inclination == 0) {
             hasInclination = false;
-        } else{
+        } else {
             hasInclination = true;
         }//else
         int max = 400;
@@ -197,9 +210,9 @@ public class OfferRequest {
             Component sternWidthUnder = ComponentMapper.getComponent("Stern, under", carport.getConfMat());
 
             sternWidthOver.setCompLength(carport.getConfWidth() / addUnit);
-            sternWidthOver.setCompInfo("Singlecut "+ carport.getRoof().inclination+"°");
+            sternWidthOver.setCompInfo("Singlecut " + carport.getRoof().inclination + "°");
             sternWidthUnder.setCompLength(carport.getConfWidth() / addUnit);
-            sternWidthUnder.setCompInfo("Singlecut "+ carport.getRoof().inclination+"°");
+            sternWidthUnder.setCompInfo("Singlecut " + carport.getRoof().inclination + "°");
             addUnit *= 2;
 
             compList.put(sternWidthOver, addUnit);
@@ -341,27 +354,27 @@ public class OfferRequest {
 
     }//addPartSper
 
-    private void addPartLegte(){
+    private void addPartLegte() {
 
-        int countLegte= 0;
+        int countLegte = 0;
         int countSper = 0;
         int countScrew = 2;
         int countBox = 1;
 
-        for(Map.Entry<Component, Integer> entry : compList.entrySet()){
-            if(entry.getKey().getCompDesc().equalsIgnoreCase("Spær")){
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Spær")) {
                 countSper = entry.getValue();
             }
 
-            if(entry.getKey().getCompDesc().equalsIgnoreCase("Lægte")){
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Lægte")) {
                 countLegte = entry.getValue();
             }
 
         }//for
 
-            if (carport.getConfLength() > carport.getRoof().maxLengthComponent) {
-                countSper /= 2;
-            }
+        if (carport.getConfLength() > carport.getRoof().maxLengthComponent) {
+            countSper /= 2;
+        }
 
         countScrew *= countSper;
         countScrew *= countLegte;
@@ -560,7 +573,7 @@ public class OfferRequest {
         headEndX = headStartX;
         headEndY = carport.getConfWidth() + positionDown - 5;
 
-        blueprint.setMarkerX("<line x1=\""+headStartX+"\"  y1=\""+headStartY+"\" x2=\""+headEndX+"\"   y2=\""+headEndY+"\"\n" +
+        blueprint.setMarkerX("<line x1=\"" + headStartX + "\"  y1=\"" + headStartY + "\" x2=\"" + headEndX + "\"   y2=\"" + headEndY + "\"\n" +
                 "              style=\"stroke: #000000;\n" +
                 "\tmarker-start: url(#beginArrow);\n" +
                 "\tmarker-end: url(#endArrow);\"/>");
@@ -571,14 +584,14 @@ public class OfferRequest {
         headEndX = positionRight + carport.getConfLength() - 5;
         headEndY = headStartY;
 
-        blueprint.setMarkerY("<line x1=\""+headStartX+"\"  y1=\""+headStartY+"\" x2=\""+headEndX+"\"   y2=\""+headEndY+"\"\n" +
+        blueprint.setMarkerY("<line x1=\"" + headStartX + "\"  y1=\"" + headStartY + "\" x2=\"" + headEndX + "\"   y2=\"" + headEndY + "\"\n" +
                 "              style=\"stroke: #000000;\n" +
                 "\tmarker-start: url(#beginArrow);\n" +
                 "\tmarker-end: url(#endArrow);\"/>");
 
     }//assignMarkers
 
-    private void assignText(int positionRigth, int positionDown){
+    private void assignText(int positionRigth, int positionDown) {
 
         int x1 = positionRigth - 30;
         int y1 = positionDown + (carport.getConfWidth() / 2);
@@ -596,13 +609,13 @@ public class OfferRequest {
     //CARPORTSVG
     private void assignCanvasFront(int positionRight, int positionDown) {
 
-        blueprint.setCanvasFront("<svg x=\""+positionRight+"\" y=\""+positionDown+"\" width=\""+carport.getConfLength()+"\" height=\""+carport.getConfWidth()+"\">");
+        blueprint.setCanvasFront("<svg x=\"" + positionRight + "\" y=\"" + positionDown + "\" width=\"" + carport.getConfLength() + "\" height=\"" + carport.getConfWidth() + "\">");
 
     }//assignCanvasFront
 
-    private void assignCanvasFill(){
+    private void assignCanvasFill() {
 
-        blueprint.setCanvasFill("<rect x=\"0\" y=\"0\" height=\""+carport.getConfWidth()+"\" width=\""+carport.getConfLength()+"\" style=\"stroke:#000000; fill:#797D7F\" />");
+        blueprint.setCanvasFill("<rect x=\"0\" y=\"0\" height=\"" + carport.getConfWidth() + "\" width=\"" + carport.getConfLength() + "\" style=\"stroke:#000000; fill:#797D7F\" />");
 
     }//assignCanvasFront
 
@@ -948,7 +961,6 @@ public class OfferRequest {
         return stern;
     }//placeStern
     //BLUEPRINT END
-
 
 
     //Getter & setter
