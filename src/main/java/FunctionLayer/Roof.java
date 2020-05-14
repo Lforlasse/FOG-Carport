@@ -1,9 +1,13 @@
 package FunctionLayer;
 
+import DBAccess.RoofMapper;
+
 public class Roof {
 
     int roofHeight;
     String material;
+    int compLength;
+    int compWidth;
     int inclination;
     int maxLengthComponent;
     int sideC;
@@ -15,6 +19,8 @@ public class Roof {
         this.inclination = inclination;
         this.sideC = calcSideC(inclination, width);
         this.maxLengthComponent = 400;
+        this.compLength = RoofMapper.getRoofCompLength(material);
+        this.compWidth = RoofMapper.getRoofCompWidth(material);
     }
 
     public Roof() {
@@ -62,11 +68,27 @@ public class Roof {
         this.material = material;
     }
 
-    public int getRoofInclination() {
+    public int getCompLength() {
+        return compLength;
+    }
+
+    public void setCompLength(int compLength) {
+        this.compLength = compLength;
+    }
+
+    public int getCompWidth() {
+        return compWidth;
+    }
+
+    public void setCompWidth(int compWidth) {
+        this.compWidth = compWidth;
+    }
+
+    public int getInclination() {
         return inclination;
     }
 
-    public void setRoofInclination(int roofInclination) {
+    public void setInclination(int roofInclination) {
         this.inclination = roofInclination;
     }
 
