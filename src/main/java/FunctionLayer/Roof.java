@@ -6,6 +6,8 @@ public class Roof {
 
     int roofHeight;
     String material;
+    int compLength;
+    int compWidth;
     int inclination;
     int compLength;
     int compWidth;
