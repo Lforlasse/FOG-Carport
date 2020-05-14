@@ -113,12 +113,19 @@ public class OfferRequest {
             countUnit += 1;
         }
 
-        addUnit += carport.getConfWidth() / max;
+        if (!hasInclination) {
+            addUnit += carport.getConfWidth() / max;
 
-        Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
-        sper.setCompLength(carport.getConfWidth() / addUnit);
-        compList.put(sper, addUnit * countUnit);
+            Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
+            sper.setCompLength(carport.getConfWidth() / addUnit);
+            compList.put(sper, addUnit * countUnit);
+        } else {
 
+            Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
+            sper.setCompLength(carport.getConfWidth() / addUnit);
+            sper.setCompInfo("Singlecut " + carport.getRoof().inclination + "°");
+            compList.put(sper, addUnit * countUnit);
+        }//else
         if (hasInclination) {
 
             Component sperTag = ComponentMapper.getComponent("Spær", carport.getConfMat());
@@ -278,6 +285,7 @@ public class OfferRequest {
             countUnit += 1;
         }
 
+    }
         Component bekledningLengthX1 = ComponentMapper.getComponent("Beklædning", carport.getConfMat());
         bekledningLengthX1.setCompLength(carport.getConfHeight());
         compList.put(bekledningLengthX1, countUnit);
