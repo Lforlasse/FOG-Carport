@@ -96,7 +96,6 @@ public class OfferRequest {
     }//addRem
 
     private void addSper() {
-//TODO metode ikke færdig
         boolean hasInclination;
         if (carport.getRoof().inclination == 0) {
             hasInclination = false;
@@ -116,20 +115,22 @@ public class OfferRequest {
 
         Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
         sper.setCompLength(carport.getConfWidth() / addUnit);
+        sper.setCompInfo("Grundspær");
         compList.put(sper, addUnit * countUnit);
 
         if (hasInclination) {
 
             Component sperTag = ComponentMapper.getComponent("Spær", carport.getConfMat());
             sper.setCompLength(carport.getConfWidth() / addUnit);
-            sper.setCompInfo("Singlecut " + carport.getRoof().inclination + "°");
+            sper.setCompDesc("Tagspær");
+            sper.setCompInfo("Singlecut " + carport.getRoof().inclination + "° Tagspær");
             compList.put(sper, addUnit * countUnit);
 
             Component sperMidt = ComponentMapper.getComponent("Spær", carport.getConfMat());
-            sper.setCompLength(carport.getConfWidth() / addUnit);
-            sper.setCompInfo("Singlecut " + carport.getRoof().inclination + "°");
-            compList.put(sper, addUnit * countUnit);
-
+            sper.setCompLength(sper.getCompWidth() + carport.getRoof().roofHeight - carport.getRoof().sideC);
+            sper.setCompDesc("Midterspær");
+            sper.setCompInfo("Topcut " + carport.getRoof().inclination + "° Midterspær");
+            compList.put(sper, countUnit);
 
         }//if
     }//addSper
@@ -415,6 +416,7 @@ public class OfferRequest {
         }
 
         addPartStern();
+        addPartRoof();
 
         //husk tilvalg af beklædning
         addPartBekledning();
@@ -446,8 +448,6 @@ public class OfferRequest {
     }//addPartRem
 
     private void addPartSper() {
-        //1 spær = 1 højre, 1 venstre uni.
-        //1 spær = 18 skruer - spild 2?.
         int countUnit = 0;
         int countScrew = 18;
         int countBox = 1;
@@ -474,6 +474,22 @@ public class OfferRequest {
         partList.put(partBeslagV, countUnit);
         partList.put(partSkruer, countBox);
 
+        //Parts extra
+        if (carport.getRoof().inclination != 0) {
+            int countExtra = 1;
+            for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+                if (entry.getKey().getCompDesc().equalsIgnoreCase("Midterspær")) {
+                    countExtra *= entry.getValue();
+                }//if
+            }//for
+
+            Part partBraeddebolt = PartMapper.getPart("Bræddebolt 10 x 120mm");
+            Part partBraeddesskive = PartMapper.getPart("Bræddeplade 200 x 150 x 5mm");
+            partBraeddebolt.setPartInfo("Samler spær, tagspær og midterspær");
+            partBraeddesskive.setPartInfo("Samler tagspær og midterspær");
+            partList.put(partBraeddebolt, countExtra * 12);
+            partList.put(partBraeddesskive, countExtra);
+        }//if
     }//addPartSper
 
     private void addPartLegte() {
@@ -603,6 +619,28 @@ public class OfferRequest {
 
         partList.put(partVinkelbeslag, countPart);
     }//addPartListe
+
+    private void addPartRoof() {
+        int countUnit = 0;
+        int countbox;
+
+        if (carport.getRoof().material.equalsIgnoreCase("PLASTMO")) {
+            for (Map.Entry<RoofUnit, Integer> entry : roofUnitList.entrySet()) {
+
+                if (entry.getKey().getUnitDesc().equalsIgnoreCase("PLASTMO")) {
+                    countUnit += entry.getValue();
+                }//if
+            }//for
+            Part partSkruer = PartMapper.getPart("PLASTMO bundskruer 200stk");
+            partSkruer.setPartInfo("Skruer til PLASTMO plader");
+
+            countbox = countUnit/2;
+            partList.put(partSkruer,countbox);
+
+        }//if
+
+        //Betontagsten har ingen parts.
+    }//addPartRoof
 
     private void calcVendorPrice() {
         int price = 0;
