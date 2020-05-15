@@ -67,7 +67,7 @@ CREATE TABLE roof (
 );
 ALTER TABLE roof auto_increment=4000;
 
-INSERT INTO roof (roofDesc,roofOverlap,roofLength,roofWidth,currentStock,vendorPrice,salesPrice)
+INSERT INTO roof (roofDesc,roofLength,roofWidth,currentStock,vendorPrice,salesPrice)
 VALUES  ("PLASTMO", 200, 120, 71, 75, 130),
 		("Betontagsten, sort", 42, 33, 224, 25, 45);
 	
