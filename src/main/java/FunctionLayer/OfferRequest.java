@@ -6,6 +6,7 @@ import DBAccess.PartMapper;
 import DBAccess.RoofMapper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -82,7 +83,6 @@ public class OfferRequest {
 
     private void addRem() {
         int max = 400;
-
         int countUnit = 1;
 
         for (int i = 400; i < carport.getConfLength(); i += max) {
@@ -112,33 +112,13 @@ public class OfferRequest {
             countUnit += 1;
         }
 
-        if (!hasInclination) {
             addUnit += carport.getConfWidth() / max;
 
-        Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
-        sper.setCompLength(carport.getConfWidth() / addUnit);
-        sper.setCompInfo("Grundspær");
-        compList.put(sper, addUnit * countUnit);
             Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
             sper.setCompLength(carport.getConfWidth() / addUnit);
-            compList.put(sper, addUnit * countUnit);
-        } else {
-
-        if (hasInclination) {
-
-            Component sperTag = ComponentMapper.getComponent("Spær", carport.getConfMat());
-            sper.setCompLength(carport.getConfWidth() / addUnit);
-            sper.setCompInfo("Singlecut " + carport.getRoof().inclination + "°");
+            sper.setCompInfo("Grundspær");
             compList.put(sper, addUnit * countUnit);
 
-            Component sperMidt = ComponentMapper.getComponent("Spær", carport.getConfMat());
-            sper.setCompLength(carport.getConfWidth() / addUnit);
-            sper.setCompInfo("Singlecut " + carport.getRoof().inclination + "°");
-            compList.put(sper, addUnit * countUnit);
-
-
-        }//if
-        }//else
         if (hasInclination) {
 
             Component sperTag = ComponentMapper.getComponent("Spær", carport.getConfMat());
@@ -152,6 +132,7 @@ public class OfferRequest {
             sper.setCompDesc("Midterspær");
             sper.setCompInfo("Topcut " + carport.getRoof().inclination + "° Midterspær");
             compList.put(sper, countUnit);
+
 
         }//if
     }//addSper
@@ -257,11 +238,10 @@ public class OfferRequest {
     //lister til beklædning
     private void addListeBekledning() {
 
-        //TODO Mangler bekræftelse og refactoring af logik
         int max = 200;
         int countUnit = 1;
 
-        for(int i = 200; i < carport.getConfLength(); i += max){
+        for (int i = 200; i < carport.getConfLength(); i += max) {
             countUnit += 2;
         }
 
@@ -283,7 +263,7 @@ public class OfferRequest {
         int countUnit = 1;
 
         //Den ene side af længden
-        for(int i = bekledningCarportLengthX; i >= 0; i -= 7){
+        for (int i = bekledningCarportLengthX; i >= 0; i -= 7) {
             countUnit += 1;
         }
 
@@ -295,11 +275,10 @@ public class OfferRequest {
         countUnit = 1;
 
         //Den anden side af længden
-        for(int i = bekledningCarportLengthX1; i >= 0; i -= 7){
+        for (int i = bekledningCarportLengthX1; i >= 0; i -= 7) {
             countUnit += 1;
         }
 
-    }
         Component bekledningLengthX1 = ComponentMapper.getComponent("Beklædning", carport.getConfMat());
         bekledningLengthX1.setCompLength(carport.getConfHeight());
         compList.put(bekledningLengthX1, countUnit);
@@ -308,7 +287,7 @@ public class OfferRequest {
         countUnit = 1;
 
         //Bagsiden af carporten
-        for(int i = bekledningCarportWidth; i >= 0; i -= 7){
+        for (int i = bekledningCarportWidth; i >= 0; i -= 7) {
             countUnit += 1;
         }
 
@@ -333,8 +312,8 @@ public class OfferRequest {
         } else {
             hasInclination = true;
         }//else
-        int quantityX = 1;
-        int quantityY = 1;
+        int quantityX = 0;
+        int quantityY = 0;
         int quantityAll = 0;
         int sizeX = 0;
         int sizeY = 0;
@@ -579,9 +558,9 @@ public class OfferRequest {
         int countUnitBekledning = 0;
         int countUnitListe = 0;
 
-        for(Map.Entry<Component, Integer> entry : compList.entrySet()){
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
 
-            if(entry.getKey().getCompDesc().equalsIgnoreCase("Beklædning")) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Beklædning")) {
                 countUnitBekledning++;
             }//if
 
