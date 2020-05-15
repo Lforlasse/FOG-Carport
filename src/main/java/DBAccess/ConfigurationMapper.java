@@ -12,16 +12,6 @@ public class ConfigurationMapper {
 
     public static Carport makeConfigObject(int getConfId) {
         Carport carport = null;
-//        int confId = 0;
-//        String custName = "Ingen konfiguration fundet";
-//        int custPhone = 0;
-//        String custEmail = "0";
-//        int custPostal = 0;
-//        int confLength = 0;
-//        int confWidth = 0;
-//        int confHeight = 0;
-//        String confMat = "0";
-//        String confRoof = "0";
 
         try {
             Connection con = Connector.connection();
