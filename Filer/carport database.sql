@@ -10,8 +10,7 @@ CREATE TABLE materials (
 
 INSERT INTO materials (materialName)
 VALUES ("Trykimprægneret"),
-("Egetræ"),
-("Lærk");
+("Egetræ");
 
 CREATE TABLE components (
 	compId INT AUTO_INCREMENT,
@@ -49,7 +48,11 @@ VALUES  ("Stolpe", "Trykimprægneret", 10, 10, 74, 250, 475),
         ("Stern, mellem", "Egetræ", 2, 12, 41, 60, 110),
         ("Stern, under", "Egetræ", 2, 12, 41, 60, 110),
         
-        ("Beklædning", "Trykimprægneret", 2, 10, 55, 16, 20);
+        ("Liste", "Trykimprægneret", 2, 4, 64, 21, 23),
+        ("Liste", "Egetræ", 2, 4, 64, 21, 23),
+        
+        ("Beklædning", "Trykimprægneret", 2, 10, 55, 7, 10),
+        ("Beklædning", "Egetræ", 2, 10, 55, 7, 10);
 
 CREATE TABLE roof (
 	roofId INT AUTO_INCREMENT,
@@ -66,7 +69,7 @@ ALTER TABLE roof auto_increment=4000;
 
 INSERT INTO roof (roofDesc,roofLength,roofWidth,currentStock,vendorPrice,salesPrice)
 VALUES  ("PLASTMO", 200, 120, 71, 75, 130),
-		("Betontagsten, sort", 35, 15, 224, 25, 45);
+		("Betontagsten, sort", 42, 33, 224, 25, 45);
 	
 CREATE TABLE itemTypes (
 	itemType VARCHAR(20) NOT NULL,
@@ -126,15 +129,16 @@ VALUES  ("Carspace height", 185),
         
 CREATE TABLE configurationStatus (
 	confStatus VARCHAR(20) NOT NULL,
+    confStatusId INT NOT NULL,
     
     PRIMARY KEY (confStatus)
 );
 
-INSERT INTO configurationStatus (confStatus)
-VALUES  ("Ny"),
-		("Behandles"),
-        ("Tilbud sendt"),
-		("Afsluttet");
+INSERT INTO configurationStatus (confStatus, confStatusId)
+VALUES  ("Ny", 1),
+		("Behandles", 2),
+        ("Tilbud sendt", 3),
+		("Afsluttet", 4);
 
 CREATE TABLE configurations (
 	confId INT NOT NULL AUTO_INCREMENT,

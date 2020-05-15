@@ -53,7 +53,9 @@ public class Blueprint {
                 "</svg>";
 
         return SVG;
+
     }
+
         private String composeRem(){
 
             String collector = "";
