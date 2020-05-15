@@ -315,6 +315,8 @@ public class OfferRequest {
         int sizeX = 0;
         int sizeY = 0;
 
+        System.out.println(carport.getRoof().material);
+
         if (carport.getRoof().material.equalsIgnoreCase("PLASTMO")) {
             if (!hasInclination) {
 
