@@ -48,6 +48,9 @@ public class OfferRequest {
 
         addStern();
 
+        //Skal der være tilvalg af beklædning?
+        addBekledning();
+
     }//generateCompList
 
 
@@ -56,6 +59,7 @@ public class OfferRequest {
 
         int stolpeLength = carport.getConfLength() - 400;
         int countUnit = 4;
+
         for (int i = stolpeLength; i > 0; i -= 200) {
             countUnit += 2;
         }
@@ -74,8 +78,8 @@ public class OfferRequest {
 
     private void addRem() {
         int max = 400;
-
         int countUnit = 1;
+
         for (int i = 400; i < carport.getConfLength(); i += max) {
             countUnit += 1;
         }
@@ -180,11 +184,68 @@ public class OfferRequest {
 
     }//addStern
 
-    private void addBekledning() {
+    //lister til beklædning
+    private void addListeBekledning() {
 
+        //not done
+        int max = 200;
+        int countUnit = 1;
 
+        for(int i = 200; i < carport.getConfLength(); i += max){
+            countUnit += 2;
+        }
 
+        Component liste = ComponentMapper.getComponent("Liste", carport.getConfMat());
+        liste.setCompLength(carport.getConfLength() / countUnit);
+        compList.put(liste, countUnit);
     }
+
+    private void addBekledning() {
+        //4 skruer per bræt, 2 i toppen 2 i bunden.
+        //30mm overlap på bræt til bræt.
+
+        //parts, lister, coordination med frontend.
+        //not done
+
+        int bekledningCarportLengthX = carport.getConfLength() - 10;
+        int bekledningCarportLengthX1 = carport.getConfLength() - 10;
+        int bekledningCarportWidth = carport.getConfWidth() - 10;
+        int countUnit = 1;
+
+        //Den ene side af længden
+        for(int i = bekledningCarportLengthX; i >= 0; i -= 7){
+            countUnit += 1;
+        }
+
+        Component bekledningLengthX = ComponentMapper.getComponent("Beklædning", carport.getConfMat());
+        bekledningLengthX.setCompLength(carport.getConfHeight());
+        compList.put(bekledningLengthX, countUnit);
+
+        //Reset count
+        countUnit = 1;
+
+        //Den anden side af længden
+        for(int i = bekledningCarportLengthX1; i >= 0; i -= 7){
+            countUnit += 1;
+        }
+
+        Component bekledningLengthX1 = ComponentMapper.getComponent("Beklædning", carport.getConfMat());
+        bekledningLengthX1.setCompLength(carport.getConfHeight());
+        compList.put(bekledningLengthX1, countUnit);
+
+        //Reset count
+        countUnit = 1;
+
+        //Bagsiden af carporten
+        for(int i = bekledningCarportWidth; i >= 0; i -= 7){
+            countUnit += 1;
+        }
+
+        Component bekledningWidth = ComponentMapper.getComponent("Beklædning", carport.getConfMat());
+        bekledningWidth.setCompLength(carport.getConfHeight());
+        compList.put(bekledningWidth, countUnit);
+
+    }//addBekledning
     //COMPONENTS END
 
     //PARTS
@@ -197,6 +258,9 @@ public class OfferRequest {
         }
 
         addPartStern();
+
+        //husk tilvalg af beklædning
+        addPartBekledning();
 
     }//generateCompList
 
@@ -319,6 +383,41 @@ public class OfferRequest {
         partList.put(partSkruer, countBox);
 
     }//addPartStern
+
+    private void addPartBekledning() {
+        //1 bræt = 4 skruer
+        int countScrew70mm = 0;
+        int countScrew50mm = 0;
+        int countBox70mm = 1;
+        int countBox50mm = 1;
+        int countUnitBekledning = 0;
+        int countUnitListe = 0;
+
+        for(Map.Entry<Component, Integer> entry : compList.entrySet()){
+
+            if(entry.getKey().getCompDesc().equalsIgnoreCase("Beklædning")) {
+                countUnitBekledning++;
+            }//if
+
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Liste")) {
+                countUnitListe += entry.getValue();
+            }//if
+        }//for
+
+        //Parts
+        Part partSkrueYdre = PartMapper.getPart("Skruer 4,5 x 70mm 200stk");
+        countScrew70mm += countUnitBekledning + countUnitListe;
+        countBox70mm += countScrew70mm / 200;
+
+
+        Part partSkrueIndre = PartMapper.getPart("Skruer 4,5 x 50mm 350stk");
+        countScrew50mm += countUnitBekledning + countUnitListe;
+        countBox50mm += countScrew50mm / 350;
+
+        partList.put(partSkrueYdre, countBox70mm);
+        partList.put(partSkrueIndre, countBox50mm);
+
+    }//addPartBekledning
 
     private void calcVendorPrice() {
         int price = 0;
