@@ -50,8 +50,8 @@ VALUES  ("Stolpe", "Trykimprægneret", 10, 10, 74, 250, 475),
         
         ("Liste", "Trykimprægneret", 2, 4, 64, 21, 23),
         ("Liste", "Egetræ", 2, 4, 64, 21, 23),
-        
-        ("Beklædning", "Trykimprægneret", 2, 10, 55, 7, 10),
+
+		("Beklædning", "Trykimprægneret", 2, 10, 55, 7, 10),
         ("Beklædning", "Egetræ", 2, 10, 55, 7, 10);
 
 CREATE TABLE roof (
@@ -67,7 +67,7 @@ CREATE TABLE roof (
 );
 ALTER TABLE roof auto_increment=4000;
 
-INSERT INTO roof (roofDesc,roofOverlap,roofLength,roofWidth,currentStock,vendorPrice,salesPrice)
+INSERT INTO roof (roofDesc,roofLength,roofWidth,currentStock,vendorPrice,salesPrice)
 VALUES  ("PLASTMO", 200, 120, 71, 75, 130),
 		("Betontagsten, sort", 42, 33, 224, 25, 45);
 	
@@ -98,21 +98,22 @@ ALTER TABLE parts auto_increment=6000;
 
 INSERT INTO parts (partDesc,itemType,currentStock,vendorPrice,salesPrice)
 VALUES  ("Skruer 5 x 100mm 100stk", "Pakke", 85, 40, 120),
-		("Skruer 4,5 x 120mm 200stk", "Pakke", 120, 15, 45),
-		("Skruer 4,5 x 70mm 200stk", "Pakke", 60, 20, 65),
+        ("Skruer 4,5 x 120mm 200stk", "Pakke", 120, 15, 45),
+        ("Skruer 4,5 x 70mm 200stk", "Pakke", 60, 20, 65),
         ("Skruer 4,5 x 60mm 200stk", "Pakke", 102, 15, 40),
         ("Skruer 4,5 x 50mm 350stk", "Pakke", 48, 20, 50),
         ("Skruer 4,0 x 50mm 250stk", "Pakke" ,75, 70, 150),
         ("PLASTMO bundskruer 200stk", "Pakke", 30, 20, 45),
         
-        ("Bræddebolt 10 x 120mm", "Styk", 128, 10, 19),
+        ("Bræddebolt 10 x 120mm", "Sæt", 128, 10, 19),
         
         ("Hulbånd 1x20mm x 10m", "Rulle", 48, 90, 200),
 
 		("Universalbeslag 190mm højre", "Styk", 83, 15, 35),
         ("Universalbeslag 190mm venstre", "Styk", 85, 15, 35),
         ("Vinkelbeslag", "Styk", 325, 5, 9),
-        ("Firkantskive 40 x 40 x 11mm", "Styk", 392, 3, 5);
+        ("Firkantskive 40 x 40 x 11mm", "Styk", 392, 3, 5),
+        ("Bræddeplade 200 x 150 x 5mm", "Styk", 264, 15, 28);
         
 
 CREATE TABLE validations (
@@ -130,7 +131,7 @@ VALUES  ("Carspace height", 185),
 CREATE TABLE configurationStatus (
 	confStatus VARCHAR(20) NOT NULL,
     confStatusId INT NOT NULL,
-    
+
     PRIMARY KEY (confStatus)
 );
 
