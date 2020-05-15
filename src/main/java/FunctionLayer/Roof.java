@@ -21,6 +21,7 @@ public class Roof {
         this.maxLengthComponent = 400;
         this.compLength = RoofMapper.getRoofCompLength(material);
         this.compWidth = RoofMapper.getRoofCompWidth(material);
+        this.roofHeight = calcRoofHeight(sideC, width);
     }
 
     public Roof() {
@@ -42,6 +43,20 @@ public class Roof {
 
         return res;
     }//calcSideC
+
+    private int calcRoofHeight(int sideC, int sideA){
+        double dSideA = sideA/2;
+        double dSideC = sideC;
+
+        dSideA = Math.pow(dSideA,2);
+        dSideC = Math.pow(dSideC,2);
+        dSideC -= dSideA;
+        double dSideB = Math.sqrt(dSideC);
+
+        int res = toInt(dSideB);
+
+        return res;
+    }//calcRoofHeight
 
     private int toInt(double d){
         d = Math.round(d);
