@@ -91,7 +91,7 @@ public class OfferRequest {
     }//addRem
 
     private void addSper() {
-
+//TODO metode ikke færdig
         boolean hasInclination;
         if (carport.getRoof().inclination == 0) {
             hasInclination = false;
@@ -107,19 +107,26 @@ public class OfferRequest {
             countUnit += 1;
         }
 
-        if (!hasInclination) {
-            addUnit += carport.getConfWidth() / max;
+        addUnit += carport.getConfWidth() / max;
 
-            Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
-            sper.setCompLength(carport.getConfWidth() / addUnit);
-            compList.put(sper, addUnit * countUnit);
-        } else {
+        Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
+        sper.setCompLength(carport.getConfWidth() / addUnit);
+        compList.put(sper, addUnit * countUnit);
 
-            Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
+        if (hasInclination) {
+
+            Component sperTag = ComponentMapper.getComponent("Spær", carport.getConfMat());
             sper.setCompLength(carport.getConfWidth() / addUnit);
             sper.setCompInfo("Singlecut " + carport.getRoof().inclination + "°");
             compList.put(sper, addUnit * countUnit);
-        }//else
+
+            Component sperMidt = ComponentMapper.getComponent("Spær", carport.getConfMat());
+            sper.setCompLength(carport.getConfWidth() / addUnit);
+            sper.setCompInfo("Singlecut " + carport.getRoof().inclination + "°");
+            compList.put(sper, addUnit * countUnit);
+
+
+        }//if
     }//addSper
 
     private void addLegte() {
@@ -227,8 +234,8 @@ public class OfferRequest {
     //COMPONENTS END
 
     //ROOFUNIT
-    private void generateRoofList(){
-    addRoof();
+    private void generateRoofList() {
+        addRoof();
 
     }//generateRoofList
 
@@ -242,40 +249,68 @@ public class OfferRequest {
         }//else
         int quantityX = 0;
         int quantityY = 0;
-        int restX;
-        int restY;
+        int quantityAll = 0;
+        int sizeX = 0;
+        int sizeY = 0;
 
-        if (!hasInclination) {
-            restX = carport.getConfLength();
-            restY = carport.getConfWidth();
+        if (carport.getRoof().material.equalsIgnoreCase("PLASTMO")) {
+            if (!hasInclination) {
 
-            for (int i = carport.getConfLength(); i > carport.getRoof().compWidth; i -= carport.getRoof().compWidth) {
+                for (int i = carport.getConfLength(); i > carport.getRoof().compWidth; i -= carport.getRoof().compWidth) {
+                    quantityX++;
+
+                }//for
+                for (int i = carport.getConfWidth(); i > carport.getRoof().compLength; i -= carport.getRoof().compLength) {
+                    quantityY++;
+                }//for
+                quantityAll = quantityX * quantityY;
+                RoofUnit roofComp = RoofMapper.getRoofUnit(carport.getRoof().material);
+                sizeX = carport.getConfLength() / quantityX;
+                sizeX += 5;
+                roofComp.setUnitLength(sizeX);
+                sizeY = carport.getConfWidth() / quantityY;
+                sizeY += 5;
+                roofComp.setUnitWidth(sizeY);
+                roofComp.setUnitInfo("5cm overlap");
+                roofUnitList.put(roofComp, quantityAll);
+
+            } else {
+
+
+                for (int i = carport.getRoof().sideC; i > carport.getRoof().compLength; i -= carport.getRoof().compLength) {
+                    quantityX++;
+
+                }//for
+                for (int i = carport.getConfLength(); i > carport.getRoof().compWidth; i -= carport.getRoof().compWidth) {
+                    quantityY++;
+                }//for
+                quantityAll = quantityX * quantityY;
+                quantityAll *= 2;
+                RoofUnit roofComp = RoofMapper.getRoofUnit(carport.getRoof().material);
+                sizeX = carport.getConfLength() / quantityX;
+                sizeX += 5;
+                roofComp.setUnitLength(sizeX);
+                sizeY = carport.getConfWidth() / quantityY;
+                sizeY += 5;
+                roofComp.setUnitWidth(sizeY);
+                roofComp.setUnitInfo("5cm overlap");
+                roofUnitList.put(roofComp, quantityAll);
+            }//else
+        }/* PLASTMO */ else {
+            for (int i = carport.getRoof().sideC; i > carport.getRoof().compLength - 3; i -= carport.getRoof().compLength) {
                 quantityX++;
-                restX -= carport.getRoof().compWidth;
+
             }//for
-            for (int i = carport.getConfWidth(); i > carport.getRoof().compLength; i -= carport.getRoof().compLength) {
+            for (int i = carport.getConfLength(); i > carport.getRoof().compWidth - 2; i -= carport.getRoof().compWidth) {
                 quantityY++;
-                restY -= carport.getRoof().compLength;
             }//for
+            quantityAll = quantityX * quantityY;
+            quantityAll *= 2;
+            RoofUnit roofComp = RoofMapper.getRoofUnit(carport.getRoof().material);
 
-       /*     RoofUnit roofComp = RoofMapper.getRoofUnit(carport.getRoof().material);
-            sper.setCompLength(carport.getConfWidth() / addUnit);
-            compList.put(sper, addUnit * countUnit);
-*/
-        } else {
-            restX = carport.getConfLength();
-            restY = carport.getRoof().sideC;
+            roofUnitList.put(roofComp, quantityAll);
 
-            for (int i = carport.getConfLength(); i > carport.getRoof().compWidth; i -= carport.getRoof().compWidth) {
-                quantityX++;
-                restX -= carport.getRoof().compWidth;
-            }//for
-            for (int i = carport.getRoof().sideC; i > carport.getRoof().compLength; i -= carport.getRoof().compLength) {
-                quantityY++;
-                restY -= carport.getRoof().compLength;
-            }//for
-
-        }//else
+        }/* NOT PLASMO */
 
     }//addRoof
     //ROOFUNIT END
@@ -431,6 +466,10 @@ public class OfferRequest {
             price += entry.getKey().getVendorPrice() * entry.getValue();
         }
 
+        for (Map.Entry<RoofUnit, Integer> entry : roofUnitList.entrySet()) {
+            price += entry.getKey().getVendorPrice() * entry.getValue();
+        }
+
         for (Map.Entry<Part, Integer> entry : partList.entrySet()) {
             price += entry.getKey().getVendorPrice() * entry.getValue();
         }
@@ -442,6 +481,10 @@ public class OfferRequest {
         int price = 0;
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            price += entry.getKey().getSalesPrice() * entry.getValue();
+        }
+
+        for (Map.Entry<RoofUnit, Integer> entry : roofUnitList.entrySet()) {
             price += entry.getKey().getSalesPrice() * entry.getValue();
         }
 
