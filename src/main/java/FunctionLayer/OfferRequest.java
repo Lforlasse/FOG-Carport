@@ -309,8 +309,8 @@ public class OfferRequest {
         } else {
             hasInclination = true;
         }//else
-        int quantityX = 0;
-        int quantityY = 0;
+        int quantityX = 1;
+        int quantityY = 1;
         int quantityAll = 0;
         int sizeX = 0;
         int sizeY = 0;
@@ -351,11 +351,17 @@ public class OfferRequest {
                 quantityAll = quantityX * quantityY;
                 quantityAll *= 2;
                 RoofUnit roofComp = RoofMapper.getRoofUnit(carport.getRoof().material);
+
                 sizeX = carport.getConfLength() / quantityX;
-                sizeX += 5;
+                if(quantityX > 1) {
+                    sizeX += 5;
+                }
                 roofComp.setUnitLength(sizeX);
+
                 sizeY = carport.getConfWidth() / quantityY;
-                sizeY += 5;
+                if(quantityY > 1) {
+                    sizeY += 5;
+                }
                 roofComp.setUnitWidth(sizeY);
                 roofComp.setUnitInfo("5cm overlap");
                 roofUnitList.put(roofComp, quantityAll);
