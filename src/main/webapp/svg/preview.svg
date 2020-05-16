@@ -31,7 +31,7 @@
     </defs>
 
     <!-- MarkerX -->
-    <line x1="35"  y1="55" x2="35"   y2="345"
+    <line x1="30"  y1="55" x2="30"   y2="345"
           style="stroke: #000000;
 	marker-start: url(#beginArrow);
 	marker-end: url(#endArrow);"/>
@@ -45,6 +45,7 @@
     <!-- CanvasText -->
     <text style="text-anchor: middle" transform="translate(20,200) rotate(-90)"> 300cm </text>
     <text style="text-anchor: middle" x="340" y="380">580cm </text>
+    <text style="text-anchor: middle" transform="translate(37,200) rotate(90)"> Carport front</text>
 
     <!-- CanvasFront -->
     <svg x="50" y="50" width="580" height="300">
