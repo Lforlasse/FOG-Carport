@@ -6,7 +6,6 @@ import DBAccess.PartMapper;
 import DBAccess.RoofMapper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -701,6 +700,9 @@ public class OfferRequest {
         assignRem();
         assignSper();
         assignStern();
+        if(carport.getRoof().inclination != 0){
+            assignLegte();
+        }//if
 
         blueprint.setBlueprintSVG(blueprint.composeSVG());
 
@@ -783,11 +785,14 @@ public class OfferRequest {
         int x2 = positionRigth + (carport.getConfLength() / 2);
         int y2 = positionDown + carport.getConfWidth() + 30;
 
+        String front = "Carport front";
+
         int value1 = carport.getConfWidth();
         int value2 = carport.getConfLength();
 
         blueprint.setCanvasText("    <text style=\"text-anchor: middle\" transform=\"translate(" + x1 + "," + y1 + ") rotate(-90)\"> " + value1 + "cm </text>\n" +
-                "    <text style=\"text-anchor: middle\" x=\"" + x2 + "\" y=\"" + y2 + "\">" + value2 + "cm </text>");
+                "    <text style=\"text-anchor: middle\" x=\"" + x2 + "\" y=\"" + y2 + "\">" + value2 + "cm </text>\n" +
+                "<text style=\"text-anchor: middle\" transform=\"translate(" + (x1+17) + "," + y1 + ") rotate(90)\">"+ front + "</text>");
     }//assignText
 
     //CARPORTSVG
@@ -1147,6 +1152,10 @@ public class OfferRequest {
 
     private void assignLegte(){
 
+        int width = defineLegteWidth();
+        int height = defineLegteHeight();
+
+        placeLegte(width, height);
 
     }//assignLegte
 
@@ -1155,30 +1164,54 @@ public class OfferRequest {
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Lægte")) {
-                width = entry.getKey().getCompWidth();
+                width = entry.getKey().getCompLength();
             }//if
         }//for
 
         return width;
     }//defineLegteWidth
 
-    private int defineLegteLength(){
-        int length = 0;
+    private int defineLegteHeight(){
+        int height = 0;
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
             if (entry.getKey().getCompDesc().equalsIgnoreCase("Lægte")) {
-                length = entry.getKey().getCompLength();
+                height = entry.getKey().getCompWidth();
             }//if
         }//for
 
-        return length;
-    }
+        return height;
+    }//defineLegteHeight
 
-    private ArrayList<String> placeLegte(){
+    private ArrayList<String> placeLegte(int width, int height){
         ArrayList<String> legte = new ArrayList<>();
+        int push = 5+height;
+        int distance = 30+height;
+        int quantity = -2;
+
+        for (Map.Entry<Component,Integer> entry : compList.entrySet()) {
+            if(entry.getKey().getCompDesc().equalsIgnoreCase("Lægte")){
+              quantity += entry.getValue();
+            }//if
+        }//for
+        quantity /= 2;
+
+        legte.add("<rect x=\""+0+"\" y=\""+0+"\" height=\""+height+"\" width=\""+width+"\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.3\"/>");
+        legte.add("<rect x=\""+0+"\" y=\""+(carport.getConfLength()-height)+"\" height=\""+height+"\" width=\""+width+"\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.3\"/>");
+
+        for (int i = quantity; i == 0; i--){
+            push += distance;
+            legte.add("<rect x=\""+0+"\" y=\""+distance+"\" height=\""+height+"\" width=\""+width+"\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.5\"/>");
+        }//for
+
+        push = (carport.getConfLength()+5)-height;
+        for (int i = quantity; i == 0; i--){
+            push -= distance;
+            legte.add("<rect x=\""+0+"\" y=\""+distance+"\" height=\""+height+"\" width=\""+width+"\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.5\"/>");
+        }//for
 
         return legte;
-    }
+    }//placeLegte
     //BLUEPRINT END
 
 
