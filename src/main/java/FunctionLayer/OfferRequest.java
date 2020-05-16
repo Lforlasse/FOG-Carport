@@ -96,7 +96,6 @@ public class OfferRequest {
     }//addRem
 
     private void addSper() {
-
         boolean hasInclination;
         if (carport.getRoof().inclination == 0) {
             hasInclination = false;
@@ -132,7 +131,6 @@ public class OfferRequest {
             sper.setCompDesc("Midterspær");
             sper.setCompInfo("Topcut " + carport.getRoof().inclination + "° Midterspær");
             compList.put(sper, countUnit);
-
 
         }//if
     }//addSper
