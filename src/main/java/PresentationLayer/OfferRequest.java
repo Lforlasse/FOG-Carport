@@ -70,16 +70,42 @@ public class OfferRequest extends Command {
         String custEmail = request.getParameter("emailInput");
         String custPostal = request.getParameter("postalInput");
 
+        //beklædning
+        boolean right = false, left = false, back = false;
+
+        try {
+            if (request.getParameter("rightSideCheck").equals("on")) {
+                right = true;
+            }
+        } catch (Exception e) {
+        }
+
+        try {
+            if (request.getParameter("leftSideCheck").equals("on")) {
+                left = true;
+            }
+        } catch (Exception e) {
+        }
+
+        try {
+            if (request.getParameter("backSideCheck").equals("on")) {
+                back = true;
+            }
+        } catch (Exception e) {
+        }
+
         try {
             request.setAttribute("offerRequestID", LogicFacade.submitOfferRequest(
                     lengthInput, widthInput, heightInput, confMaterial,
                     roofInput, roofMaterial,
-                    custName, custPhone, custEmail, custPostal));
+                    custName, custPhone, custEmail, custPostal, right, left, back));
             request.setAttribute("actionSuccess", true);
         } catch (Exception e) {
             request.setAttribute("error", "Der skete en fejl.");
             System.out.println(e);
         }
+
+
         request.setAttribute("materials", LogicFacade.carportMaterials());
         request.setAttribute("widthLimits", LogicFacade.widthLimits());
         request.setAttribute("lengthLimits", LogicFacade.lengthLimits());

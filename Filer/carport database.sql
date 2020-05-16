@@ -154,6 +154,9 @@ CREATE TABLE configurations (
     material VARCHAR (30),
     roofInclination INT DEFAULT 0,
 	roofMaterial VARCHAR (30),
+    rightSide BOOLEAN DEFAULT  false,
+    leftSide BOOLEAN DEFAULT  false,
+    backSide BOOLEAN DEFAULT  false,
     createdDate VARCHAR(10) DEFAULT (curdate()),
     changedDate VARCHAR(10) DEFAULT (curdate()),
     
@@ -163,9 +166,9 @@ CREATE TABLE configurations (
     );
 ALTER TABLE configurations auto_increment=224466;
     
-INSERT INTO configurations (confStatus, custName, custPhone, custEmail, custPostal, length, width, height, material, roofInclination, roofMaterial)
-VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 580, 225, "Egetræ", 0, "PLASTMO"),
-		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", 0, "Betontagsten, sort");
+INSERT INTO configurations (confStatus, custName, custPhone, custEmail, custPostal, length, width, height, material, roofInclination, roofMaterial, rightSide, leftSide, backSide)
+VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 580, 225, "Egetræ", 0, "PLASTMO", true, true, true),
+		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", 0, "Betontagsten, sort", false, true, true);
 
 
 

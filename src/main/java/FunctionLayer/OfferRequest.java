@@ -55,6 +55,7 @@ public class OfferRequest {
         addRoof();
 
         //Skal der være tilvalg af beklædning?
+        addListeBekledning();
         addBekledning();
 
     }//generateCompList
@@ -234,17 +235,39 @@ public class OfferRequest {
     //lister til beklædning
     private void addListeBekledning() {
 
-        //not done
+        //TODO Mangler bekræftelse og refactoring af logik
         int max = 200;
-        int countUnit = 1;
+        int compListeRightSide = 0;
+        int compListeLeftSide = 0;
+        int compListeBackSide = 0;
 
-        for(int i = 200; i < carport.getConfLength(); i += max){
-            countUnit += 2;
+        //ene side
+        for (int i = 200; i < carport.getConfLength(); i += max) {
+            compListeRightSide += 2;
         }
 
-        Component liste = ComponentMapper.getComponent("Liste", carport.getConfMat());
-        liste.setCompLength(carport.getConfLength() / countUnit);
-        compList.put(liste, countUnit);
+        Component listeRightSide = ComponentMapper.getComponent("Liste", carport.getConfMat());
+        listeRightSide.setCompLength(carport.getConfLength() / compListeRightSide);
+        compList.put(listeRightSide, compListeRightSide);
+
+        //anden side
+        for (int i = 200; i < carport.getConfLength(); i += max) {
+            compListeLeftSide += 2;
+        }
+
+        Component listeLeftSide = ComponentMapper.getComponent("Liste", carport.getConfMat());
+        listeLeftSide.setCompLength(carport.getConfLength() / compListeLeftSide);
+        compList.put(listeLeftSide, compListeLeftSide);
+
+        //bagside
+        for (int i = 200; i < carport.getConfWidth(); i += max) {
+            compListeBackSide += 2;
+        }
+
+        Component listeBackside = ComponentMapper.getComponent("Liste", carport.getConfMat());
+        listeBackside.setCompLength(carport.getConfLength() / compListeBackSide);
+        compList.put(listeBackside, compListeBackSide);
+
     }
 
     private void addBekledning() {
@@ -254,43 +277,46 @@ public class OfferRequest {
         //parts, lister, coordination med frontend.
         //not done
 
-        int bekledningCarportLengthX = carport.getConfLength() - 10;
-        int bekledningCarportLengthX1 = carport.getConfLength() - 10;
-        int bekledningCarportWidth = carport.getConfWidth() - 10;
+        int bekledningRightSideLength = carport.getConfLength() - 10;
+        int bekledningLeftSideLength = carport.getConfLength() - 10;
+        int bekledningBackSideLength = carport.getConfWidth() - 10;
         int countUnit = 1;
 
-        //Den ene side af længden
-        for(int i = bekledningCarportLengthX; i >= 0; i -= 7){
+        //Den højre side af længden
+        for (int i = bekledningRightSideLength; i >= 0; i -= 7) {
             countUnit += 1;
         }
 
-        Component bekledningLengthX = ComponentMapper.getComponent("Beklædning", carport.getConfMat());
-        bekledningLengthX.setCompLength(carport.getConfHeight());
-        compList.put(bekledningLengthX, countUnit);
+        Component compBekledningRightSide = ComponentMapper.getComponent("Beklædning", carport.getConfMat());
+        compBekledningRightSide.setCompInfo("Højre side");
+        compBekledningRightSide.setCompLength(carport.getConfHeight());
+        compList.put(compBekledningRightSide, countUnit);
 
         //Reset count
         countUnit = 1;
 
-        //Den anden side af længden
-        for(int i = bekledningCarportLengthX1; i >= 0; i -= 7){
+        //Den venstre side af længden
+        for (int i = bekledningLeftSideLength; i >= 0; i -= 7) {
             countUnit += 1;
         }
 
-        Component bekledningLengthX1 = ComponentMapper.getComponent("Beklædning", carport.getConfMat());
-        bekledningLengthX1.setCompLength(carport.getConfHeight());
-        compList.put(bekledningLengthX1, countUnit);
+        Component compBekledningLeftSide = ComponentMapper.getComponent("Beklædning", carport.getConfMat());
+        compBekledningLeftSide.setCompInfo("Venstre side");
+        compBekledningLeftSide.setCompLength(carport.getConfHeight());
+        compList.put(compBekledningLeftSide, countUnit);
 
         //Reset count
         countUnit = 1;
 
         //Bagsiden af carporten
-        for(int i = bekledningCarportWidth; i >= 0; i -= 7){
+        for (int i = bekledningBackSideLength; i >= 0; i -= 7) {
             countUnit += 1;
         }
 
-        Component bekledningWidth = ComponentMapper.getComponent("Beklædning", carport.getConfMat());
-        bekledningWidth.setCompLength(carport.getConfHeight());
-        compList.put(bekledningWidth, countUnit);
+        Component compBekledningBackSide = ComponentMapper.getComponent("Beklædning", carport.getConfMat());
+        compBekledningBackSide.setCompInfo("Bagsiden");
+        compBekledningBackSide.setCompLength(carport.getConfHeight());
+        compList.put(compBekledningBackSide, countUnit);
 
     }//addBekledning
     //COMPONENTS END
@@ -392,6 +418,7 @@ public class OfferRequest {
 
         //husk tilvalg af beklædning
         addPartBekledning();
+        addPartListe();
 
     }//generateCompList
 
@@ -527,39 +554,55 @@ public class OfferRequest {
     }//addPartStern
 
     private void addPartBekledning() {
-        //1 bræt = 4 skruer
-        int countScrew70mm = 0;
-        int countScrew50mm = 0;
+        //TODO mangler bekræftelse og refactoring af logik.
+        //1 bræt = 2 skruer pr liste. 1 bræt hæftes til 2 lister.
+        int countScrew70mm = 4;
+        int countScrew50mm = 4;
         int countBox70mm = 1;
         int countBox50mm = 1;
-        int countUnitBekledning = 0;
-        int countUnitListe = 0;
+        int countCompBekledning = 0;
 
-        for(Map.Entry<Component, Integer> entry : compList.entrySet()){
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
 
-            if(entry.getKey().getCompDesc().equalsIgnoreCase("Beklædning")) {
-                countUnitBekledning++;
-            }//if
-
-            if (entry.getKey().getCompDesc().equalsIgnoreCase("Liste")) {
-                countUnitListe += entry.getValue();
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Beklædning")) {
+                countCompBekledning += entry.getValue();
             }//if
         }//for
 
         //Parts
         Part partSkrueYdre = PartMapper.getPart("Skruer 4,5 x 70mm 200stk");
-        countScrew70mm += countUnitBekledning + countUnitListe;
+        countScrew70mm *= countCompBekledning / 2;
         countBox70mm += countScrew70mm / 200;
 
+        partSkrueYdre.setPartInfo("Til ydre brædder");
 
         Part partSkrueIndre = PartMapper.getPart("Skruer 4,5 x 50mm 350stk");
-        countScrew50mm += countUnitBekledning + countUnitListe;
+        countScrew50mm *= (countCompBekledning / 2) + 1;
         countBox50mm += countScrew50mm / 350;
+
+        partSkrueIndre.setPartInfo("Til inder brædder");
 
         partList.put(partSkrueYdre, countBox70mm);
         partList.put(partSkrueIndre, countBox50mm);
-
     }//addPartBekledning
+
+    private void addPartListe() {
+        int countCompListe = 0;
+        int countPart = 2;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Liste")) {
+                countCompListe += entry.getValue();
+            }//if
+        }//for
+
+        //Parts
+        Part partVinkelbeslag = PartMapper.getPart("Vinkelbeslag");
+        countPart *= countCompListe;
+
+        partList.put(partVinkelbeslag, countPart);
+    }//addPartListe
 
     private void calcVendorPrice() {
         int price = 0;
