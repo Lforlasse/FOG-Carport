@@ -1145,6 +1145,41 @@ public class OfferRequest {
 
         return stern;
     }//placeStern
+
+    private void assignLegte(){
+
+
+    }//assignLegte
+
+    private int defineLegteWidth(){
+        int width = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Lægte")) {
+                width = entry.getKey().getCompWidth();
+            }//if
+        }//for
+
+        return width;
+    }//defineLegteWidth
+
+    private int defineLegteLength(){
+        int length = 0;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Lægte")) {
+                length = entry.getKey().getCompLength();
+            }//if
+        }//for
+
+        return length;
+    }
+
+    private ArrayList<String> placeLegte(){
+        ArrayList<String> legte = new ArrayList<>();
+
+        return legte;
+    }
     //BLUEPRINT END
 
 

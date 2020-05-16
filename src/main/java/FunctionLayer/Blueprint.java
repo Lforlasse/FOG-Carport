@@ -49,6 +49,8 @@ public class Blueprint {
                 composeSper() + "\n" +
                 "<!-- Stern -->" + "\n" +
                  composeStern() + "\n" +
+                "<!-- Legte -->" + "\n" +
+                composeLegte() + "\n" +
                 "    </svg>\n" +
                 "</svg>";
 
@@ -93,6 +95,15 @@ public class Blueprint {
 
             for (int i = 0; i < stern.size(); i++) {
                 collector += stern.get(i) + "\n";
+            }
+            return collector;
+        }
+
+        private String composeLegte(){
+
+            String collector = "";
+            for (int i = 0; i < legte.size(); i++){
+                collector += legte.get(i) + "\n";
             }
             return collector;
         }
