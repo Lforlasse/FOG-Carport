@@ -309,8 +309,8 @@ public class OfferRequest {
         } else {
             hasInclination = true;
         }//else
-        int quantityX = 0;
-        int quantityY = 0;
+        int quantityX = 1;
+        int quantityY = 1;
         int quantityAll = 0;
         int sizeX = 0;
         int sizeY = 0;
