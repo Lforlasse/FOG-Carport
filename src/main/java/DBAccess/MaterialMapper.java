@@ -22,4 +22,31 @@ public class MaterialMapper {
         }
         return materialList;
     }
+
+    public static String getMaterialByName(String compMaterial) {
+        String material = "";
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT materialName FROM materials WHERE materialName = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, compMaterial);
+            ps.executeUpdate();
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex);
+        }
+        return material;
+    }
+
+    public static boolean insertNewMaterial(String compMaterial) {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO materials (materialName) VALUES (?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, compMaterial);
+            ps.executeUpdate();
+            return true;
+        } catch (ClassNotFoundException | SQLException ex) {
+            return false;
+        }
+    }
 }

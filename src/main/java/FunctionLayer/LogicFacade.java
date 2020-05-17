@@ -70,8 +70,8 @@ public class LogicFacade {
     }
 
     public static int submitOfferRequest(int length, int width, int height, String confMaterial,
-                                          int roofAngle, String roofMaterial,
-                                          String custName, String custPhone, String custEmail, String custPostal)
+                                         int roofAngle, String roofMaterial,
+                                         String custName, String custPhone, String custEmail, String custPostal)
             throws LoginSampleException {
         //TODO Test data, replace with DBAccess method
         int confId = ConfigurationMapper.newOfferRequest(length, width, height, confMaterial,
@@ -116,5 +116,21 @@ public class LogicFacade {
 
     public static Component getComponent(int componentId) {
         return ComponentMapper.getComponentById(componentId);
+    }
+
+    public static boolean updateComponentSalesPrice(int compId, int newSalesPrice) {
+        return ComponentMapper.updateComponentSalesPrice(compId, newSalesPrice);
+    }
+
+    public static boolean insertNewComponent(String compDesc, String compMaterial, int compHeight, int compWidth, int compLenght, int compVendorPrice, int compSalesPrice) {
+        return ComponentMapper.insertNewComponent(compDesc, compMaterial, compHeight, compWidth, compLenght, compVendorPrice, compSalesPrice);
+    }
+
+    public static String getMaterialByName(String compMaterial) {
+        return MaterialMapper.getMaterialByName(compMaterial);
+    }
+
+    public static boolean insertNewMaterial(String compMaterial) {
+        return MaterialMapper.insertNewMaterial(compMaterial);
     }
 }

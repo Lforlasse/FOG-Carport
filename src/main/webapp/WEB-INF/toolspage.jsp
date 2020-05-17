@@ -87,22 +87,17 @@
                             </div>
                             <input type="number" class="form-control text-right h-100 w-100 border-secondary"
                                    placeholder="id" name="compId" id="compId"
-                                   value="">
+                                   value="${requestScope.component.compId}">
                             <div class="input-group-append bg-white rounded">
                                 <button type="submit" class="btn btn-outline-secondary" name="pageFunction"
                                         value="getComponentData">Redigér
                                 </button>
                             </div>
                         </div>
-                        <div class="input-group col-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text border-secondary">
-                                    <label class="m-0" for="selectedComponentId">ID</label>
-                                </span>
-                            </div>
-                            <input type="number" class="form-control text-right h-100 w-100 border-secondary"
-                                   placeholder="" name="selectedComponentId" id="selectedComponentId"
-                                   value="${requestScope.component.compId}" readonly>
+                        <div class="input-group col">
+                            <button type="submit" class="btn btn-secondary w-100" name="pageFunction"
+                                    value="newComponent">Ny komponent
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -121,9 +116,9 @@
                                     <label class="m-0" for="componentType">Type</label>
                                 </span>
                             </div>
-                            <input type="number" class="form-control text-right h-100 border-secondary"
+                            <input type="text" class="form-control text-right h-100 border-secondary"
                                    placeholder="" name="componentType" id="componentType"
-                                   value="${requestScope.component.vendorPrice}" READONLY>
+                                   value="${requestScope.component.compDesc}" READONLY>
                         </div>
                         <div class="input-group col">
                             <div class="input-group-prepend">
@@ -131,9 +126,9 @@
                                     <label class="m-0" for="componentMaterial">Materiale</label>
                                 </span>
                             </div>
-                            <input type="number" class="form-control text-right h-100 border-secondary"
+                            <input type="text" class="form-control text-right h-100 border-secondary"
                                    placeholder="" name="componentMaterial" id="componentMaterial"
-                                   value=${requestScope.component.material}"" READONLY>
+                                   value="${requestScope.component.material}" READONLY>
                         </div>
                     </div>
 
@@ -148,9 +143,9 @@
                                     <label class="m-0" for="currentSalesPrice">Pris</label>
                                 </span>
                             </div>
-                            <input type="number" class="form-control text-right h-100 border-secondary"
+                            <input type="text" class="form-control text-right h-100 border-secondary"
                                    placeholder="" name="currentSalesPrice" id="currentSalesPrice"
-                                   value="${requestScope.component.salesPrice}" READONLY>
+                                   value="${requestScope.component.salesPrice} kr." READONLY>
                         </div>
                         <div class="input-group col">
                             <div class="input-group-prepend">
@@ -164,7 +159,7 @@
                         </div>
                     </div>
 
-                    <!-- Row 5 -->
+                    <!-- Row 4 -->
                     <div class="form-row mb-3 float-right">
                         <div class="input-group col">
                             <button type="submit" class="btn btn-secondary" name="pageFunction"
@@ -174,6 +169,112 @@
                     </div>
                     <!--  JSTL END: IF STATEMENT  -->
                     </c:if>
+
+                    <c:if test="${requestScope.newComponent != null}">
+                    <!--  JSTL START: IF STATEMENT TO SHOW ONLY IF componentId is NOT NULL  -->
+                    <div class="card-body border-top">
+                        <!-- Row 2 -->
+                        <div class="form-row mb-3">
+                            <div class="input-group col-2">
+                                Komponent
+                            </div>
+                            <div class="input-group col">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="newComponentDesc">Type</label>
+                                </span>
+                                </div>
+                                <input type="text" class="form-control text-right h-100 border-secondary"
+                                       placeholder="" name="newComponentDesc" id="newComponentDesc"
+                                       value="">
+                            </div>
+                            <div class="input-group col">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="newComponentMaterial">Materiale</label>
+                                </span>
+                                </div>
+                                <input type="text" class="form-control text-right h-100 border-secondary"
+                                       placeholder="" name="newComponentMaterial" id="newComponentMaterial"
+                                       value="">
+                            </div>
+                        </div>
+
+                        <!-- Row 3 -->
+                        <div class="form-row mb-3">
+                            <div class="input-group col-2">
+                                Mål
+                            </div>
+                            <div class="input-group col">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="newComponentHeight">Højde</label>
+                                </span>
+                                </div>
+                                <input type="number" class="form-control text-right h-100 border-secondary"
+                                       placeholder="cm" name="newComponentHeight" id="newComponentHeight"
+                                       value="">
+                            </div>
+                            <div class="input-group col">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="newComponentWidth">Bredde</label>
+                                </span>
+                                </div>
+                                <input type="number" class="form-control text-right h-100 border-secondary"
+                                       placeholder="cm" name="newComponentWidth" id="newComponentWidth"
+                                       value="">
+                            </div>
+                            <div class="input-group col">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="newComponentLength">Længde</label>
+                                </span>
+                                </div>
+                                <input type="number" class="form-control text-right h-100 border-secondary"
+                                       placeholder="cm" name="newComponentLength" id="newComponentLength"
+                                       value="">
+                            </div>
+                        </div>
+
+                        <!-- Row 4 -->
+                        <div class="form-row mb-3">
+                            <div class="input-group col-2">
+                                Salg
+                            </div>
+                            <div class="input-group col">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="newComponentVendorPrice">Indkøbspris</label>
+                                </span>
+                                </div>
+                                <input type="text" class="form-control text-right h-100 border-secondary"
+                                       placeholder="kr." name="newComponentVendorPrice" id="newComponentVendorPrice"
+                                       value="">
+                            </div>
+                            <div class="input-group col">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text border-secondary">
+                                    <label class="m-0" for="newComponentSalesPrice">Salgspris</label>
+                                </span>
+                                </div>
+                                <input type="number" class="form-control text-right h-100 border-secondary"
+                                       placeholder="kr." name="newComponentSalesPrice" id="newComponentSalesPrice"
+                                       value="">
+                            </div>
+                        </div>
+
+
+                        <!-- Row 5 -->
+                        <div class="form-row mb-3 float-right">
+                            <div class="input-group col">
+                                <button type="submit" class="btn btn-secondary" name="pageFunction"
+                                        value="insertNewComponent">Indsæt
+                                </button>
+                            </div>
+                        </div>
+                        <!--  JSTL END: IF STATEMENT  -->
+                        </c:if>
                     <input type="hidden" name="target" value="tools">
                 </div>
             </form>
