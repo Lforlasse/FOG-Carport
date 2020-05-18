@@ -9,8 +9,6 @@ public class Roof {
     int compLength;
     int compWidth;
     int inclination;
-    int compLength;
-    int compWidth;
     int maxLengthComponent;
     int sideC;
 
