@@ -47,7 +47,7 @@ VALUES  ("Stolpe", "Trykimprægneret", 10, 10, 74, 250, 475),
 		("Stern, over", "Egetræ", 2, 12, 41, 60, 110),
         ("Stern, mellem", "Egetræ", 2, 12, 41, 60, 110),
         ("Stern, under", "Egetræ", 2, 12, 41, 60, 110),
-        
+
         ("Liste", "Trykimprægneret", 2, 4, 64, 21, 23),
         ("Liste", "Egetræ", 2, 4, 64, 21, 23),
 
@@ -104,9 +104,9 @@ VALUES  ("Skruer 5 x 100mm 100stk", "Pakke", 85, 40, 120),
         ("Skruer 4,5 x 50mm 350stk", "Pakke", 48, 20, 50),
         ("Skruer 4,0 x 50mm 250stk", "Pakke" ,75, 70, 150),
         ("PLASTMO bundskruer 200stk", "Pakke", 30, 20, 45),
-        
+
         ("Bræddebolt 10 x 120mm", "Sæt", 128, 10, 19),
-        
+
         ("Hulbånd 1x20mm x 10m", "Rulle", 48, 90, 200),
 
 		("Universalbeslag 190mm højre", "Styk", 83, 15, 35),
@@ -114,7 +114,7 @@ VALUES  ("Skruer 5 x 100mm 100stk", "Pakke", 85, 40, 120),
         ("Vinkelbeslag", "Styk", 325, 5, 9),
         ("Firkantskive 40 x 40 x 11mm", "Styk", 392, 3, 5),
         ("Bræddeplade 200 x 150 x 5mm", "Styk", 264, 15, 28);
-        
+
 
 CREATE TABLE validations (
 	valueDesc VARCHAR(40) NOT NULL,
@@ -154,6 +154,9 @@ CREATE TABLE configurations (
     material VARCHAR (30),
     roofInclination INT DEFAULT 0,
 	roofMaterial VARCHAR (30),
+    rightSide BOOLEAN DEFAULT  false,
+    leftSide BOOLEAN DEFAULT  false,
+    backSide BOOLEAN DEFAULT  false,
     createdDate VARCHAR(10) DEFAULT (curdate()),
     changedDate VARCHAR(10) DEFAULT (curdate()),
     
@@ -162,10 +165,14 @@ CREATE TABLE configurations (
     
     );
 ALTER TABLE configurations auto_increment=224466;
-    
-INSERT INTO configurations (confStatus, custName, custPhone, custEmail, custPostal, length, width, height, material, roofInclination, roofMaterial)
-VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 580, 225, "Egetræ", 0, "PLASTMO"),
-		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", 0, "Betontagsten, sort");
+CREATE TRIGGER changeDateTrigger
+    BEFORE UPDATE ON configurations
+    FOR EACH ROW
+    SET new.changedDate = curdate();
+
+INSERT INTO configurations (confStatus, custName, custPhone, custEmail, custPostal, length, width, height, material, roofInclination, roofMaterial, rightSide, leftSide, backSide)
+VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 580, 225, "Egetræ", 0, "PLASTMO", true, true, true),
+		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", 0, "Betontagsten, sort", false, true, true);
 
 
 

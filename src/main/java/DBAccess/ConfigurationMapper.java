@@ -58,12 +58,15 @@ public class ConfigurationMapper {
 
     public static int newOfferRequest(int length, int width, int height, String confMaterial,
                                       int inclination, String roofMaterial,
-                                      String custName, String custPhone, String custEmail, String custPostal) throws LoginSampleException {
+                                      String custName, String custPhone, String custEmail, String custPostal,
+                                      boolean right, boolean left, boolean back) throws LoginSampleException {
         int offerRequestId;
         try {
             //TODO Implement remaining data/variables
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO configurations (confStatus, custName, custPhone, custEmail, custPostal, length, width, height, material) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String SQL = "INSERT INTO configurations (confStatus, custName, custPhone, custEmail, custPostal, " +
+                    "length, width, height, material, rightSide, leftSide, backSide, roofInclination, roofMaterial) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, "Ny");
             ps.setString(2, custName);
@@ -74,6 +77,11 @@ public class ConfigurationMapper {
             ps.setInt(7, width);
             ps.setInt(8, height);
             ps.setString(9, confMaterial);
+            ps.setBoolean(10, right);
+            ps.setBoolean(11, left);
+            ps.setBoolean(12, back);
+            ps.setInt(13, inclination);
+            ps.setString(14, roofMaterial);
             ps.executeUpdate();
 
             ResultSet ids = ps.getGeneratedKeys();
