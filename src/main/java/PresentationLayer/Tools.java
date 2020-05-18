@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 public class Tools extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
-        request.setAttribute("completeCompList", LogicFacade.getAllComponents());
 
         try {
             if (request.getParameter("pageFunction").equals("getComponentData")) {
@@ -38,7 +37,7 @@ public class Tools extends Command {
             }
 
             if (request.getParameter("pageFunction").equals("newComponent")) {
-                request.setAttribute("newComponent", "");
+                request.setAttribute("newComponent", "NOT NULL");
             }
 
             if (request.getParameter("pageFunction").equals("insertNewComponent")) {
@@ -65,6 +64,7 @@ public class Tools extends Command {
             }
         } catch (Exception ex) {
         }
+        request.setAttribute("completeCompList", LogicFacade.getAllComponents());
         return "toolspage";
     }
 }
