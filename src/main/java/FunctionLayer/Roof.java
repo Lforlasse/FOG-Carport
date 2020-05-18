@@ -27,7 +27,7 @@ public class Roof {
     public Roof() {
     }
 
-    private int calcSideC(int inclination, int width) {
+    public int calcSideC(int inclination, int width) {
 
         double dWidth = width/2;
         double dInclination = 90-inclination;
@@ -44,7 +44,7 @@ public class Roof {
         return res;
     }//calcSideC
 
-    private int calcRoofHeight(int sideC, int sideA){
+    public int calcRoofHeight(int sideC, int sideA){
         double dSideA = sideA/2;
         double dSideC = sideC;
 
