@@ -1313,4 +1313,8 @@ public class OfferRequest {
     public Blueprint getBlueprint() {
         return blueprint;
     }
+
+    public LinkedHashMap<RoofUnit, Integer> getRoofUnitList() {
+        return roofUnitList;
+    }
 }//class

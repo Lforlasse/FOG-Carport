@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ComponentMapper {
@@ -117,5 +119,30 @@ public class ComponentMapper {
             System.out.println(ex);
             return false;
         }
+    }
+
+    public static List<Component> getAllComponents() {
+        List<Component> compList = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL="SELECT * FROM components";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int compId = rs.getInt("compId");
+                String compDesc = rs.getString("compDesc");
+                String material = rs.getString("material");
+                int compHeight = rs.getInt("compHeigth");
+                int compWidth = rs.getInt("compWidth");
+                int compLength = rs.getInt("compLength");
+                int vendorPrice = rs.getInt("vendorPrice");
+                int salesPrice = rs.getInt("salesPrice");
+                compList.add(new Component(compId,compDesc, material, compHeight,
+                        compWidth, compLength, vendorPrice, salesPrice ));
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);;
+        }
+        return compList;
     }
 }//ComponentMapper

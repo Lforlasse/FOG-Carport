@@ -111,7 +111,7 @@
                             </div>
                             <input type="text" class="form-control text-right h-100 border-secondary"
                                    placeholder="cm" id="roofAngle"
-                                   value="${requestScope.offerRequest.carport.roof}" readonly>
+                                   value="${requestScope.offerRequest.carport.roof.inclination}" readonly>
                         </div>
                         <div class="input-group input-group-sm col">
                             <div class="input-group-prepend">
@@ -121,7 +121,7 @@
                             </div>
                             <input type="text" class="form-control text-right h-100 border-secondary"
                                    placeholder="cm" id="roofMaterial"
-                                   value="${requestScope.offerRequest.carport.roof}" readonly>
+                                   value="${requestScope.offerRequest.carport.roof.material}" readonly>
                         </div>
                     </div><!--
                     <input type="hidden" name="target" value="prefab">
@@ -234,7 +234,7 @@
                         <thead>
                         <tr>
                             <th scope="col">Vare nr.</th>
-                            <th scope="col">Beskrivelse</th>
+                            <th scope="col">Type</th>
                             <th scope="col">Materiale</th>
                             <th scope="col">Længde</th>
                             <th scope="col">Antal</th>
@@ -246,22 +246,51 @@
                         <c:forEach var="compItem" items="${compList}">
                             <tr>
                                 <th scope="col">${compItem.key.compId}</th>
-                                <td scope="col">${compItem.key.compDesc}</td>
-                                <td scope="col">${compItem.key.material}</td>
-                                <td scope="col">${compItem.key.compLength}</td>
-                                <td scope="col">${compItem.value}</td>
-                                <td scope="col">${compItem.key.compInfo}</td>
+                                <td>${compItem.key.compDesc}</td>
+                                <td>${compItem.key.material}</td>
+                                <td>${compItem.key.compLength}</td>
+                                <td>${compItem.value}</td>
+                                <td>${compItem.key.compInfo}</td>
                             </tr>
                         </c:forEach>
                         </tbody>
                     </table>
                 </div>
+
+                <div class="overflow-auto mb-3">
+                    <table class="table table-bordered table-sm table-hover text-nowrap mb-0">
+                        <thead>
+                        <tr>
+                            <th scope="col">Vare nr.</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Højde</th>
+                            <th scope="col">Længde</th>
+                            <th scope="col">Antal</th>
+                            <th scope="col">Beskrivelse</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:set var="roofUnitList" value="${requestScope.offerRequest.roofUnitList}"/>
+                        <c:forEach var="roofUnit" items="${roofUnitList}">
+                            <tr>
+                                <th scope="col">${roofUnit.key.unitId}</th>
+                                <td>${roofUnit.key.unitDesc}</td>
+                                <td>${roofUnit.key.unitLength}</td>
+                                <td>${roofUnit.key.unitWidth}</td>
+                                <td>${roofUnit.value}</td>
+                                <td>${roofUnit.key.unitInfo}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+
                 <div class="overflow-auto">
                     <table class="table table-bordered table-sm table-hover text-nowrap mb-0">
                         <thead>
                         <tr>
                             <th scope="col">Vare nr.</th>
-                            <th scope="col">Beskrivelse</th>
+                            <th scope="col">Type</th>
                             <th scope="col">Enhed</th>
                             <th scope="col">Antal</th>
                             <th scope="col">Beskrivelse</th>
@@ -272,10 +301,10 @@
                         <c:forEach var="partItem" items="${partList}">
                             <tr>
                                 <th scope="col">${partItem.key.partId}</th>
-                                <td scope="col">${partItem.key.partDesc}</td>
-                                <td scope="col">${partItem.key.itemType}</td>
-                                <td scope="col">${partItem.value}</td>
-                                <td scope="col">${partItem.key.partInfo}</td>
+                                <td>${partItem.key.partDesc}</td>
+                                <td>${partItem.key.itemType}</td>
+                                <td>${partItem.value}</td>
+                                <td>${partItem.key.partInfo}</td>
                             </tr>
                         </c:forEach>
                         </tbody>

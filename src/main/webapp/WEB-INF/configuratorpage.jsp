@@ -137,19 +137,35 @@
                         </select>
                     </div>
                     <div class="form-row mb-3">
-                        <div class="col px-0 form-inline">
-                            Beklædning
-                            <div class="custom-control custom-checkbox ml-auto">
+                        <div class="col-2 px-0">
+                            Væg beklædning
+                        </div>
+                        <div class="col">
+                                <span class="float-right">
+                                Højre side
+                                </span>
+                            <div class="custom-control custom-checkbox ml-1 float-right">
                                 <input type="checkbox" class="custom-control-input"
                                        name="rightSideCheck" id="rightSideCheck">
                                 <label class="custom-control-label" for="rightSideCheck"></label>
-                                </div>
-                            <div class="custom-control custom-checkbox ml-auto">
+                            </div>
+                        </div>
+                        <div class="col">
+                                <span class="float-right">
+                                Venstre side
+                                </span>
+                            <div class="custom-control custom-checkbox ml-1 float-right">
                                 <input type="checkbox" class="custom-control-input"
                                        name="leftSideCheck" id="leftSideCheck">
                                 <label class="custom-control-label" for="leftSideCheck"></label>
                             </div>
-                            <div class="custom-control custom-checkbox ml-auto">
+                        </div>
+
+                        <div class="col">
+                                <span class="float-right">
+                                Bagside
+                                </span>
+                            <div class="custom-control custom-checkbox ml-1 float-right">
                                 <input type="checkbox" class="custom-control-input"
                                        name="backSideCheck" id="backSideCheck">
                                 <label class="custom-control-label" for="backSideCheck"></label>

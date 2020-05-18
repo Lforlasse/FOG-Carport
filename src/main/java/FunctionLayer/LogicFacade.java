@@ -9,6 +9,10 @@ import java.util.Map;
 
 public class LogicFacade {
 
+    public static List<Component> getAllComponents() {
+        return ComponentMapper.getAllComponents();
+    }
+
     public static List<String> carportMaterials() {
         /*
         List<String> list = new ArrayList<>();

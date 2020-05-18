@@ -1,6 +1,5 @@
 package PresentationLayer;
 
-import FunctionLayer.Carport;
 import FunctionLayer.Component;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
@@ -11,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 public class Tools extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+        request.setAttribute("completeCompList", LogicFacade.getAllComponents());
+
         try {
             if (request.getParameter("pageFunction").equals("getComponentData")) {
                 int compId = Integer.parseInt(request.getParameter("compId"));
@@ -63,7 +64,6 @@ public class Tools extends Command {
                 }
             }
         } catch (Exception ex) {
-            System.out.println(ex);
         }
         return "toolspage";
     }
