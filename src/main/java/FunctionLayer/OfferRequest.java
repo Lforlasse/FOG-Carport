@@ -228,21 +228,7 @@ public class OfferRequest {
             compList.put(sternWidthOver, addUnit);
             compList.put(sternWidthUnder, addUnit);
         }//if
-        //tag med rejsning
-        else {
 
-            Component sternWidthOver = ComponentMapper.getComponent("Stern, over", carport.getConfMat());
-            Component sternWidthUnder = ComponentMapper.getComponent("Stern, under", carport.getConfMat());
-
-            sternWidthOver.setCompLength(carport.getConfWidth() / addUnit);
-            sternWidthOver.setCompInfo("Singlecut " + carport.getRoof().inclination + "°");
-            sternWidthUnder.setCompLength(carport.getConfWidth() / addUnit);
-            sternWidthUnder.setCompInfo("Singlecut " + carport.getRoof().inclination + "°");
-            addUnit *= 2;
-
-            compList.put(sternWidthOver, addUnit);
-            compList.put(sternWidthUnder, addUnit);
-        }//else
     }//addStern
 
     //lister til beklædning
