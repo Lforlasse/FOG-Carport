@@ -46,7 +46,7 @@ public class Roof {
         return res;
     }//calcSideC
 
-    private int calcRoofHeight(int sideC, int sideA){
+    public int calcRoofHeight(int sideC, int sideA){
         double dSideA = sideA/2;
         double dSideC = sideC;
 

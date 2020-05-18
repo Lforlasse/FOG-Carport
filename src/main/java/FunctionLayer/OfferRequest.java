@@ -45,17 +45,14 @@ public class OfferRequest {
         addStolpe();
         addRem();
         addSper();
-
         if (carport.getRoof().inclination > 0) {
             addLegte();
+            addGavl();
         }
-
         addStern();
-        addRoof();
-
-        //Skal der være tilvalg af beklædning?
         addListeBekledning();
         addBekledning();
+
 
     }//generateCompList
 
@@ -120,16 +117,17 @@ public class OfferRequest {
         if (hasInclination) {
 
             Component sperTag = ComponentMapper.getComponent("Spær", carport.getConfMat());
-            sper.setCompLength(carport.getConfWidth() / addUnit);
-            sper.setCompDesc("Tagspær");
-            sper.setCompInfo("Singlecut " + carport.getRoof().inclination + "° Tagspær");
-            compList.put(sper, addUnit * countUnit);
+            sperTag.setCompLength(carport.getConfWidth() / addUnit);
+            sperTag.setCompDesc("Tagspær");
+            sperTag.setCompInfo("Singlecut " + carport.getRoof().inclination + "° Tagspær");
+            compList.put(sperTag, addUnit * countUnit);
 
             Component sperMidt = ComponentMapper.getComponent("Spær", carport.getConfMat());
-            sper.setCompLength(sper.getCompWidth() + carport.getRoof().roofHeight - carport.getRoof().sideC);
-            sper.setCompDesc("Midterspær");
-            sper.setCompInfo("Topcut " + carport.getRoof().inclination + "° Midterspær");
-            compList.put(sper, countUnit);
+            int sperCutLength = carport.getRoof().calcSideC(carport.getRoof().inclination,(sper.getCompWidth()*2));
+            sperMidt.setCompLength(carport.getRoof().roofHeight-sperCutLength);
+            sperMidt.setCompDesc("Midterspær");
+            sperMidt.setCompInfo("Topcut " + carport.getRoof().inclination + "° Midterspær");
+            compList.put(sperMidt, countUnit);
 
         }//if
     }//addSper
@@ -293,6 +291,28 @@ public class OfferRequest {
         compList.put(bekledningWidth, countUnit);
 
     }//addBekledning
+
+    private void addGavl(){
+
+        Component gavlComp = ComponentMapper.getComponent("Beklædning", carport.getConfMat());
+        //Component sperComp = ComponentMapper.getComponent("Spær", carport.getConfMat());
+        int countComp = 0;
+        int inclination = carport.getRoof().inclination;
+        int gavlSideA = gavlComp.getCompWidth();
+        int gavlSideC = carport.getRoof().calcSideC(inclination,(gavlSideA*2));
+        int gavlSideB = carport.getRoof().calcRoofHeight(gavlSideC, gavlSideA);
+
+        for (int i = 0; i >= carport.getRoof().roofHeight; i += gavlComp.getCompWidth()){
+            countComp ++;
+        }
+        countComp *= 2;
+
+        gavlComp.setCompInfo("Singlecut"+inclination+"°, længdefald: " + gavlSideB + "cm");
+        gavlComp.setCompDesc("Gavlbrædde");
+        gavlComp.setCompLength(carport.getConfWidth()/2);
+        compList.put(gavlComp,countComp);
+
+    }//addGavl
     //COMPONENTS END
 
     //ROOFUNIT
@@ -335,9 +355,7 @@ public class OfferRequest {
                 roofComp.setUnitWidth(sizeY);
                 roofComp.setUnitInfo("5cm overlap");
                 roofUnitList.put(roofComp, quantityAll);
-
             } else {
-
 
                 for (int i = carport.getRoof().sideC; i > carport.getRoof().compLength; i -= carport.getRoof().compLength) {
                     quantityX++;
@@ -364,7 +382,7 @@ public class OfferRequest {
                 roofComp.setUnitInfo("5cm overlap");
                 roofUnitList.put(roofComp, quantityAll);
             }//else
-        }/* PLASTMO */ else {
+        }/* PLASTMO ENDS */ else {
             for (int i = carport.getRoof().sideC; i > carport.getRoof().compLength - 3; i -= carport.getRoof().compLength) {
                 quantityX++;
 
@@ -377,8 +395,7 @@ public class OfferRequest {
             RoofUnit roofComp = RoofMapper.getRoofUnit(carport.getRoof().material);
 
             roofUnitList.put(roofComp, quantityAll);
-
-        }/* NOT PLASMO */
+        }//else
 
     }//addRoof
     //ROOFUNIT END
@@ -390,6 +407,7 @@ public class OfferRequest {
 
         if (carport.getRoof().inclination > 0) {
             addPartLegte();
+            addPartGavl();
         }
 
         addPartStern();
@@ -602,9 +620,27 @@ public class OfferRequest {
         partList.put(partVinkelbeslag, countPart);
     }//addPartListe
 
+    private void addPartGavl() {
+        int countUnit = 0;
+        int countbox = 1;
+
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()){
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Gavlbrædde")){
+              countUnit = entry.getValue();
+            }//if
+        }//for
+        countUnit *= 4;
+        Part partSkruer = PartMapper.getPart("Skruer 4,5 x 70mm 200stk");
+        countbox += countUnit/200;
+
+        partSkruer.setPartInfo("Skruer til gavlbrædder");
+        partList.put(partSkruer,countbox);
+
+    }//addPartGavl
+
     private void addPartRoof() {
         int countUnit = 0;
-        int countbox;
+        int countbox = 1;
 
         if (carport.getRoof().material.equalsIgnoreCase("PLASTMO")) {
             for (Map.Entry<RoofUnit, Integer> entry : roofUnitList.entrySet()) {
@@ -615,14 +651,15 @@ public class OfferRequest {
             }//for
             Part partSkruer = PartMapper.getPart("PLASTMO bundskruer 200stk");
             partSkruer.setPartInfo("Skruer til PLASTMO plader");
-
-            countbox = countUnit/2;
+            countUnit *= 40;
+            countbox += countUnit/200;
             partList.put(partSkruer,countbox);
 
         }//if
 
         //Betontagsten har ingen parts.
     }//addPartRoof
+
 
     private void calcVendorPrice() {
         int price = 0;
@@ -737,7 +774,7 @@ public class OfferRequest {
         int headEndY;
 
 
-        headStartX = positionRight - 15;
+        headStartX = positionRight - 20;
         headStartY = positionDown + 5;
         headEndX = headStartX;
         headEndY = carport.getConfWidth() + positionDown - 5;

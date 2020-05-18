@@ -102,6 +102,7 @@ public class Blueprint {
         private String composeLegte(){
 
             String collector = "";
+            if(legte != null)
             for (int i = 0; i < legte.size(); i++){
                 collector += legte.get(i) + "\n";
             }

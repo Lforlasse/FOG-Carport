@@ -19,7 +19,7 @@ public class ConfigurationStatusMapper {
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                System.out.println(rs.getString(1));
+                //System.out.println(rs.getString(1));
                 configs.add(rs.getString(1));
             }//while
         } catch (ClassNotFoundException | SQLException ex) {
