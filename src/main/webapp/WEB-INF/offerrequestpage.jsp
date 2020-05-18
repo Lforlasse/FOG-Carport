@@ -264,7 +264,7 @@
                             <th scope="col">Vare nr.</th>
                             <th scope="col">Type</th>
                             <th scope="col">Højde</th>
-                            <th scope="col">Længde</th>
+                            <th scope="col">Bredde</th>
                             <th scope="col">Antal</th>
                             <th scope="col">Beskrivelse</th>
                         </tr>
