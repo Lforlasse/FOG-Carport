@@ -12,10 +12,20 @@ public class Connector {
 
     private static Connection singleton;
 
+    /**
+     *
+     * @param con
+     */
     public static void setConnection( Connection con ) {
         singleton = con;
     }
 
+    /**
+     *
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static Connection connection() throws ClassNotFoundException, SQLException {
         if ((singleton == null) || singleton.isClosed()) {
             setDBCredentials();
@@ -25,6 +35,9 @@ public class Connector {
         return singleton;
     }
 
+    /**
+     *
+     */
     public static void setDBCredentials() {
         String deployed = System.getenv("DEPLOYED");
         if (deployed != null){

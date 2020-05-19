@@ -10,6 +10,11 @@ import java.util.List;
 
 public class ConfigurationMapper {
 
+    /**
+     *
+     * @param getConfId henter configuration på id
+     * @return carport objekt på det hentede id
+     */
     public static Carport makeConfigObject(int getConfId) {
         Carport carport = null;
 
@@ -56,6 +61,24 @@ public class ConfigurationMapper {
         return carport;
     }//makeConfigObject
 
+    /**
+     *
+     * @param length tager imod længde
+     * @param width tager imod bredde
+     * @param height tager imod højde
+     * @param confMaterial tager imod materiale
+     * @param inclination tager imod hældning
+     * @param roofMaterial tager imod materiale til tag
+     * @param custName tager imod kundens navn
+     * @param custPhone tager imod kundes tlfnr
+     * @param custEmail tager imod kundes email
+     * @param custPostal tager imod kundens postnummer
+     * @param right tager imod valg af beklædning højre
+     * @param left tager imod valg af beklædning venstre
+     * @param back tager imod valg af beklædning bagside
+     * @return offerequestid
+     * @throws LoginSampleException
+     */
     public static int newOfferRequest(int length, int width, int height, String confMaterial,
                                       int inclination, String roofMaterial,
                                       String custName, String custPhone, String custEmail, String custPostal,
@@ -95,6 +118,12 @@ public class ConfigurationMapper {
         return offerRequestId;
     }
 
+    /**
+     *
+     * @param confId tager imod konfigurations id
+     * @param confStatus sætter status for id
+     * @return opdateret status
+     */
     public static boolean setConfigStatus(int confId, String confStatus) {
         boolean result = false;
         try {
@@ -111,6 +140,11 @@ public class ConfigurationMapper {
         return result;
     }
 
+    /**
+     *
+     * @param confId tager imod konfigurations id
+     * @return konfiguration af carport på dette id
+     */
     public static Carport getOneConfig(int confId) {
         Carport carport = null;
         try {
@@ -138,6 +172,10 @@ public class ConfigurationMapper {
         return carport;
     }//getOneConfig
 
+    /**
+     *
+     * @return en liste af alle carport konfigurationer
+     */
     public static ArrayList<Carport> getAllConfigs() {
         ArrayList<Carport> configs = new ArrayList<>();
 
@@ -167,6 +205,11 @@ public class ConfigurationMapper {
         return configs;
     }//getAllConfigs
 
+    /**
+     *
+     * @param confId tager imod konfigurations id
+     * @return status på dette id
+     */
     public static String getConfigStatus(int confId) {
         String confStatus = "";
         try {
@@ -183,6 +226,11 @@ public class ConfigurationMapper {
         return confStatus;
     }
 
+    /**
+     *
+     * @param confId tager imod konfigurations id
+     * @return oprettelsesdatoen for dette id
+     */
     public static Date getCreatedDate(int confId) {
         Date createdDate = null;
         try {
@@ -199,6 +247,11 @@ public class ConfigurationMapper {
         return createdDate;
     }
 
+    /**
+     *
+     * @param confId tager imod konfigurations id
+     * @return datoen for ændringe rlavet på konfig id
+     */
     public static Date getChangedDate(int confId) {
         Date changedDate = null;
         try {
@@ -215,6 +268,12 @@ public class ConfigurationMapper {
         return changedDate;
     }
 
+    /**
+     *
+     * @param confId tager imod konfig id
+     * @param changedDate tager imod ny dato
+     * @return konfig med dato af ændringer
+     */
     public static boolean setChangedDate(int confId, Date changedDate) {
         boolean result = false;
         try {
@@ -231,6 +290,10 @@ public class ConfigurationMapper {
         return result;
     }
 
+    /**
+     *
+     * @return en liste med alle konfig under status NY
+     */
     public ArrayList<Carport> getNewConfigs() {
         ArrayList<Carport> configs = new ArrayList<>();
 
@@ -262,6 +325,10 @@ public class ConfigurationMapper {
         return configs;
     }//getNewConfigs
 
+    /**
+     *
+     * @return en liste med alle konfig under status behandles
+     */
     public ArrayList<Carport> getInProgressConfigs() {
         ArrayList<Carport> configs = new ArrayList<>();
 
@@ -293,6 +360,10 @@ public class ConfigurationMapper {
         return configs;
     }//getInProgressConfigs
 
+    /**
+     *
+     * @return en liste med alle afsluttede konfig
+     */
     public ArrayList<Carport> getFinishedConfigs() {
         ArrayList<Carport> configs = new ArrayList<>();
 

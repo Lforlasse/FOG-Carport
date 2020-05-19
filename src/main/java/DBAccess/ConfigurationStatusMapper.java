@@ -9,6 +9,10 @@ import java.util.List;
 
 public class ConfigurationStatusMapper {
 
+    /**
+     *
+     * @return samtlige statusser for konfig
+     */
     public static List<String> getAllConfigStatusTypes() {
         List<String> configs = new LinkedList<>();
 

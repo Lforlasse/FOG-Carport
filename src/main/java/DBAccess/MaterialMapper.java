@@ -6,6 +6,10 @@ import java.util.List;
 
 public class MaterialMapper {
 
+    /**
+     *
+     * @return en liste med materialer for en konfig
+     */
     public static List<String> getConfigMaterials() {
         List<String> materialList = new ArrayList<>();
 
@@ -23,6 +27,11 @@ public class MaterialMapper {
         return materialList;
     }
 
+    /**
+     *
+     * @param compMaterial tager imod materialenavn
+     * @return materiale med dette navn
+     */
     public static String getMaterialByName(String compMaterial) {
         String material = "";
         try {
@@ -37,6 +46,11 @@ public class MaterialMapper {
         return material;
     }
 
+    /**
+     *
+     * @param compMaterial tager imod nyt materiale
+     * @return boolean, når materialet er tilføjet
+     */
     public static boolean insertNewMaterial(String compMaterial) {
         try {
             Connection con = Connector.connection();
