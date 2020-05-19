@@ -12,6 +12,10 @@ import java.util.List;
 
 public class RoofMapper {
 
+    /**
+     *
+     * @return en liste med materialer til tag
+     */
     public static List<String> getRoofMaterials() {
         List<String> materialList = new ArrayList<>();
 
@@ -29,6 +33,11 @@ public class RoofMapper {
         return materialList;
     }
 
+    /**
+     *
+     * @param roofUnitIdentifier tager imod roofUnitId
+     * @return roofUnit på dette id
+     */
     public static RoofUnit getRoofUnit(String roofUnitIdentifier) {
 
         int unitId = 0;
@@ -63,6 +72,11 @@ public class RoofMapper {
         return roofUnit;
     }
 
+    /**
+     *
+     * @param material tager imod materiale
+     * @return sætter materialet til tagets ønskede længde
+     */
     public static int getRoofCompLength(String material) {
 
         int roofCompLength = 0;
@@ -83,6 +97,11 @@ public class RoofMapper {
         return roofCompLength;
     }//getRoofCompLength
 
+    /**
+     *
+     * @param material tager imod materiale
+     * @return sætter materialet til tagets ønskede bredde
+     */
     public static int getRoofCompWidth(String material) {
 
         int roofCompWidth = 0;
@@ -103,6 +122,4 @@ public class RoofMapper {
         return roofCompWidth;
 
     }//getRoofCompWidth
-
-
 }//class

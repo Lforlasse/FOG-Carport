@@ -9,9 +9,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ComponentMapper {
 
+    /**
+     *
+     * @param type henter typen valgt af bruger fra DB
+     * @param compMaterial henter materiale valgt af bruger fra DB
+     * @return retunerer komponent
+     */
     public static Component getComponent(String type, String compMaterial) {
 
         int compId = 0;
@@ -50,6 +55,11 @@ public class ComponentMapper {
         return component;
     }//getComponent
 
+    /**
+     *
+     * @param compId henter komponent fra DB på komponents id.
+     * @return komponent
+     */
     public static Component getComponentById(int compId) {
 
         String compDesc = "Ingen komponent fundet";
@@ -85,6 +95,12 @@ public class ComponentMapper {
         return component;
     }//getComponent
 
+    /**
+     *
+     * @param compId finder komponent på id
+     * @param newSalesPrice tager ny salgpris
+     * @return komponent med ny salgspris
+     */
     public static boolean updateComponentSalesPrice(int compId, int newSalesPrice) {
         try {
             Connection con = Connector.connection();
@@ -100,6 +116,17 @@ public class ComponentMapper {
         }
     }
 
+    /**
+     *
+     * @param compDesc tager imod beskrivelse til DB
+     * @param compMaterial tager imod materiale til DB
+     * @param compHeight tager imod højde til DB
+     * @param compWidth tager imod bredde til DB
+     * @param compLenght tager imod længde til DB
+     * @param compVendorPrice tager imod indkøbspris til DB
+     * @param compSalesPrice tager imod salgspris til DB
+     * @return
+     */
     public static boolean insertNewComponent(String compDesc, String compMaterial, int compHeight, int compWidth, int compLenght, int compVendorPrice, int compSalesPrice) {
         try {
             Connection con = Connector.connection();
@@ -121,6 +148,10 @@ public class ComponentMapper {
         }
     }
 
+    /**
+     *
+     * @return alle komponenter som en Liste
+     */
     public static List<Component> getAllComponents() {
         List<Component> compList = new ArrayList<>();
         try {

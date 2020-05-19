@@ -10,6 +10,11 @@ import java.sql.SQLException;
 
 public class PartMapper {
 
+    /**
+     *
+     * @param partIdentifier tager imod id til part
+     * @return part på denne id
+     */
     public static Part getPart(String partIdentifier){
 
         int partId = 0;
