@@ -329,7 +329,7 @@ public class OfferRequest {
         int gavlSideC = carport.getRoof().calcSideC(inclination,(gavlSideA*2));
         int gavlSideB = carport.getRoof().calcRoofHeight(gavlSideC, gavlSideA);
 
-        for (int i = 0; i >= carport.getRoof().roofHeight; i += gavlComp.getCompWidth()){
+        for (int i = 0; i <= carport.getRoof().roofHeight; i += gavlComp.getCompWidth()){
             countComp ++;
         }
         countComp *= 2;
