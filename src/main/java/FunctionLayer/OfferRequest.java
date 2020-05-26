@@ -107,12 +107,12 @@ public class OfferRequest {
             countUnit += 1;
         }
 
-            addUnit += carport.getConfWidth() / max;
+        addUnit += carport.getConfWidth() / max;
 
-            Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
-            sper.setCompLength(carport.getConfWidth() / addUnit);
-            sper.setCompInfo("Grundspær");
-            compList.put(sper, addUnit * countUnit);
+        Component sper = ComponentMapper.getComponent("Spær", carport.getConfMat());
+        sper.setCompLength(carport.getConfWidth() / addUnit);
+        sper.setCompInfo("Grundspær");
+        compList.put(sper, addUnit * countUnit);
 
         if (hasInclination) {
 
@@ -123,8 +123,8 @@ public class OfferRequest {
             compList.put(sperTag, addUnit * countUnit);
 
             Component sperMidt = ComponentMapper.getComponent("Spær", carport.getConfMat());
-            int sperCutLength = carport.getRoof().calcSideC(carport.getRoof().inclination,(sper.getCompWidth()*2));
-            sperMidt.setCompLength(carport.getRoof().roofHeight-sperCutLength);
+            int sperCutLength = carport.getRoof().calcSideC(carport.getRoof().inclination, (sper.getCompWidth() * 2));
+            sperMidt.setCompLength(carport.getRoof().roofHeight - sperCutLength);
             sperMidt.setCompDesc("Midterspær");
             sperMidt.setCompInfo("Topcut " + carport.getRoof().inclination + "° Midterspær");
             compList.put(sperMidt, countUnit);
@@ -136,8 +136,8 @@ public class OfferRequest {
 
         int bottomSpace = 35;
         int Spread = 30;
-        int countUnit = 2;
-        int sideC = carport.getRoof().getSideC() - bottomSpace;
+        int countUnit = 0;
+        int sideC = (carport.getRoof().getSideC() - bottomSpace);
 
         for (int i = sideC; i > Spread; i -= Spread) {
             countUnit += 1;
@@ -147,7 +147,7 @@ public class OfferRequest {
 
 
         if (carport.getConfLength() > carport.getRoof().maxLengthComponent) {
-            countUnit *= countUnit;
+            countUnit *= 2;
 
             Component legte = ComponentMapper.getComponent("Lægte", carport.getConfMat());
             legte.setCompLength(carport.getConfLength() / 2);
@@ -267,7 +267,7 @@ public class OfferRequest {
         listeBackside.setCompLength(carport.getConfLength() / compListeBackSide);
         compList.put(listeBackside, compListeBackSide);
 
-    }
+    }//addListeBekledning
 
     private void addBekledning() {
         //4 skruer per bræt, 2 i toppen 2 i bunden.
@@ -319,25 +319,25 @@ public class OfferRequest {
 
     }//addBekledning
 
-    private void addGavl(){
+    private void addGavl() {
 
         Component gavlComp = ComponentMapper.getComponent("Beklædning", carport.getConfMat());
         //Component sperComp = ComponentMapper.getComponent("Spær", carport.getConfMat());
         int countComp = 0;
         int inclination = carport.getRoof().inclination;
         int gavlSideA = gavlComp.getCompWidth();
-        int gavlSideC = carport.getRoof().calcSideC(inclination,(gavlSideA*2));
+        int gavlSideC = carport.getRoof().calcSideC(inclination, (gavlSideA * 2));
         int gavlSideB = carport.getRoof().calcRoofHeight(gavlSideC, gavlSideA);
 
-        for (int i = 0; i <= carport.getRoof().roofHeight; i += gavlComp.getCompWidth()){
-            countComp ++;
+        for (int i = 0; i <= carport.getRoof().roofHeight; i += gavlComp.getCompWidth()) {
+            countComp++;
         }
         countComp *= 2;
 
-        gavlComp.setCompInfo("Singlecut"+inclination+"°, længdefald: " + gavlSideB + "cm");
+        gavlComp.setCompInfo("Singlecut" + inclination + "°, længdefald: " + gavlSideB + "cm");
         gavlComp.setCompDesc("Gavlbrædde");
-        gavlComp.setCompLength(carport.getConfWidth()/2);
-        compList.put(gavlComp,countComp);
+        gavlComp.setCompLength(carport.getConfWidth() / 2);
+        compList.put(gavlComp, countComp);
 
     }//addGavl
     //COMPONENTS END
@@ -396,13 +396,13 @@ public class OfferRequest {
                 RoofUnit roofComp = RoofMapper.getRoofUnit(carport.getRoof().material);
 
                 sizeX = carport.getConfLength() / quantityX;
-                if(quantityX > 1) {
+                if (quantityX > 1) {
                     sizeX += 5;
                 }
                 roofComp.setUnitLength(sizeX);
 
                 sizeY = carport.getConfWidth() / quantityY;
-                if(quantityY > 1) {
+                if (quantityY > 1) {
                     sizeY += 5;
                 }
                 roofComp.setUnitWidth(sizeY);
@@ -651,17 +651,17 @@ public class OfferRequest {
         int countUnit = 0;
         int countbox = 1;
 
-        for (Map.Entry<Component, Integer> entry : compList.entrySet()){
-            if (entry.getKey().getCompDesc().equalsIgnoreCase("Gavlbrædde")){
-              countUnit = entry.getValue();
+        for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+            if (entry.getKey().getCompDesc().equalsIgnoreCase("Gavlbrædde")) {
+                countUnit = entry.getValue();
             }//if
         }//for
         countUnit *= 4;
         Part partSkruer = PartMapper.getPart("Skruer 4,5 x 70mm 200stk");
-        countbox += countUnit/200;
+        countbox += countUnit / 200;
 
         partSkruer.setPartInfo("Skruer til gavlbrædder");
-        partList.put(partSkruer,countbox);
+        partList.put(partSkruer, countbox);
 
     }//addPartGavl
 
@@ -679,8 +679,8 @@ public class OfferRequest {
             Part partSkruer = PartMapper.getPart("PLASTMO bundskruer 200stk");
             partSkruer.setPartInfo("Skruer til PLASTMO plader");
             countUnit *= 40;
-            countbox += countUnit/200;
-            partList.put(partSkruer,countbox);
+            countbox += countUnit / 200;
+            partList.put(partSkruer, countbox);
 
         }//if
 
@@ -747,7 +747,7 @@ public class OfferRequest {
         assignRem();
         assignSper();
         assignStern();
-        if(carport.getRoof().inclination != 0){
+        if (carport.getRoof().inclination != 0) {
             assignLegte();
         }//if
 
@@ -839,7 +839,7 @@ public class OfferRequest {
 
         blueprint.setCanvasText("    <text style=\"text-anchor: middle\" transform=\"translate(" + x1 + "," + y1 + ") rotate(-90)\"> " + value1 + "cm </text>\n" +
                 "    <text style=\"text-anchor: middle\" x=\"" + x2 + "\" y=\"" + y2 + "\">" + value2 + "cm </text>\n" +
-                "<text style=\"text-anchor: middle\" transform=\"translate(" + (x1+17) + "," + y1 + ") rotate(90)\">"+ front + "</text>");
+                "<text style=\"text-anchor: middle\" transform=\"translate(" + (x1 + 17) + "," + y1 + ") rotate(90)\">" + front + "</text>");
     }//assignText
 
     //CARPORTSVG
@@ -1197,16 +1197,16 @@ public class OfferRequest {
         return stern;
     }//placeStern
 
-    private void assignLegte(){
+    private void assignLegte() {
 
         int width = defineLegteWidth();
         int height = defineLegteHeight();
 
-        placeLegte(width, height);
+        blueprint.setLegte(placeLegte(width, height));
 
     }//assignLegte
 
-    private int defineLegteWidth(){
+    private int defineLegteWidth() {
         int width = 0;
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
@@ -1218,7 +1218,7 @@ public class OfferRequest {
         return width;
     }//defineLegteWidth
 
-    private int defineLegteHeight(){
+    private int defineLegteHeight() {
         int height = 0;
 
         for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
@@ -1230,32 +1230,62 @@ public class OfferRequest {
         return height;
     }//defineLegteHeight
 
-    private ArrayList<String> placeLegte(int width, int height){
+    private ArrayList<String> placeLegte(int width, int height) {
         ArrayList<String> legte = new ArrayList<>();
-        int push = 5+height;
-        int distance = 30+height;
-        int quantity = -2;
+        int push = 5 + height;
+        int distance = 30 + height;
+        int quantity = 0;
 
-        for (Map.Entry<Component,Integer> entry : compList.entrySet()) {
-            if(entry.getKey().getCompDesc().equalsIgnoreCase("Lægte")){
-              quantity += entry.getValue();
-            }//if
-        }//for
-        quantity /= 2;
+        if (carport.getConfLength() > carport.getRoof().maxLengthComponent) {
+            for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+                if (entry.getKey().getCompDesc().equalsIgnoreCase("Lægte")) {
+                    quantity += entry.getValue();
+                    quantity -= 4;
 
-        legte.add("<rect x=\""+0+"\" y=\""+0+"\" height=\""+height+"\" width=\""+width+"\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.3\"/>");
-        legte.add("<rect x=\""+0+"\" y=\""+(carport.getConfLength()-height)+"\" height=\""+height+"\" width=\""+width+"\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.3\"/>");
+                    legte.add("<rect x=\"" + 0 + "\" y=\"" + 0 + "\" height=\"" + height + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.3\"/>");
+                    legte.add("<rect x=\"" + width + "\" y=\"" + 0 + "\" height=\"" + height + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.3\"/>");
+                    legte.add("<rect x=\"" + 0 + "\" y=\"" + (carport.getConfWidth() - height) + "\" height=\"" + height + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.3\"/>");
+                    legte.add("<rect x=\"" + width + "\" y=\"" + (carport.getConfWidth() - height) + "\" height=\"" + height + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.3\"/>");
 
-        for (int i = quantity; i == 0; i--){
-            push += distance;
-            legte.add("<rect x=\""+0+"\" y=\""+distance+"\" height=\""+height+"\" width=\""+width+"\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.5\"/>");
-        }//for
+                    quantity /= 2;
+                    for (int i = quantity; i > 0; i -= 2) {
+                        push += distance;
+                        legte.add("<rect x=\"" + 0 + "\" y=\"" + push + "\" height=\"" + height + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.5\"/>");
+                        legte.add("<rect x=\"" + width + "\" y=\"" + push + "\" height=\"" + height + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.5\"/>");
+                    }//for
 
-        push = (carport.getConfLength()+5)-height;
-        for (int i = quantity; i == 0; i--){
-            push -= distance;
-            legte.add("<rect x=\""+0+"\" y=\""+distance+"\" height=\""+height+"\" width=\""+width+"\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.5\"/>");
-        }//for
+                    push = ((carport.getConfWidth() - 5) - height);
+                    for (int i = quantity; i > 0; i -= 2) {
+                        push -= distance;
+                        legte.add("<rect x=\"" + 0 + "\" y=\"" + push + "\" height=\"" + height + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.5\"/>");
+                        legte.add("<rect x=\"" + width + "\" y=\"" + push + "\" height=\"" + height + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.5\"/>");
+                    }//for
+                }//if
+            }//for
+        } else {
+            for (Map.Entry<Component, Integer> entry : compList.entrySet()) {
+                if (entry.getKey().getCompDesc().equalsIgnoreCase("Lægte")) {
+                    quantity += entry.getValue();
+                    quantity -= 2;
+
+                    legte.add("<rect x=\"" + 0 + "\" y=\"" + 0 + "\" height=\"" + height + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.3\"/>");
+                    legte.add("<rect x=\"" + 0 + "\" y=\"" + (carport.getConfWidth() - height) + "\" height=\"" + height + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.3\"/>");
+
+                    quantity /=2;
+                    for (int i = quantity; i > 0; i--) {
+                        push += distance;
+                        legte.add("<rect x=\"" + 0 + "\" y=\"" + push + "\" height=\"" + height + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.5\"/>");
+                    }//for
+
+                    push = ((carport.getConfWidth() - 5) - height);
+                    for (int i = quantity; i > 0; i--) {
+                        push -= distance;
+                        legte.add("<rect x=\"" + 0 + "\" y=\"" + push + "\" height=\"" + height + "\" width=\"" + width + "\" style=\"stroke:#000000; fill:#ffffff\" fill-opacity=\"0.6\" stroke-opacity=\"0.5\"/>");
+                    }//for
+                }//if
+            }//for
+
+        }//else
 
         return legte;
     }//placeLegte
