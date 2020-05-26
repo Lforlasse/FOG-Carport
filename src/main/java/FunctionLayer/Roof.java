@@ -64,7 +64,7 @@ public class Roof {
         s = s.substring(0,s.length()-2);
         int i = Integer.parseInt(s);
         return i;
-    }//toDouble
+    }//toInt
 
     //Getter & Setter
     public int getRoofHeight() {
