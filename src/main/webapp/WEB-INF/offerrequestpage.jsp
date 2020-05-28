@@ -315,7 +315,7 @@
 
         <div class="card mb-4">
             <div class="card-header">
-                SVG
+                Plantegning
             </div>
             <div class="card-body">
                 ${requestScope.svg}
