@@ -25,7 +25,8 @@ public class Blueprint {
     public String composeSVG() {
 
         String SVG = "<?xml version=\"1.0\" ?>\n" +
-                "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" +
+                "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\""+
+                "\"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" +
                 "\n" +
                 "<!-- CanvasBack -->" + "\n" +
                 canvasBack + "\n\n" +
@@ -55,8 +56,7 @@ public class Blueprint {
                 "</svg>";
 
         return SVG;
-
-    }
+    }//composeSVG
 
         private String composeRem(){
 
@@ -66,8 +66,7 @@ public class Blueprint {
                 collector += rem.get(i) + "\n";
             }
             return collector;
-
-        }//
+        }//composeRem
 
         private String composeStolpe (){
 
@@ -77,7 +76,7 @@ public class Blueprint {
                 collector += stolpe.get(i) + "\n";
             }
             return collector;
-        }
+        }//composeStolpe
 
         private String composeSper (){
 
@@ -87,7 +86,7 @@ public class Blueprint {
                 collector += sper.get(i) + "\n";
             }
             return collector;
-        }
+        }//composeSper
 
         private String composeStern (){
 
@@ -97,7 +96,7 @@ public class Blueprint {
                 collector += stern.get(i) + "\n";
             }
             return collector;
-        }
+        }//composeStern
 
         private String composeLegte(){
 
@@ -107,7 +106,7 @@ public class Blueprint {
                 collector += legte.get(i) + "\n";
             }
             return collector;
-        }
+        }//composeLegte
 
 
     //GETTER & SETTER

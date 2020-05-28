@@ -938,7 +938,7 @@ public class OfferRequest {
         int width = defineRemWidth();
 
 
-        blueprint.setRem(placeRem(height, width)); //indsæt fra blueprintSVG
+        blueprint.setRem(placeRem(height, width));
 
     }//assignRem
 
