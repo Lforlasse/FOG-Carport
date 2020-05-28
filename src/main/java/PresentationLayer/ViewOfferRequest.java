@@ -13,11 +13,6 @@ public class ViewOfferRequest extends Command {
         int confId = Integer.parseInt(request.getParameter("confId"));
         OfferRequest offerRequest = LogicFacade.getOfferRequest(confId);
         String offerRequestStatus = offerRequest.getCarport().getConfStatus();
-        request.setAttribute("offerRequestStatusList", LogicFacade.getOfferRequestStatusTypes());
-        request.setAttribute("offerRequestStatus", offerRequestStatus);
-        request.setAttribute("offerRequest", offerRequest);
-        request.setAttribute("confId", confId);
-        request.setAttribute("svg",offerRequest.getBlueprint().getBlueprintSVG());
 
         try {
             int pageFunction = Integer.parseInt(request.getParameter("pageFunction"));
@@ -42,6 +37,13 @@ public class ViewOfferRequest extends Command {
             }
         } catch (Exception ex) {
         }
+
+        offerRequest = LogicFacade.getOfferRequest(confId);
+        request.setAttribute("offerRequestStatusList", LogicFacade.getOfferRequestStatusTypes());
+        request.setAttribute("offerRequestStatus", offerRequestStatus);
+        request.setAttribute("offerRequest", offerRequest);
+        request.setAttribute("confId", confId);
+        request.setAttribute("svg",offerRequest.getBlueprint().getBlueprintSVG());
         return "offerrequestpage";
     }
 }

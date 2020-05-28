@@ -179,7 +179,7 @@
                             <div class="input-group col-2">
                                 Komponent
                             </div>
-                            <div class="input-g roup col">
+                            <div class="input-group col">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text border-secondary">
                                     <label class="m-0" for="newComponentDesc">Type</label>
