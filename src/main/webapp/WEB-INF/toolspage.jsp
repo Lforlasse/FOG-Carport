@@ -103,7 +103,7 @@
                 </div>
 
                 <c:if test="${requestScope.component != null}">
-                    <!-- JSTL START: IF STATEMENT TO SHOW ONLY IF componentId is NOT NULL -->
+                    <!-- JSTL START: IF STATEMENT TO SHOW ONLY IF component-attribute is NOT NULL -->
                     <div class="card-body border-top">
                         <!-- Row 2 -->
                         <div class="form-row mb-3">
@@ -172,14 +172,14 @@
                 </c:if>
 
                 <c:if test="${requestScope.newComponent != null}">
-                    <!-- JSTL START: IF STATEMENT TO SHOW ONLY IF componentId is NOT NULL -->
+                    <!-- JSTL START: IF STATEMENT TO SHOW ONLY IF newComponent-attribute is NOT NULL -->
                     <div class="card-body border-top">
                         <!-- Row 2 -->
                         <div class="form-row mb-3">
                             <div class="input-group col-2">
                                 Komponent
                             </div>
-                            <div class="input-group col">
+                            <div class="input-g roup col">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text border-secondary">
                                     <label class="m-0" for="newComponentDesc">Type</label>
