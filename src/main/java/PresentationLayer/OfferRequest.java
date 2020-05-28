@@ -105,7 +105,6 @@ public class OfferRequest extends Command {
             System.out.println(e);
         }
 
-
         request.setAttribute("materials", LogicFacade.carportMaterials());
         request.setAttribute("widthLimits", LogicFacade.widthLimits());
         request.setAttribute("lengthLimits", LogicFacade.lengthLimits());

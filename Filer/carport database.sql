@@ -170,9 +170,9 @@ CREATE TRIGGER changeDateTrigger
     FOR EACH ROW
     SET new.changedDate = curdate();
 
-INSERT INTO configurations (confStatus, custName, custPhone, custEmail, custPostal, length, width, height, material, roofInclination, roofMaterial, rightSide, leftSide, backSide)
-VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 580, 225, "Egetræ", 0, "PLASTMO", true, true, true),
-		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", 0, "Betontagsten, sort", false, true, true);
+INSERT INTO configurations (confStatus, custName, custPhone, custEmail, custPostal, length, width, height, material, roofInclination, roofMaterial, rightSide, leftSide, backSide, createdDate, changedDate)
+VALUES  ("Afsluttet", "Abbott", 44884488, "abbott@bot.com", 5020, 300, 580, 225, "Egetræ", 0, "PLASTMO", true, true, true, "2020-05-25", "2020-05-26"),
+		("Behandles", "Costello", 22662266, "costello@ost.com", 2550, 300, 450, 225, "Trykimprægneret", 0, "Betontagsten, sort", false, true, true, "2020-05-26", "2020-05-27");
 
 
 
