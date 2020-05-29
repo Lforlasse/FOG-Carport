@@ -34,8 +34,12 @@
                         </c:forEach>
                     </select>
                     <div class="input-group-append bg-white rounded">
-                        <span class="input-group-text border-secondary">Oprettet:&nbsp;<b>${requestScope.offerRequest.carport.CREATED_DATE}</b></span>
-                        <span class="input-group-text border-secondary border-right-0">Ændret:&nbsp;<b>${requestScope.offerRequest.carport.changedDate}</b></span>
+                        <span class="input-group-text border-secondary">
+                            Oprettet:&nbsp;<b>${requestScope.offerRequest.carport.CREATED_DATE}</b>
+                        </span>
+                        <span class="input-group-text border-secondary border-right-0">
+                            Ændret:&nbsp;<b>${requestScope.offerRequest.carport.changedDate}</b>
+                        </span>
 
                         <input type="hidden" name="target" value="viewOfferRequest">
                         <input type="hidden" name="confId" value="${requestScope.offerRequest.confId}">

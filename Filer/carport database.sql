@@ -128,14 +128,14 @@ VALUES  ("Carspace height", 185),
 		("Carspace length", 300),
         ("Carspace width", 250);
         
-CREATE TABLE configurationStatus (
+CREATE TABLE configurationstatus (
 	confStatus VARCHAR(20) NOT NULL,
     confStatusId INT NOT NULL,
 
     PRIMARY KEY (confStatus)
 );
 
-INSERT INTO configurationStatus (confStatus, confStatusId)
+INSERT INTO configurationstatus (confStatus, confStatusId)
 VALUES  ("Ny", 1),
 		("Behandles", 2),
         ("Tilbud sendt", 3),
@@ -161,7 +161,7 @@ CREATE TABLE configurations (
     changedDate VARCHAR(10) DEFAULT (curdate()),
     
     PRIMARY KEY (confId),
-    FOREIGN KEY (confStatus) REFERENCES configurationStatus (confStatus)
+    FOREIGN KEY (confStatus) REFERENCES configurationstatus (confStatus)
     
     );
 ALTER TABLE configurations auto_increment=224466;

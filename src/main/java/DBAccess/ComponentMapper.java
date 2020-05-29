@@ -31,7 +31,7 @@ public class ComponentMapper {
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT compId, compDesc, material, compHeigth, compWidth, compLength, vendorPrice," +
-                    " salesPrice FROM Components WHERE compDesc =? AND material =?";
+                    " salesPrice FROM components WHERE compDesc =? AND material =?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, type);
             ps.setString(2, compMaterial);
@@ -73,7 +73,7 @@ public class ComponentMapper {
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT compDesc, material, compHeigth, compWidth, compLength, vendorPrice," +
-                    " salesPrice FROM Components WHERE compId = ?";
+                    " salesPrice FROM components WHERE compId = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, compId);
 
